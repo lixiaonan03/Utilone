@@ -9,8 +9,73 @@
 It will be read and overwritten.
 Do Not Edit! -->
 <TITLE>Bookmarks</TITLE>
-<H1>Bookmarks</H1>
+
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+</DL><P>
+<DT><H3 FOLDED ADD_DATE="71642963972">app安装、互相调用和卸载监听</H3>
+<DL><P>
+<DT><A HREF="http://blog.csdn.net/trent1985/article/details/24372475" ADD_DATE="71642963973">android 中如何将多个相互关联的APK打包成一个APK？ - Trent1985的专栏 - 博客频道 - CSDN.NET</A>
+<DT><A HREF="http://blog.csdn.net/buptlzx/article/details/9837137" ADD_DATE="71642963973">Android 从网页中跳转到APP - 小罗的专栏 - 博客频道 - CSDN.NET</A>
+<DT><A HREF="http://blog.csdn.net/qingwadashu/article/details/12947767" ADD_DATE="71642963973">android 点击分享的链接跳转到应用程序 - QingWaDaShu的专栏 - 博客频道 - CSDN.NET</A>
+<DT><A HREF="http://blog.csdn.net/jiangwei0910410003/article/details/23940445" ADD_DATE="71642963973">Android实现通过浏览器点击链接打开本地应用（APP）并拿到浏览器传递的数据 - jiangwei0910410003的专栏 - 博客频道 - CSDN.NET</A>
+<DT><A HREF="http://www.2cto.com/kf/201409/335341.html" ADD_DATE="71642963973">Android卸载程序之后跳转到指定的反馈页面 - Android移动开发技术文章_手机开发 - 红黑联盟</A>
+<DT><A HREF="http://www.cnblogs.com/zealotrouge/archive/2013/09/24/3182617.html" ADD_DATE="71642963973">Android应用如何监听自己是否被卸载及卸载反馈功能的实现（第三版） - 热气球 - 博客园</A>
+<DT><A HREF="http://blog.csdn.net/gxj1680/article/details/17121149" ADD_DATE="71642963973">(转)Android应用如何监听自己是否被卸载及卸载反馈功能的实现（第三版） - gxj1680的专栏 - 博客频道 - CSDN.NET</A>
+<DT><A HREF="http://www.cnblogs.com/zhoujg/p/3455674.html" ADD_DATE="71642963973">解决Android应用安装快完毕时提示签名冲突 - 周 金根 - 博客园</A>
+</DL><P>
+<DT><A HREF="http://123.57.207.49/zentao/bug-browse-6.html#userconsent#" ADD_DATE="71642963972">微商城::Bug - 禅道</A>
+<DT><H3 FOLDED ADD_DATE="71642963972">Android 权限和action</H3>
+<DL><P>
+<DT><A HREF="http://www.cnblogs.com/classic/archive/2011/06/20/2085055.html" ADD_DATE="71642963973">android权限大全 - 曲怀觞 - 博客园</A>
+<DT><A HREF="http://wenku.baidu.com/link?url=F8j6LESi_SChRGaHbrqmvAsk6EP2FZfn1Rv2naHbP5062lSJvKxUMPZhCnDV4tEeqZhoNdIXMNHJY1iF1dOoz4Do5_xn9IbMrPuZiOkiYta" ADD_DATE="71642963973">Intent中各种常见的Action_百度文库</A>
+<DT><A HREF="http://blog.csdn.net/huweijian5/article/details/41281865?ref=myread" ADD_DATE="71642963973">intent action 大全 - huweijian5的专栏 - 博客频道 - CSDN.NET</A>
+<DT><A HREF="http://www.cnblogs.com/pilang/archive/2011/04/20/2022932.html" ADD_DATE="71642963973">Android学习笔记之AndroidManifest.xml文件解析 - 皮狼 - 博客园</A>
+</DL><P>
+<DT><H3 FOLDED ADD_DATE="71642963972">Android actionbar学习</H3>
+<DL><P>
+<DT><A HREF="http://blog.csdn.net/gebitan505/article/details/36674397" ADD_DATE="71642963956">Android ActionBar应用实战，高仿微信主界面的设计 - AndyLizh的专栏 - 博客频道 - CSDN.NET</A>
+<DT><A HREF="http://blog.csdn.net/yuzhiboyi/article/details/32709833" ADD_DATE="71642963956">Android ActionBar完全解析，使用官方推荐的最佳导航栏(上) - YUZHIBOYI的专栏 - 博客频道 - CSDN.NET</A>
+</DL><P>
+<DT><H3 FOLDED ADD_DATE="71642963972">数据库和本地文件</H3>
+<DL><P>
+<DT><A HREF="http://blog.csdn.net/lonelyroamer/article/details/26299355" ADD_DATE="71642963971">OrmLite动态创建表，一个实体类创建多张表的的偏招 - LonelyRoamer的专栏 - 博客频道 - CSDN.NET</A>
+<DT><A HREF="http://blog.csdn.net/aiqing0119/article/details/7718494" ADD_DATE="71642963971">android的Environment类 - aiqing0119的专栏 - 博客频道 - CSDN.NET</A>
+<DT><A HREF="http://blog.csdn.net/leshami/article/details/5616877" ADD_DATE="71642963971">SQL基础--&gt;层次化查询(START BY ... CONNECT BY PRIOR) - 乐沙弥的世界 - 博客频道 - CSDN.NET</A>
+<DT><A HREF="http://blog.csdn.net/zljjava/article/details/7743038" ADD_DATE="71642963971">sqlite数据库判断表是否存在得方法 - - 博客频道 - CSDN.NET</A>
+<DT><A HREF="http://www.csdn123.com/html/blogs/20130717/38808.htm" ADD_DATE="71642963971">ORMLite学习入门笔记 - 脚本百事通</A>
+</DL><P>
+<DT><H3 FOLDED ADD_DATE="71642963972">通知栏及其相关</H3>
+<DL><P>
+<DT><A HREF="http://blog.csdn.net/wangbole/article/details/7465385" ADD_DATE="71642963973">解决PendingIntent传递参数为空的问题 - Super爬爬虫 - 博客频道 - CSDN.NET</A>
+<DT><A HREF="http://blog.csdn.net/vipzjyno1/article/details/25248021" ADD_DATE="71642963973">Android 通知栏Notification的整合 全面学习 （一个DEMO让你完全了解它） - 未来之路 的专栏 - 博客频道 - CSDN.NET</A>
+<DT><A HREF="http://blog.csdn.net/hudashi/article/details/7060837" ADD_DATE="71642963973">PendingIntent详解 - Robin Hu的专栏 - 博客频道 - CSDN.NET</A>
+<DT><A HREF="http://www.2cto.com/kf/201405/300991.html" ADD_DATE="71642963973">Android 通知栏Notification的整合 全面学习 （一个DEMO让你完全了解它） - Android移动开发技术文章_手机开发 - 红黑联盟</A>
+</DL><P>
+<DT><H3 FOLDED ADD_DATE="71642963972">其他退出及v4包解释之类</H3>
+<DL><P>
+<DT><A HREF="http://www.2cto.com/kf/201411/350928.html" ADD_DATE="71642963973">Android Support 包里究竟有什么 - Android移动开发技术文章_手机开发 - 红黑联盟</A>
+<DT><A HREF="http://blog.csdn.net/onlyonecoder/article/details/8231373" ADD_DATE="71642963973">android 端生成随机验证码 实现 - 独自等待 - 博客频道 - CSDN.NET</A>
+<DT><A HREF="http://blog.sina.com.cn/s/blog_5a6f39cf01012lb7.html" ADD_DATE="71642963973">Android开发：在非主Activity中按返回键关闭程序(转)_白云_新浪博客</A>
+<DT><A HREF="http://mysuperbaby.iteye.com/blog/1460948" ADD_DATE="71642963973">[AndroidTips]Android中系统自带的锁：WalkLock、KeyguardLock - 坚持,淡定 - ITeye技术网站</A>
+</DL><P>
+<DT><H3 FOLDED ADD_DATE="71642963972">消息机制、线程、service相关</H3>
+<DL><P>
+<DT><A HREF="http://mobile.51cto.com/android-265887.htm" ADD_DATE="71642963973">Android消息机制(1) - 51CTO.COM</A>
+<DT><A HREF="http://blog.csdn.net/mad1989/article/details/22492519" ADD_DATE="71642963973">Android开发之如何保证Service不被杀掉（broadcast+system/app） - 其实并不难,是你太悲观 - 博客频道 - CSDN.NET</A>
+<DT><A HREF="http://www.eoeandroid.com/thread-563134-1-1.html" ADD_DATE="71642963973">Android多线程相关内容汇总——索引帖-Android开发经验分享-eoe 移动开发者论坛 - Powered by Discuz!</A>
+</DL><P>
+<DT><A HREF="http://test.sun-yard.com:8060/account/rdirect#userconsent#" ADD_DATE="71642963972">新侬管理平台</A>
+<DT><H3 FOLDED ADD_DATE="71642963972">touch触摸事件处理</H3>
+<DL><P>
+<DT><A HREF="http://mobile.51cto.com/abased-374715.htm" ADD_DATE="71642963973">Android dispatchTouchEvent介绍 - 51CTO.COM</A>
+<DT><A HREF="http://blog.csdn.net/xyz_lmn/article/details/12517911" ADD_DATE="71642963973">Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - 博客频道 - CSDN.NET</A>
+<DT><A HREF="http://blog.csdn.net/morgan_xww/article/details/9372285/" ADD_DATE="71642963973">Android TouchEvent事件传递机制 - 小威的专栏 - 博客频道 - CSDN.NET</A>
+</DL><P>
+<DT><H3 FOLDED ADD_DATE="71642963972">二维码扫描</H3>
+<DL><P>
+<DT><A HREF="http://blog.csdn.net/aaawqqq/article/details/24852915" ADD_DATE="71642963956">Zxing图片拉伸解决 Android 二维码扫描 - 提升心智 - 博客频道 - CSDN.NET</A>
+<DT><A HREF="http://www.fengfly.com/plus/view-214538-2.html" ADD_DATE="71642963956">Android基于google Zxing实现对手机中图片上的二维码进行扫描(2)_雨枫技术教程网</A>
+</DL><P>
 <DL><P>
 <DT><H3 FOLDED ADD_DATE="71642963972">Android多媒体相关</H3>
 <DL><P>
@@ -221,69 +286,6 @@ Do Not Edit! -->
 <DT><A HREF="http://www.tuicool.com/articles/V7j6Zfq" ADD_DATE="71642963973">android studio如何使用git - 推酷</A>
 <DT><A HREF="http://www.wfuyu.com/technology/22499.html" ADD_DATE="71642963973">Android Studio之版本管理工具Git （图文教程） - 综合技术 - 程序员人生-专注互联网开发</A>
 </DL><P>
+
 </DL><P>
-<DT><H3 FOLDED ADD_DATE="71642963972">app安装、互相调用和卸载监听</H3>
-<DL><P>
-<DT><A HREF="http://blog.csdn.net/trent1985/article/details/24372475" ADD_DATE="71642963973">android 中如何将多个相互关联的APK打包成一个APK？ - Trent1985的专栏 - 博客频道 - CSDN.NET</A>
-<DT><A HREF="http://blog.csdn.net/buptlzx/article/details/9837137" ADD_DATE="71642963973">Android 从网页中跳转到APP - 小罗的专栏 - 博客频道 - CSDN.NET</A>
-<DT><A HREF="http://blog.csdn.net/qingwadashu/article/details/12947767" ADD_DATE="71642963973">android 点击分享的链接跳转到应用程序 - QingWaDaShu的专栏 - 博客频道 - CSDN.NET</A>
-<DT><A HREF="http://blog.csdn.net/jiangwei0910410003/article/details/23940445" ADD_DATE="71642963973">Android实现通过浏览器点击链接打开本地应用（APP）并拿到浏览器传递的数据 - jiangwei0910410003的专栏 - 博客频道 - CSDN.NET</A>
-<DT><A HREF="http://www.2cto.com/kf/201409/335341.html" ADD_DATE="71642963973">Android卸载程序之后跳转到指定的反馈页面 - Android移动开发技术文章_手机开发 - 红黑联盟</A>
-<DT><A HREF="http://www.cnblogs.com/zealotrouge/archive/2013/09/24/3182617.html" ADD_DATE="71642963973">Android应用如何监听自己是否被卸载及卸载反馈功能的实现（第三版） - 热气球 - 博客园</A>
-<DT><A HREF="http://blog.csdn.net/gxj1680/article/details/17121149" ADD_DATE="71642963973">(转)Android应用如何监听自己是否被卸载及卸载反馈功能的实现（第三版） - gxj1680的专栏 - 博客频道 - CSDN.NET</A>
-<DT><A HREF="http://www.cnblogs.com/zhoujg/p/3455674.html" ADD_DATE="71642963973">解决Android应用安装快完毕时提示签名冲突 - 周 金根 - 博客园</A>
-</DL><P>
-<DT><A HREF="http://123.57.207.49/zentao/bug-browse-6.html#userconsent#" ADD_DATE="71642963972">微商城::Bug - 禅道</A>
-<DT><H3 FOLDED ADD_DATE="71642963972">Android 权限和action</H3>
-<DL><P>
-<DT><A HREF="http://www.cnblogs.com/classic/archive/2011/06/20/2085055.html" ADD_DATE="71642963973">android权限大全 - 曲怀觞 - 博客园</A>
-<DT><A HREF="http://wenku.baidu.com/link?url=F8j6LESi_SChRGaHbrqmvAsk6EP2FZfn1Rv2naHbP5062lSJvKxUMPZhCnDV4tEeqZhoNdIXMNHJY1iF1dOoz4Do5_xn9IbMrPuZiOkiYta" ADD_DATE="71642963973">Intent中各种常见的Action_百度文库</A>
-<DT><A HREF="http://blog.csdn.net/huweijian5/article/details/41281865?ref=myread" ADD_DATE="71642963973">intent action 大全 - huweijian5的专栏 - 博客频道 - CSDN.NET</A>
-<DT><A HREF="http://www.cnblogs.com/pilang/archive/2011/04/20/2022932.html" ADD_DATE="71642963973">Android学习笔记之AndroidManifest.xml文件解析 - 皮狼 - 博客园</A>
-</DL><P>
-<DT><H3 FOLDED ADD_DATE="71642963972">Android actionbar学习</H3>
-<DL><P>
-<DT><A HREF="http://blog.csdn.net/gebitan505/article/details/36674397" ADD_DATE="71642963956">Android ActionBar应用实战，高仿微信主界面的设计 - AndyLizh的专栏 - 博客频道 - CSDN.NET</A>
-<DT><A HREF="http://blog.csdn.net/yuzhiboyi/article/details/32709833" ADD_DATE="71642963956">Android ActionBar完全解析，使用官方推荐的最佳导航栏(上) - YUZHIBOYI的专栏 - 博客频道 - CSDN.NET</A>
-</DL><P>
-<DT><H3 FOLDED ADD_DATE="71642963972">数据库和本地文件</H3>
-<DL><P>
-<DT><A HREF="http://blog.csdn.net/lonelyroamer/article/details/26299355" ADD_DATE="71642963971">OrmLite动态创建表，一个实体类创建多张表的的偏招 - LonelyRoamer的专栏 - 博客频道 - CSDN.NET</A>
-<DT><A HREF="http://blog.csdn.net/aiqing0119/article/details/7718494" ADD_DATE="71642963971">android的Environment类 - aiqing0119的专栏 - 博客频道 - CSDN.NET</A>
-<DT><A HREF="http://blog.csdn.net/leshami/article/details/5616877" ADD_DATE="71642963971">SQL基础--&gt;层次化查询(START BY ... CONNECT BY PRIOR) - 乐沙弥的世界 - 博客频道 - CSDN.NET</A>
-<DT><A HREF="http://blog.csdn.net/zljjava/article/details/7743038" ADD_DATE="71642963971">sqlite数据库判断表是否存在得方法 - - 博客频道 - CSDN.NET</A>
-<DT><A HREF="http://www.csdn123.com/html/blogs/20130717/38808.htm" ADD_DATE="71642963971">ORMLite学习入门笔记 - 脚本百事通</A>
-</DL><P>
-<DT><H3 FOLDED ADD_DATE="71642963972">通知栏及其相关</H3>
-<DL><P>
-<DT><A HREF="http://blog.csdn.net/wangbole/article/details/7465385" ADD_DATE="71642963973">解决PendingIntent传递参数为空的问题 - Super爬爬虫 - 博客频道 - CSDN.NET</A>
-<DT><A HREF="http://blog.csdn.net/vipzjyno1/article/details/25248021" ADD_DATE="71642963973">Android 通知栏Notification的整合 全面学习 （一个DEMO让你完全了解它） - 未来之路 的专栏 - 博客频道 - CSDN.NET</A>
-<DT><A HREF="http://blog.csdn.net/hudashi/article/details/7060837" ADD_DATE="71642963973">PendingIntent详解 - Robin Hu的专栏 - 博客频道 - CSDN.NET</A>
-<DT><A HREF="http://www.2cto.com/kf/201405/300991.html" ADD_DATE="71642963973">Android 通知栏Notification的整合 全面学习 （一个DEMO让你完全了解它） - Android移动开发技术文章_手机开发 - 红黑联盟</A>
-</DL><P>
-<DT><H3 FOLDED ADD_DATE="71642963972">其他退出及v4包解释之类</H3>
-<DL><P>
-<DT><A HREF="http://www.2cto.com/kf/201411/350928.html" ADD_DATE="71642963973">Android Support 包里究竟有什么 - Android移动开发技术文章_手机开发 - 红黑联盟</A>
-<DT><A HREF="http://blog.csdn.net/onlyonecoder/article/details/8231373" ADD_DATE="71642963973">android 端生成随机验证码 实现 - 独自等待 - 博客频道 - CSDN.NET</A>
-<DT><A HREF="http://blog.sina.com.cn/s/blog_5a6f39cf01012lb7.html" ADD_DATE="71642963973">Android开发：在非主Activity中按返回键关闭程序(转)_白云_新浪博客</A>
-<DT><A HREF="http://mysuperbaby.iteye.com/blog/1460948" ADD_DATE="71642963973">[AndroidTips]Android中系统自带的锁：WalkLock、KeyguardLock - 坚持,淡定 - ITeye技术网站</A>
-</DL><P>
-<DT><H3 FOLDED ADD_DATE="71642963972">消息机制、线程、service相关</H3>
-<DL><P>
-<DT><A HREF="http://mobile.51cto.com/android-265887.htm" ADD_DATE="71642963973">Android消息机制(1) - 51CTO.COM</A>
-<DT><A HREF="http://blog.csdn.net/mad1989/article/details/22492519" ADD_DATE="71642963973">Android开发之如何保证Service不被杀掉（broadcast+system/app） - 其实并不难,是你太悲观 - 博客频道 - CSDN.NET</A>
-<DT><A HREF="http://www.eoeandroid.com/thread-563134-1-1.html" ADD_DATE="71642963973">Android多线程相关内容汇总——索引帖-Android开发经验分享-eoe 移动开发者论坛 - Powered by Discuz!</A>
-</DL><P>
-<DT><A HREF="http://test.sun-yard.com:8060/account/rdirect#userconsent#" ADD_DATE="71642963972">新侬管理平台</A>
-<DT><H3 FOLDED ADD_DATE="71642963972">touch触摸事件处理</H3>
-<DL><P>
-<DT><A HREF="http://mobile.51cto.com/abased-374715.htm" ADD_DATE="71642963973">Android dispatchTouchEvent介绍 - 51CTO.COM</A>
-<DT><A HREF="http://blog.csdn.net/xyz_lmn/article/details/12517911" ADD_DATE="71642963973">Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - 博客频道 - CSDN.NET</A>
-<DT><A HREF="http://blog.csdn.net/morgan_xww/article/details/9372285/" ADD_DATE="71642963973">Android TouchEvent事件传递机制 - 小威的专栏 - 博客频道 - CSDN.NET</A>
-</DL><P>
-<DT><H3 FOLDED ADD_DATE="71642963972">二维码扫描</H3>
-<DL><P>
-<DT><A HREF="http://blog.csdn.net/aaawqqq/article/details/24852915" ADD_DATE="71642963956">Zxing图片拉伸解决 Android 二维码扫描 - 提升心智 - 博客频道 - CSDN.NET</A>
-<DT><A HREF="http://www.fengfly.com/plus/view-214538-2.html" ADD_DATE="71642963956">Android基于google Zxing实现对手机中图片上的二维码进行扫描(2)_雨枫技术教程网</A>
-</DL><P>
-</DL><P>
+
