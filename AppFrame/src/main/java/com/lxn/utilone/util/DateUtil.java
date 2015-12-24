@@ -65,7 +65,6 @@ public class DateUtil {
 	 /**
      * @Description:Calendar时间 转字符串 使用默认格式yyyy-MM-dd HH:mm:ss
      * @param calendar
-     * @param format
      */
 	public static String calendarToStr(Calendar calendar) {
 		return calendarToStr(calendar, null);
@@ -146,6 +145,10 @@ public class DateUtil {
 	public static String getDate(Timestamp time) {
 		return new SimpleDateFormat("yyyy-MM-dd").format(time);
 	}
+	/**
+	 * @Description:把Timestamp的时间 转成字符串格式 "yyyy-MM-dd HH:mm:ss"
+	 * @param time
+	 */
 	public static String getDateTime(Timestamp time) {
 		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(time);
 	}
