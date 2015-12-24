@@ -3,20 +3,37 @@
     package="com.lxn.utilone" >
 
     <!-- 访问Internet -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- - 访问网络状态 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 往SDCard写入数据权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 阅读短信 -->
+    <uses-permission android:name="android.permission.READ_SMS" />
+
+
+    <!-- 二维码所需要的功能 -->
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <!-- 允许访问摄像头进行拍照 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- 允许访问闪光灯 -->
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <!-- 允许振动 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 挂载、反挂载外部文件系统 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:name=".UtilApplication"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.Welcome"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
@@ -24,6 +41,52 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <!--引导页-->
+        <activity android:name=".activity.GuideActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <!--主页-->
+        <activity android:name=".activity.MainActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <!-- 登录的  处理输入法的弹出界面的影响-->
+        <activity
+            android:name=".activity.LoginActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 选择图片-->
+        <activity
+            android:name=".activity.PhotoPickActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 找回密码 里面有短信验证码的功能-->
+        <activity
+            android:name=".activity.FindPasswordActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 嵌套网页的activity-->
+        <activity
+            android:name=".activity.TraceActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 搜索 android:exported="true"是否被其他app调用-->
+        <activity
+            android:name=".activity.SearchActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 商品详情页-->
+        <activity
+            android:name=".activity.ProductdeatilActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 二维码扫描界面 -->
+        <activity
+            android:name="com.zbar.lib.CaptureActivity"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

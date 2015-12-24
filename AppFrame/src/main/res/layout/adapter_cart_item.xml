@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:orientation="horizontal" >
+
+        <CheckBox
+            android:id="@+id/item_checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:button="@drawable/radiobutton"
+            />
+
+        <ImageView
+            android:id="@+id/item_img"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/img_border"
+            android:padding="0.5dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/item_goodname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textcolor"
+                android:maxLines="2"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/item_reduce"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/adapter_cart_imgreduce"
+                    android:gravity="center"
+                    />
+
+                <TextView
+                    android:id="@+id/item_count"
+                    android:layout_width="34dp"
+                    android:layout_height="24dp"
+                    android:textSize="14sp"
+                    android:background="@drawable/adapter_cart_imgnum"
+                    android:gravity="center" />
+
+                <ImageView
+                    android:id="@+id/item_add"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/adapter_cart_imgadd"
+                    android:gravity="center"
+                     />
+
+                <TextView
+                    android:id="@+id/item_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:gravity="center"
+                    android:text="￥  0.00"
+                    android:textSize="12sp"
+                    android:textColor="@color/logo_color" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

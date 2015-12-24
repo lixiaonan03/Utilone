@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--android:state_selected 是选中
+          android:state_focused 是获得焦点
+           android:state_pressed 是点击
+               android:state_enabled 是设置是否响应事件,指所有事件-->
+    <item android:drawable="@drawable/main_cart_checked" android:state_selected="true" />
+    <item android:drawable="@drawable/main_cart_nochecked" />
+</selector>

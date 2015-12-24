@@ -3,4 +3,18 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <!-- 通用的  -->
+    <dimen name="listview_line_height">0.5dp</dimen>
+    <dimen name="textsize">14sp</dimen>
+    <dimen name="textsizesmall">12sp</dimen>
+
+    <dimen name="buttomtextsize">14sp</dimen>
+
+    <dimen name="buttomarginBottom">15dp</dimen>
+    <dimen name="buttonheight">38dp</dimen>
+    <!-- 个人中心  -->
+    <dimen name="mycenter_item_marginLeftAndRight">15dp</dimen>
+    <dimen name="mycenter_item_height">46dp</dimen>
+    <dimen name="mycenter_item_textsize">14sp</dimen>
+    <dimen name="mycenter_item_textmarginleft">10dp</dimen>
 </resources>

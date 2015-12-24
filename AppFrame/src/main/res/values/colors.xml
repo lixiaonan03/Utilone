@@ -3,4 +3,35 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <!--首页tab页切换的颜色-->
+    <color name="common_bottom_btn_blue">#45A63A</color>
+    <color name="common_bottom_btn_black">#999999</color>
+
+    <color name="logo_color">#45A63A</color>
+    <!-- 通用的 -->
+    <color name="listView_line_color">#cccccc</color>
+    <color name="textcolor">#666666</color>
+    <color name="textcolorhint">#dddddd</color>
+    <!-- 我的个人中心 -->
+    <color name="mycenter_item_textcolor">#666666</color>
+
+    <!-- 商品分类 -->
+    <color name="classify_menu_bgwhite">#FFFFFF</color>
+    <color name="classify_menu_bg">#F2F2F2</color>
+    <color name="classify_menu_textcolorcheck">#45A63A</color>
+    <color name="classify_menu_textcolornocheck">#666666</color>
+
+    <color name="order_textcolor_checked">#45A63A</color>
+    <color name="order_textcolor_nochecked">#666666</color>
+    <color name="order_linecolor_checked">#45A63A</color>
+    <color name="order_linecolor_nochecked">#CCCCCC</color>
+    <color name="order_background_checked">#FFFFFF</color>
+    <color name="order_background_nochecked">#F2F2F2</color>
+
+    <color name="holo_green_light">#ff99cc00</color>
+    <!-- A light Holo shade of red -->
+    <color name="holo_red_light">#ffff4444</color>
+    <color name="holo_orange_light">#ffffbb33</color>
+    <!-- A really bright Holo shade of blue -->
+    <color name="holo_blue_bright">#ff00ddff</color>
 </resources>
