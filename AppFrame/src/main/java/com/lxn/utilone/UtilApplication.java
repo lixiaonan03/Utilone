@@ -26,6 +26,10 @@ public class UtilApplication extends Application {
     public static UtilApplication application = null;
     public static final Logger logger = LoggerFactory.getLogger(UtilApplication.class);
     public static RequestQueue requestQueue;
+    public static boolean isLogin =false;
+    public static String usernamelogin;// 原生用户名
+    public static String userimgurlrlogin;//原生登录 用户头像地址
+    public static int userid;//人员id
 
     @Override
     public void onCreate() {
@@ -51,16 +55,16 @@ public class UtilApplication extends Application {
     public static void initImageLoader(Context context) {
         // 这个是你希望的缓存文件的目录：imageloader/Cache
         File cacheDir = StorageUtils.getOwnCacheDirectory(context,
-                "/xyyy/farm/imageloader/Cache");
+                "/xyyy/lxn/imageloader/Cache");
 
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
                 context)
                 // 设置线程优先级
                 .threadPriority(Thread.NORM_PRIORITY + 2)
-                        // 设置图片缓存路劲
+                // 设置图片缓存路劲
                 .diskCache(new UnlimitedDiskCache(cacheDir))
                 /*
-                 * //调用该方法会禁止在内存中缓存同一张图片的多个尺寸。当把本地图片加载到内存中时，
+				 * //调用该方法会禁止在内存中缓存同一张图片的多个尺寸。当把本地图片加载到内存中时，
 				 * 首先会把图片缩减至要显示的ImageView的大小，
 				 * 因此可能会出现一种状况，就是会首先显示一张图的小图，然后再显示这张图的大图。这种情况下，
 				 * 同一张图片的两种尺寸的Bitmap会被存储在内存中，这是默认的操作
