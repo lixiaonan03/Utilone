@@ -1,6 +1,8 @@
 package com.lxn.utilone.util;
 
-
+/**
+ * String转数字的转换工具类
+ */
 public class StrToNumber {
 	/**
 	 * 字符串转int 如果字符串为空或装换异常 返回0
