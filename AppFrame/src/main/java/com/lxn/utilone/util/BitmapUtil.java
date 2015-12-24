@@ -28,7 +28,7 @@ public class BitmapUtil {
 	
 	/**
 	 * byte[] 转 Bitmap
-	 * @param bm
+	 * @param b
 	 * @return
 	 */
 	public static Bitmap Bytes2Bimap(byte[] b) {
@@ -56,7 +56,7 @@ public class BitmapUtil {
 	
 	/**
 	 * uri 转  Bitmap
-	 * @param resolver getContentResolver()
+	 * @param context
 	 * @param uri
 	 * @return
 	 */
