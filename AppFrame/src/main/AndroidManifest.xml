@@ -88,6 +88,11 @@
             android:name="com.zbar.lib.CaptureActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <!-- zxing二维码扫描界面 -->
+        <activity
+            android:name="com.zxing.activity.MipcaActivityCapture"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>

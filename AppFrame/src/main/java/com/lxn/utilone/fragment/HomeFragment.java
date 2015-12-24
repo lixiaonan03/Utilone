@@ -22,6 +22,7 @@ import com.lxn.utilone.R;
 import com.lxn.utilone.util.CommonVariable;
 import com.lxn.utilone.view.MySwipeRefreshLayout;
 import com.zbar.lib.CaptureActivity;
+import com.zxing.activity.MipcaActivityCapture;
 
 import java.math.BigDecimal;
 
@@ -60,7 +61,10 @@ public class HomeFragment extends BaseFragment {
             public void onClick(View arg0) {
                 // TODO 跳转到二维码扫描界面
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), CaptureActivity.class);
+                //zbar 二维码扫描的
+                //intent.setClass(getActivity(), CaptureActivity.class);
+                //zxing二维码扫描的
+                intent.setClass(getActivity(), MipcaActivityCapture.class);
                 startActivity(intent);
             }
         });
