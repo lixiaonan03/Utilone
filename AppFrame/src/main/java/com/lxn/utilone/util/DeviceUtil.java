@@ -55,6 +55,10 @@ public final class DeviceUtil {
 
     /***屏幕高度**/
     public static final int SCREEN_HEIGHT = getDisplayMetrics().heightPixels;
+    //屏幕密度和160相除的结果
+    public static final float scaledDensity = getDisplayMetrics().scaledDensity;
+    //获取靠近的屏幕密度  取值为320 480。。中的一个
+    public static final int densityDpi = getDisplayMetrics().densityDpi;
 
     /***本机手机号码**/
     public static final String PHONE_NUMBER = ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
@@ -68,8 +72,7 @@ public final class DeviceUtil {
     /***设备IMSI号码**/
     public static final String IMSI = ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getSubscriberId();
 
-    /***Activity之间数据传输数据对象Key**/
-    public static final String ACTIVITY_DTO_KEY = "ACTIVITY_DTO_KEY";
+
 
     /**获取系统显示材质***/
     public static DisplayMetrics getDisplayMetrics(){
