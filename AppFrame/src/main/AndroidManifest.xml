@@ -11,6 +11,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- 阅读短信 -->
     <uses-permission android:name="android.permission.READ_SMS" />
+    <!--允许读取手机状态的权限  -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
 
     <!-- 二维码所需要的功能 -->

@@ -52,7 +52,6 @@ public class FindPasswordActivity extends BaseActivity {
 			
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
 				finish();
 			}
 		});
@@ -73,6 +72,7 @@ public class FindPasswordActivity extends BaseActivity {
 			@Override
 			public void onClick(View paramView) {
 				String phone = edittextphone.getText().toString().trim();
+				//TODO 正则表达式工具类的使用
 				String check = RegularExpression.checkRegularExpression(phone,
 						RegularExpression.MOBILE_PHONE, "请输入正确的手机号码！");
 				
@@ -136,7 +136,7 @@ public class FindPasswordActivity extends BaseActivity {
 					
 					@Override
 					public void onSuccess(String string) {
-						// TODO Auto-generated method stub
+						// TODO 接口成功的回调
 						customProgressDialog.dismiss();
 						edittextphone.setText("");
 						edittextcode.setText("");
@@ -190,13 +190,11 @@ public class FindPasswordActivity extends BaseActivity {
 	
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
@@ -248,7 +246,6 @@ public class FindPasswordActivity extends BaseActivity {
 
 	public Handler smsHandler = new Handler() {
 		// 这里可以进行回调的操作
-		// TODO
 
 	};
 

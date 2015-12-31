@@ -107,8 +107,8 @@ public class MainActivity extends FragmentActivity {
         classifyFragment = new ClassifyFragment();
         cartFragment = new CartFragment();
         mycenterFragment = new MycenterFragment();
-        fragments = new Fragment[] { homeFragment, classifyFragment,
-                cartFragment,  mycenterFragment };
+        fragments = new Fragment[]{homeFragment, classifyFragment,
+                cartFragment, mycenterFragment};
         // 添加fragment
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, homeFragment)
@@ -121,6 +121,7 @@ public class MainActivity extends FragmentActivity {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("changeallmoney");
         broadcastManager.registerReceiver(receiver, intentFilter);
+
     }
 
     /**

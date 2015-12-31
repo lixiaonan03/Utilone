@@ -21,6 +21,8 @@ import android.widget.TextView;
 
 import com.lxn.utilone.R;
 import com.lxn.utilone.util.CommonVariable;
+import com.lxn.utilone.util.LogUtils;
+import com.lxn.utilone.util.NetManager;
 import com.lxn.utilone.util.PreferencesUtil;
 import com.lxn.utilone.util.StringUtils;
 import com.lxn.utilone.util.ToastUtils;
