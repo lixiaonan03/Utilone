@@ -40,7 +40,7 @@ public class UtilApplication extends Application {
         //初始化数据库
         initImageLoader(application);
         //网路请求的请求队列
-        requestQueue = Volley.newRequestQueue(application);
+        requestQueue= VolleyUtil.getInstance();
     }
 
     public static UtilApplication getInstance() {
