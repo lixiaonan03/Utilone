@@ -56,4 +56,13 @@ public class MathUtil {
         BigDecimal returnBigdecimal=price.setScale(digit, BigDecimal.ROUND_HALF_UP);
         return returnBigdecimal;
     }
+    /**
+     * 把一个数字转换成百分比显示   eg:  20  转成 20%
+     * @param math
+     * @return
+     */
+    public static String mathByPercentage(double math){
+        DecimalFormat df1 = new DecimalFormat("##.00%");    //##.00%   百分比格式，后面不足2位的用0补齐
+        return df1.format(math/100);
+    }
 }
