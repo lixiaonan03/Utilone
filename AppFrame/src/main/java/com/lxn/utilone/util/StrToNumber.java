@@ -55,4 +55,21 @@ public class StrToNumber {
 		}
 		return number;
 	}
+	/**
+	 * 字符串转float 如果字符串为空或装换异常 返回0
+	 * @param src
+	 * @return
+	 */
+	public static float strTofloat(String src) {
+		if(null==src||src.equals("")){
+			return 0;
+		}
+		float number=0;
+		try {
+			number= Float.parseFloat(src);
+		} catch (Exception e) {
+			return 0;
+		}
+		return number;
+	}
 }
