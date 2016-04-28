@@ -65,4 +65,13 @@ public class MathUtil {
         DecimalFormat df1 = new DecimalFormat("##.00%");    //##.00%   百分比格式，后面不足2位的用0补齐
         return df1.format(math/100);
     }
+     /**
+     * 把一个double 数字转换成 小数点后2位显示的
+     * @param math
+     * @return
+     */
+    public static String mathTodecimaltwo(double math){
+        DecimalFormat    df   = new DecimalFormat("######0.00");
+        return df.format(math);
+    }
 }
