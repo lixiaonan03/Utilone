@@ -37,12 +37,20 @@ public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
 	@Override
 	public void onUpgrade(SQLiteDatabase db, ConnectionSource connectionSource,
 			int oldVer, int newVer) {
-		try {
-			TableUtils.dropTable(connectionSource, Cart.class, true);
-			onCreate(db, connectionSource);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	 /* try {
+            TableUtils.dropTable(connectionSource, Cart.class, true);
+            onCreate(db, connectionSource);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }*/
+        try {
+            if(null==cartDao){
+                cartDao = getCartDao();
+            }
+            cartDao.executeRaw( "ALTER TABLE `cart` ADD COLUMN goodsState BOOLEAN DEFAULT 0;");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 	}
 	/**
 	 * 获得购物车的dao

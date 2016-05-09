@@ -4,11 +4,6 @@
 
 下面是搜狗浏览去收藏的网址
 
-<!DOCTYPE NETSCAPE-Bookmark-file-1>
-<!-- This is an automatically generated file.
-It will be read and overwritten.
-Do Not Edit! -->
-<TITLE>Bookmarks</TITLE>
 
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
 </DL><P>
@@ -280,7 +275,7 @@ Do Not Edit! -->
 <DT><H3 FOLDED ADD_DATE="71642963972">Android Studio 学习</H3>
 <DL><P>
 <DT><A HREF="http://www.apkbus.com/forum.php?mod=viewthread&tid=241998&extra=" ADD_DATE="71642963956">【最新版下载】Android studio教程与问题汇总 - Android实例教程 - Android开发论坛 - 安卓开发论坛 - Android开发 - 安卓论坛 - 移动互联网门户</A>
-<DT><H3 FOLDED ADD_DATE="71642963956">android studio学习</H3>
+<DT>
 <DL><P>
 <DT><A HREF="http://segmentfault.com/a/1190000002401964" ADD_DATE="71642963973">史上最详细的Android Studio系列教程一--下载和安装 - stormzhang - SegmentFault</A>
 <DT><A HREF="http://www.tuicool.com/articles/V7j6Zfq" ADD_DATE="71642963973">android studio如何使用git - 推酷</A>
