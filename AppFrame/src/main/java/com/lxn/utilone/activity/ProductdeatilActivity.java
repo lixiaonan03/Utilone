@@ -3,6 +3,7 @@ package com.lxn.utilone.activity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -134,7 +135,12 @@ public class ProductdeatilActivity extends BaseActivity {
 		WebSettings webSettings = webview.getSettings();
 		webSettings.setJavaScriptEnabled(true);
 		webview.addJavascriptInterface(new JavaScriptInterface(), "shop");
-		
+
+        //同时有https和http 算mixed content   webview 5.0默认不支持mixed content
+		if (Build.VERSION.SDK_INT >= 21) {
+			webSettings.setMixedContentMode( WebSettings.MIXED_CONTENT_ALWAYS_ALLOW );
+		}
+
 		WebSettings settings = webview.getSettings();  
 		String useragent = settings.getUserAgentString()+"micromessenger";  
 		settings.setUserAgentString(useragent);
