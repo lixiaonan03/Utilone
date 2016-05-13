@@ -1,6 +1,7 @@
 package com.lxn.utilone.util;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
 /**
  * 作者：lxn on 2015/12/16 14:25
@@ -71,7 +72,7 @@ public class MathUtil {
      * @return
      */
     public static String mathTodecimaltwo(double math){
-        DecimalFormat    df   = new DecimalFormat("######0.00");
+        DecimalFormat df   = new DecimalFormat("######0.00");
         return df.format(math);
     }
 }
