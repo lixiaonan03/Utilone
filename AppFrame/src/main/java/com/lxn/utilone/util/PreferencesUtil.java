@@ -40,13 +40,11 @@ public class PreferencesUtil {
 
     /**
      * 生成一个其他文件名的sharepreferences
-     *
-     * @param app                  上下文环境
      * @param sharepreferencesname 文件名称
      * @return
      */
-    public static SharedPreferences initother(Context app, String sharepreferencesname) {
-        SharedPreferences spfother = app.getSharedPreferences(sharepreferencesname, 0);// 0私有模式
+    public static SharedPreferences initother(String sharepreferencesname) {
+        SharedPreferences spfother = UtilApplication.getInstance().getSharedPreferences(sharepreferencesname, 0);// 0私有模式
         return spfother;
     }
 
@@ -75,6 +73,19 @@ public class PreferencesUtil {
     }
 
     /**
+     * 其他文件设置int 值
+     * @param filename
+     * @param key
+     * @param value
+     */
+    public static void setIntOther(String filename,String key, int value) {
+        SharedPreferences spfother = initother(filename);
+        Editor editor = spfother.edit();
+        editor.putInt(key, value);
+        editor.commit();
+    }
+
+    /**
      * 默认share文件获取int值  没有为-1
      * @param key
      * @return
@@ -84,6 +95,16 @@ public class PreferencesUtil {
     }
 
     /**
+     * 其他文件获取int值   默认为-1
+     * @param filename
+     * @param key
+     * @return
+     */
+    public  static int getIntOther(String filename,String key){
+        SharedPreferences spfother = initother(filename);
+        return spfother.getInt(key, -1);
+    }
+    /**
      * 默认文件 获取long  值 没有为-1
      * @param tag
      * @return
@@ -91,7 +112,16 @@ public class PreferencesUtil {
     public static long getLong(String tag) {
         return spf.getLong(tag, -1l);
     }
-
+    /**
+     * 其他文件获取long值   默认为-1
+     * @param filename
+     * @param key
+     * @return
+     */
+    public  static long getLongOther(String filename,String key){
+        SharedPreferences spfother = initother(filename);
+        return spfother.getLong(key, -1l);
+    }
     /**
      * 默认文件 获取Str值 默认“”
      * @param key
@@ -101,22 +131,65 @@ public class PreferencesUtil {
         return spf.getString(key, "");
     }
 
+    /**
+     * 其他文件获取Str值 默认“”
+     * @param filename
+     * @param key
+     * @return
+     */
+    public  static  String  getStrOther(String filename,String key){
+        SharedPreferences spfother = initother(filename);
+        return spfother.getString(key, "");
+    }
+    /**
+     * 默认文件设置 String值
+     * @param key
+     * @param content
+     */
     public static void setStr(String key, String content) {
         Editor editor = spf.edit();
         editor.putString(key, content);
         editor.commit();
     }
 
+    /**
+     * 其他文件设置 String 值
+     * @param filename
+     * @param key
+     * @param content
+     */
+    public static void setStrOther(String filename,String key, String content) {
+        SharedPreferences spfother = initother(filename);
+        Editor editor = spfother.edit();
+        editor.putString(key, content);
+        editor.commit();
+    }
+    /**
+     * 默认文件设置long 值
+     * @param key
+     * @param content
+     */
     public static void setLong(String key, long content) {
         Editor editor = spf.edit();
         editor.putLong(key, content);
         editor.commit();
     }
 
+    /**
+     * 默认share文件获取boolean 值
+     * @param key
+     * @return
+     */
     public static Boolean getBoolean(String key) {
         return spf.getBoolean(key, false);
     }
 
+    /**
+     *  其他share文件获取boolean值
+     * @param filename
+     * @param key
+     * @return
+     */
     public static Boolean getBooleanOther(String filename, String key) {
         SharedPreferences spfother = UtilApplication.getInstance().getSharedPreferences(filename, 0);// 0私有模式
         return spfother.getBoolean(key, false);
