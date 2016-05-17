@@ -75,4 +75,43 @@ public class MathUtil {
         DecimalFormat df   = new DecimalFormat("######0.00");
         return df.format(math);
     }
+    /**
+     * 将数字以千为单位，用“，”分割。
+     *
+     * @param str1
+     *            eg:123456.76
+     * @return String str eg: 123,456.76
+     */
+    public static String getMoneyString(String str1) {
+        char firstWord = str1.charAt(0);
+        if ("-".equals(firstWord + "")) {
+            str1 = str1.replace("-", "");
+        } else {
+        }
+        String[] str = str1.split("\\.");
+        str1 = str[0];
+        str1 = new StringBuilder(str1).reverse().toString(); // 先将字符串颠倒顺序
+        String str2 = "";
+        for (int i = 0; i < str1.length(); i++) {
+            if (i * 3 + 3 > str1.length()) {
+                str2 += str1.substring(i * 3, str1.length());
+                break;
+            }
+            str2 += str1.substring(i * 3, i * 3 + 3) + ",";
+        }
+        if (str2.endsWith(",")) {
+            str2 = str2.substring(0, str2.length() - 1);
+        }
+        // 最后再将顺序反转过来
+        if (str.length > 1) {
+            str1 = new StringBuilder(str2).reverse().toString() + "." + str[1];
+        } else {
+            str1 = new StringBuilder(str2).reverse().toString();
+        }
+        if ("-".equals(firstWord + "")) {
+            str1 = "-" + str1;
+
+        }
+        return str1;
+    }
 }
