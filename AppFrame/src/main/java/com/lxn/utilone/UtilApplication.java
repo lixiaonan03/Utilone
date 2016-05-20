@@ -2,10 +2,15 @@ package com.lxn.utilone;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Environment;
+import android.util.Log;
+import android.volley.util.VolleyUtil;
 
+import com.alipay.euler.andfix.patch.PatchManager;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.lxn.utilone.util.BadHandler;
+import com.lxn.utilone.util.DeviceUtil;
 import com.lxn.utilone.util.PreferencesUtil;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -18,6 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by lxn on 2015/12/7.
@@ -31,6 +37,8 @@ public class UtilApplication extends Application {
     public static String userimgurlrlogin;//原生登录 用户头像地址
     public static int userid;//人员id
 
+    private PatchManager patchManager;
+    private static final String APATCH_PATH = "/lixiaonan/out.apatch";
     @Override
     public void onCreate() {
         super.onCreate();
@@ -41,6 +49,22 @@ public class UtilApplication extends Application {
         initImageLoader(application);
         //网路请求的请求队列
         requestQueue= VolleyUtil.getInstance();
+
+
+        patchManager = new PatchManager(this);
+        patchManager.init(DeviceUtil.getVersionname());
+
+        // load patch
+        patchManager.loadPatch();
+
+        try {
+            // .apatch file path
+            String patchFileString = Environment.getExternalStorageDirectory()
+                    .getAbsolutePath() + APATCH_PATH;
+            Log.e("TAG", "patch file is " + patchFileString);
+            patchManager.addPatch(patchFileString);
+        } catch (IOException e) {
+        }
     }
 
     public static UtilApplication getInstance() {
