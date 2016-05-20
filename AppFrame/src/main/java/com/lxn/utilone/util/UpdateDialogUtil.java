@@ -137,7 +137,12 @@ public class UpdateDialogUtil {
         HttpURLConnection connection = (HttpURLConnection) getUrl
                 .openConnection();
         // 进行连接，但是实际上get request要在下一句的connection.getInputStream()函数中才会真正发到
-        connection.setConnectTimeout(3000);
+        try {
+            connection.connect();
+        } catch (IOException e) {
+            e.printStackTrace();
+            handle.sendMessage(handle.obtainMessage(2));
+        }
         connection.connect();
         InputStream is = connection.getInputStream();
         BufferedReader reader = new BufferedReader(new InputStreamReader(is,
@@ -207,6 +212,8 @@ public class UpdateDialogUtil {
                 getUrl = new URL(newApkUrl);
                 HttpURLConnection connection = (HttpURLConnection) getUrl
                         .openConnection();
+                //解决有的服务器获取的文件流的长度为 -1的  关闭gzip 压缩
+                connection.setRequestProperty("Accept-Encoding", "identity");
                 connection.connect();
                 long length = connection.getContentLength();
                 InputStream is = connection.getInputStream();
