@@ -20,7 +20,7 @@ public class Welcome extends BaseActivity {
         setContentView(R.layout.activity_welcome);
         // TODO检查版本更新
         UpdateDialogUtil upta = new UpdateDialogUtil(Welcome.this);
-        upta.setSss(new UpdateDialogUtil.onupate() {
+        upta.setNoUpdateListener(new UpdateDialogUtil.NoUpdateListener() {
             @Override
             public void noupdate() {
                 // 不更新
@@ -49,7 +49,7 @@ public class Welcome extends BaseActivity {
                 }
             }
         });
-        upta.goupate();
+        upta.goupdate();
     }
 
 

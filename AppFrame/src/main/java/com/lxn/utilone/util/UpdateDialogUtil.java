@@ -57,10 +57,10 @@ public class UpdateDialogUtil {
         this.context = context;
         intcurrent=DeviceUtil.getVersionCode();
     }
-    private onupate sss;
+    private NoUpdateListener noUpdateListener;
 
-    public void setSss(onupate sss) {
-        this.sss = sss;
+    public void setNoUpdateListener(NoUpdateListener noUpdateListener) {
+        this.noUpdateListener = noUpdateListener;
     }
 
     /**
@@ -83,7 +83,7 @@ public class UpdateDialogUtil {
                     break;
                 case 2:
                     // 不更新
-                    sss.noupdate();
+                    noUpdateListener.noupdate();
                     break;
 
                 default:
@@ -91,7 +91,7 @@ public class UpdateDialogUtil {
             }
         }
     }
-    public void  goupate(){
+    public void  goupdate(){
         new Thread(new Runnable() { // 开启线程上传文件
 
             @Override
@@ -273,7 +273,7 @@ public class UpdateDialogUtil {
         }
     }
 
-   public interface  onupate{
+   public interface  NoUpdateListener{
         void noupdate();
     }
 }
