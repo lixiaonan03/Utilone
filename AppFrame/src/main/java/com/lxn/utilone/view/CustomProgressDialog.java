@@ -70,7 +70,7 @@ public class CustomProgressDialog extends ProgressDialog {
 		setContentView(R.layout.progress_dialog);
 		/** 设置透明度 */
 		Window window = getWindow();
-		window.setBackgroundDrawableResource(R.drawable.a);
+		window.setBackgroundDrawableResource(R.drawable.dailog_bg);
 		WindowManager.LayoutParams lp = window.getAttributes();
 		lp.alpha = 1.0f;// 透明度
 		lp.dimAmount = 0.1f;// 黑暗度
