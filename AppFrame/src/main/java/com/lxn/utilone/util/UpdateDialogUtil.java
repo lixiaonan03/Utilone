@@ -52,6 +52,8 @@ public class UpdateDialogUtil {
     private Button update;
     private DownSoft downSoft;
     private String newApkName;
+    private Button cancle;
+    private String isforce;//判断是否需要强制更新  1 强制 非1 不强制
 
     public UpdateDialogUtil(Context context) {
         this.context = context;
@@ -116,6 +118,9 @@ public class UpdateDialogUtil {
                 newApkName = obj.getString("apkname");
                 newApkUrl = obj.getString("apkUrl");
                 desc = obj.getString("desc");
+                if(obj.has("isforce")){
+                    isforce = obj.getString("isforce");
+                }
                 if (newVerCode > intcurrent) {
                     // 需要版本更新
                     handle.sendMessage(handle.obtainMessage(1));
@@ -177,7 +182,12 @@ public class UpdateDialogUtil {
         version_newstr = (TextView) dialog.findViewById(R.id.version_newstr);
         version_newstr.setText("更新内容：" + desc);
         update = (Button) dialog.findViewById(R.id.update);
-
+        cancle = (Button) dialog.findViewById(R.id.cancle);
+        if("1".equals(isforce)){
+            cancle.setVisibility(View.GONE);
+        }else{
+            cancle.setVisibility(View.VISIBLE);
+        }
         update.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 // 更新
@@ -194,6 +204,15 @@ public class UpdateDialogUtil {
                         ToastUtils.toastshort("正在下载,请稍后...");
                     }
                 }
+            }
+        });
+        cancle.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                if (downSoft != null) {
+                    downSoft.cancel(true);
+                }
+                dialog.dismiss();
+                handle.sendMessage(handle.obtainMessage(2));
             }
         });
         dialog.show();
