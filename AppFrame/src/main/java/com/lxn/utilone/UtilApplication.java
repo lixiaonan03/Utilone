@@ -1,7 +1,9 @@
 package com.lxn.utilone;
 
 import android.app.Application;
+import android.app.IntentService;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Environment;
 import android.util.Log;
 import android.volley.util.VolleyUtil;
@@ -11,6 +13,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.lxn.utilone.util.BadHandler;
 import com.lxn.utilone.util.DeviceUtil;
+import com.lxn.utilone.util.LogUtils;
 import com.lxn.utilone.util.PreferencesUtil;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -54,21 +57,39 @@ public class UtilApplication extends Application {
         patchManager = new PatchManager(this);
         patchManager.init(DeviceUtil.getVersionname());
 
-        // load patch
-        patchManager.loadPatch();
-
         try {
-            // .apatch file path
+            // load patch
+            patchManager.loadPatch();
+            //从本地加载补丁包（ps：一般都是从服务器去下载） .apatch file path
             String patchFileString = Environment.getExternalStorageDirectory()
                     .getAbsolutePath() + APATCH_PATH;
-            Log.e("TAG", "patch file is " + patchFileString);
             patchManager.addPatch(patchFileString);
-        } catch (IOException e) {
+            //加载补丁成功后，删除下载的补丁
+            File file = new File(patchFileString);
+            if (file.exists()) {
+                file.delete();
+            }
+
+
+
+            //从服务器去下载最新的补丁包 get patch under new thread
+            Intent patchDownloadIntent = new Intent(this, PatchDownloadIntentService.class);
+            patchDownloadIntent.putExtra("url", "http://xxx/patch/app-release-fix-shine.apatch");
+            startService(patchDownloadIntent);
+        } catch (Exception e) {
         }
     }
 
     public static UtilApplication getInstance() {
         return application;
+    }
+
+    public PatchManager getPatchManager() {
+        return patchManager;
+    }
+
+    public void setPatchManager(PatchManager patchManager) {
+        this.patchManager = patchManager;
     }
 
     /**
