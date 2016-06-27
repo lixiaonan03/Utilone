@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.lxn.utilone.R;
+import com.lxn.utilone.util.LogUtils;
 import com.lxn.utilone.util.PreferencesUtil;
 import com.lxn.utilone.util.UpdateDialogUtil;
 
@@ -20,23 +21,41 @@ public class Welcome extends BaseActivity {
         setContentView(R.layout.activity_welcome);
         // TODO检查版本更新
         UpdateDialogUtil upta = new UpdateDialogUtil(Welcome.this);
-        upta.setNoUpdateListener(new UpdateDialogUtil.NoUpdateListener() {
+        upta.setOnupdatelisten(new UpdateDialogUtil.OnUpate() {
             @Override
             public void noupdate() {
-                // 不更新
-                int guideInit = PreferencesUtil
-                        .getValue(PreferencesUtil.GUIDE_INIT);
-                if (guideInit != 1) {
-                    // 跳转到引导页面
-                    Intent intent = new Intent(Welcome.this,
-                            GuideActivity.class);
-                    Welcome.this.startActivity(intent);
-                    Welcome.this.finish();
-                } else {
-                    // 跳转到主界面的
-                    Intent intent = new Intent(Welcome.this, MainActivity.class);
-                    Welcome.this.startActivity(intent);
-                    Welcome.this.finish();
+                gomain();
+            }
+
+            @Override
+            public void cancle() {
+                gomain();
+            }
+
+            @Override
+            public void error() {
+                gomain();
+            }
+        });
+        upta.goupate();
+    }
+
+    /**
+     * 不进行版本更新 下一步往那走
+     */
+    private void  gomain(){
+        //不更新
+        int guideInit = PreferencesUtil.getValue(PreferencesUtil.GUIDE_INIT);
+        if (guideInit != 1) {
+            // 跳转到引导页面
+            Intent intent = new Intent(Welcome.this, GuideActivity.class);
+            Welcome.this.startActivity(intent);
+            Welcome.this.finish();
+        } else {
+            // 跳转到主界面的
+            Intent intent = new Intent(Welcome.this, MainActivity.class);
+            Welcome.this.startActivity(intent);
+            Welcome.this.finish();
                     /*
                      * * Timer timer = new Timer(); TimerTask task = new
 					 * TimerTask() {
@@ -46,11 +65,6 @@ public class Welcome extends BaseActivity {
 					 * } }; timer.schedule(task, 1000 * 1);
 					 */
 
-                }
-            }
-        });
-        upta.goupdate();
+        }
     }
-
-
 }
