@@ -67,6 +67,12 @@ public class BadHandler implements UncaughtExceptionHandler {
 		AppManager.getAppManager().AppExit();
 		System.exit(1);
 		android.os.Process.killProcess(android.os.Process.myPid());
+
+	/*	// 重启应用
+		context.startActivity(context.getPackageManager().getLaunchIntentForPackage(context.getPackageName()));
+		//干掉当前的程序
+		AppManager.getAppManager().AppExit();
+		android.os.Process.killProcess(android.os.Process.myPid());*/
 	}
 
 	// 获取时间和手机信息
