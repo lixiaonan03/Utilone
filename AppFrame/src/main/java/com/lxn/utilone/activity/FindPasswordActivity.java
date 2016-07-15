@@ -242,6 +242,10 @@ public class FindPasswordActivity extends BaseActivity {
 			//获取焦点
 			edittextcode.requestFocus();
 		}
+		//关闭游标
+		if(cur!=null){
+			cur.close();
+		}
 	}
 
 	public Handler smsHandler = new Handler() {
