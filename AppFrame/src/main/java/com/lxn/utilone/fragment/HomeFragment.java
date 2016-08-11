@@ -119,7 +119,7 @@ public class HomeFragment extends BaseFragment {
         webview.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                webview.loadUrl(url);
+                view.loadUrl(url);
                 return true;
             }
 
