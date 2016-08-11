@@ -109,10 +109,38 @@ public class MainActivity extends FragmentActivity {
         mycenterFragment = new MycenterFragment();
         fragments = new Fragment[]{homeFragment, classifyFragment,
                 cartFragment, mycenterFragment};
-        // 添加fragment
+
+
+
+
+
+
+        /*//TODO    原来的添加fragment
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, homeFragment)
-                .show(homeFragment).commit();
+                .show(homeFragment).commit();*/
+
+
+
+
+        // 根据不同的进入的标志添加fragment
+        if(0==flag){
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container, homeFragment)
+                    .addToBackStack(null)
+                    .show(homeFragment).commit();
+        }else if(1==flag){
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container, classifyFragment)
+                    .addToBackStack(null)
+                    .show(homeFragment).commit();
+        }else if(3==flag){
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container, mycenterFragment)
+                    .addToBackStack(null)
+                    .show(mycenterFragment).commit();
+        }
+
 
         // 初始化广播
         receiver = new ChangeReceiver();
@@ -181,6 +209,7 @@ public class MainActivity extends FragmentActivity {
                 trx.hide(fragments[currentTabIndex]);
                 if (!fragments[index].isAdded()) {
                     trx.add(R.id.fragment_container, fragments[index]);
+                    trx.addToBackStack(null);
                     if (index == FLAG_MYCENTER) {
 						/* 创建一个Bundle用来存储数据，传递到Fragment中 */
                         Bundle bundle = new Bundle();
