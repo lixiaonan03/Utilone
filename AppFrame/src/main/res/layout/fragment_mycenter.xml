@@ -127,7 +127,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="@dimen/mycenter_item_textmarginleft"
                             android:layout_toRightOf="@id/orderimg"
-                            android:text="我的订单"
+                            android:text="自定义圆形进度条"
                             android:textColor="@color/mycenter_item_textcolor"
                             android:textSize="@dimen/mycenter_item_textsize" />
 

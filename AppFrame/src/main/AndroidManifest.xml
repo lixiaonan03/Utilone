@@ -74,6 +74,11 @@
             android:name=".activity.TraceActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <!-- 自定义控件的使用demoactivity-->
+        <activity
+            android:name=".activity.CircularProgressBarDemoActivity"
+            android:screenOrientation="portrait" >
+        </activity>
         <!-- 搜索 android:exported="true"是否被其他app调用-->
         <activity
             android:name=".activity.SearchActivity"

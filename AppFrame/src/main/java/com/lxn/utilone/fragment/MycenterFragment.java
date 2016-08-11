@@ -2,6 +2,7 @@ package com.lxn.utilone.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
@@ -25,6 +26,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.lxn.utilone.R;
 import com.lxn.utilone.UtilApplication;
+import com.lxn.utilone.activity.CircularProgressBarDemoActivity;
 import com.lxn.utilone.activity.LoginActivity;
 import com.lxn.utilone.activity.PhotoPickActivity;
 import com.lxn.utilone.util.BitmapUtil;
@@ -37,6 +39,7 @@ import com.lxn.utilone.view.RoundImageView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -120,7 +123,8 @@ public class MycenterFragment extends BaseFragment {
                     break;
                 case R.id.myorder:
                     // 我的订单
-
+                    intent.setClass(getActivity(), CircularProgressBarDemoActivity.class);
+                    startActivity(intent);
 
                     break;
                 case R.id.logout:
@@ -231,8 +235,18 @@ public class MycenterFragment extends BaseFragment {
         }
         changeuserinfo();
     }
+    private MyHandler handler = new MyHandler(getActivity());
 
-    private Handler handler = new Handler(){
+    /**
+     * handle 消息处理对象 使用弱引用持有外部activity的引用 防止内存泄露的情况产生
+     */
+    private class MyHandler extends Handler {
+        private WeakReference<Context> reference;
+
+        public MyHandler(Context context) {
+            reference = new WeakReference<>(context);
+        }
+
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
