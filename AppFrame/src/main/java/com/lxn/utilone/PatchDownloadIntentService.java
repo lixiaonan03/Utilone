@@ -28,6 +28,7 @@ public class PatchDownloadIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        //  这个本身就是在另起的一个线程中 不用新开线程
         if (intent != null) {
             String downloadUrl = intent.getStringExtra("url");
 
