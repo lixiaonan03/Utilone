@@ -225,7 +225,7 @@ public class HoloCircularProgressBar extends View {
 
         // draw the background
         if (!mOverrdraw) {
-            //画圆环 参数 第一个区域  第二个 开始角度 第三个 结束角度 第四个是否画2个边 第五个 画笔
+            //画圆环 参数 第一个区域  第二个 开始角度 第三个 扫过角度 第四个是否画2个边 第五个 画笔
             canvas.drawArc(mCircleBounds, 270, -(360 - progressRotation), false, mBackgroundColorPaint);
         }
 
