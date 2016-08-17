@@ -38,8 +38,8 @@ public class DESUtil {
      */
     public static String encrypt(String data, String key) throws Exception {
         byte[] bt = encrypt(data.getBytes(), key.getBytes());
-       //  String strs = new BASE64Encoder().encode(bt);
-        //这里可根据不同的情况选择不同的Base64 工具类
+        //TODO 这里可根据不同的情况选择不同的Base64 工具类
+        // String strs = new BASE64Encoder().encode(bt);
          String strs =  Base64.encodeToString(bt, Base64.DEFAULT);
         return strs;
     }
@@ -74,7 +74,7 @@ public class DESUtil {
      */
     public static String decrypt(String data, String key) throws Exception {
         if (data == null) return null;
-        //这里可根据不同的情况选择不同的Base64 工具类
+        //TODO 这里可根据不同的情况选择不同的Base64 工具类
         byte[] buf =Base64.decode(data, Base64.DEFAULT);
         byte[] bt = decrypt(buf, key.getBytes());
         return new String(bt);
