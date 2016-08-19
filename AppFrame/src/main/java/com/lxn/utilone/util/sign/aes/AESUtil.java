@@ -122,7 +122,7 @@ public class AESUtil {
      * @throws Exception
      */
     public static byte[] md5(byte[] bytes) throws Exception {
-        MessageDigest md = MessageDigest.getInstance("MD5");
+        MessageDigest md = MessageDigest.getInstance("MD5Util");
         md.update(bytes);
         return md.digest();
     }
