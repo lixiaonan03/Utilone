@@ -2,11 +2,15 @@ package com.lxn.utilone.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.lxn.utilone.R;
 import com.lxn.utilone.util.LogUtils;
 import com.lxn.utilone.util.PreferencesUtil;
 import com.lxn.utilone.util.UpdateDialogUtil;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * 引导页 在引导页判断当前版本号看是否需要进行版本更新
@@ -19,6 +23,19 @@ public class Welcome extends BaseActivity {
         super.onCreate(savedInstanceState);
         // requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_welcome);
+
+
+        //处理有的手机有虚拟菜单栏导致页面图片显示有问题的
+        if (android.os.Build.VERSION.SDK_INT >= 14) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+
+        } else if (android.os.Build.VERSION.SDK_INT >= 16) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        }
+
+
         // TODO检查版本更新
         UpdateDialogUtil upta = new UpdateDialogUtil(Welcome.this);
         upta.setOnupdatelisten(new UpdateDialogUtil.OnUpate() {
@@ -43,7 +60,7 @@ public class Welcome extends BaseActivity {
     /**
      * 不进行版本更新 下一步往那走
      */
-    private void  gomain(){
+    private void gomain() {
         //不更新
         int guideInit = PreferencesUtil.getValue(PreferencesUtil.GUIDE_INIT);
         if (guideInit != 1) {
@@ -52,18 +69,21 @@ public class Welcome extends BaseActivity {
             Welcome.this.startActivity(intent);
             Welcome.this.finish();
         } else {
-            // 跳转到主界面的
-            Intent intent = new Intent(Welcome.this, MainActivity.class);
-            Welcome.this.startActivity(intent);
-            Welcome.this.finish();
-                    /*
-                     * * Timer timer = new Timer(); TimerTask task = new
-					 * TimerTask() {
-					 *
-					 * @Override public void run() {
-					 *
-					 * } }; timer.schedule(task, 1000 * 1);
-					 */
+
+
+            Timer timer = new Timer();
+            TimerTask task = new TimerTask() {
+
+                @Override
+                public void run() {
+                    // 跳转到主界面的
+                    Intent intent = new Intent(Welcome.this, MainActivity.class);
+                    Welcome.this.startActivity(intent);
+                    Welcome.this.finish();
+                }
+            };
+            timer.schedule(task, 4000l);
+
 
         }
     }
