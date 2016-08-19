@@ -165,7 +165,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="@dimen/mycenter_item_textmarginleft"
                             android:layout_toRightOf="@id/tasteimg"
-                            android:text="我的口味"
+                            android:text="自己实现的tab页的切换"
                             android:textColor="@color/mycenter_item_textcolor"
                             android:textSize="@dimen/mycenter_item_textsize" />
 
@@ -203,7 +203,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="@dimen/mycenter_item_textmarginleft"
                             android:layout_toRightOf="@id/mydeliverynoticeimg"
-                            android:text="配送预告"
+                            android:text="指纹识别demo使用"
                             android:textColor="@color/mycenter_item_textcolor"
                             android:textSize="@dimen/mycenter_item_textsize" />
 

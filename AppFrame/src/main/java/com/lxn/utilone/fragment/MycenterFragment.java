@@ -29,6 +29,8 @@ import com.lxn.utilone.UtilApplication;
 import com.lxn.utilone.activity.CircularProgressBarDemoActivity;
 import com.lxn.utilone.activity.LoginActivity;
 import com.lxn.utilone.activity.PhotoPickActivity;
+import com.lxn.utilone.finger.FingerDemoActivity;
+import com.lxn.utilone.tabfragmentdemo.IndicatorFragmentActivity;
 import com.lxn.utilone.util.BitmapUtil;
 import com.lxn.utilone.util.CommonVariable;
 import com.lxn.utilone.util.LogUtils;
@@ -49,7 +51,9 @@ import java.util.Map;
  * @author lxn
  */
 public class MycenterFragment extends BaseFragment {
-    private RelativeLayout myorder;// 我的订单
+    private RelativeLayout myorder;//自定义圆形进度条
+    private RelativeLayout mytaste;//tab页切换
+    private RelativeLayout mydeliverynotice;//指纹识别demo
 
     private RelativeLayout user_information;
     private RoundImageView user_img;
@@ -96,9 +100,13 @@ public class MycenterFragment extends BaseFragment {
         user_information.setOnClickListener(viewclick);
 
         myorder = (RelativeLayout) getView().findViewById(R.id.myorder);
+        mytaste = (RelativeLayout) getView().findViewById(R.id.mytaste);
+        mydeliverynotice = (RelativeLayout) getView().findViewById(R.id.mydeliverynotice);
 
 
         myorder.setOnClickListener(viewclick);
+        mytaste.setOnClickListener(viewclick);
+        mydeliverynotice.setOnClickListener(viewclick);
         logout.setOnClickListener(viewclick);
 
     }
@@ -122,8 +130,20 @@ public class MycenterFragment extends BaseFragment {
                     }
                     break;
                 case R.id.myorder:
-                    // 我的订单
+                    //自定义圆形进度条
                     intent.setClass(getActivity(), CircularProgressBarDemoActivity.class);
+                    startActivity(intent);
+
+                    break;
+                case R.id.mytaste:
+                    //tab页fragment 切换
+                    intent.setClass(getActivity(), IndicatorFragmentActivity.class);
+                    startActivity(intent);
+
+                    break;
+                case R.id.mydeliverynotice:
+                    //指纹识别demo
+                    intent.setClass(getActivity(), FingerDemoActivity.class);
                     startActivity(intent);
 
                     break;
