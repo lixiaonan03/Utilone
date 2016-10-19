@@ -3,11 +3,14 @@ package com.lxn.utilone.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 
 import com.lxn.utilone.R;
 import com.lxn.utilone.util.LogUtils;
 import com.lxn.utilone.util.PreferencesUtil;
 import com.lxn.utilone.util.UpdateDialogUtil;
+import com.lxn.utilone.util.status.StatusBarUtil;
+import com.zgy.catchuninstallself.UninstallObserver;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -21,9 +24,13 @@ public class Welcome extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+
         setContentView(R.layout.activity_welcome);
 
+        StatusBarUtil.setTransparent(this,false);
+
+        UninstallObserver.startWork("/data/data/" + getPackageName(), "https://github.com", android.os.Build.VERSION.SDK_INT);
 
         //处理有的手机有虚拟菜单栏导致页面图片显示有问题的
         if (android.os.Build.VERSION.SDK_INT >= 14) {
@@ -82,7 +89,7 @@ public class Welcome extends BaseActivity {
                     Welcome.this.finish();
                 }
             };
-            timer.schedule(task, 4000l);
+            timer.schedule(task, 5000l);
 
 
         }

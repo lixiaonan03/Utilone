@@ -25,6 +25,7 @@ import com.lxn.utilone.fragment.CartFragment;
 import com.lxn.utilone.fragment.ClassifyFragment;
 import com.lxn.utilone.fragment.HomeFragment;
 import com.lxn.utilone.fragment.MycenterFragment;
+import com.lxn.utilone.util.status.StatusBarUtil;
 
 import java.lang.ref.WeakReference;
 
@@ -98,6 +99,9 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         AppManager.getAppManager().addActivity(this);
         setContentView(R.layout.activity_main);
+
+        StatusBarUtil.setColor(this, getResources().getColor(R.color.logo_color));
+
         flag = getIntent().getIntExtra("flag", 0);
         username = getIntent().getStringExtra("username");
         imgurl = getIntent().getStringExtra("imgurl");
