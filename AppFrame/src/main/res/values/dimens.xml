@@ -17,4 +17,20 @@
     <dimen name="mycenter_item_height">46dp</dimen>
     <dimen name="mycenter_item_textsize">14sp</dimen>
     <dimen name="mycenter_item_textmarginleft">10dp</dimen>
+
+
+
+
+
+
+    <!-- 新加的tab切换的实现 -->
+    <dimen name="common_text_size_large">18dp</dimen>
+    <!-- For list texts (top line) -->
+    <dimen name="common_text_size_middle">16dp</dimen>
+    <dimen name="common_text_size_middle_2">14dp</dimen>
+    <!-- For list texts (bottom line), summary texts, icon texts, descriptions, tag texts -->
+    <dimen name="common_text_size_small">13dp</dimen>
+    <dimen name="common_text_size_small_2">10dp</dimen>
+    <dimen name="common_text_size_small_3">12dp</dimen>
+    <dimen name="page_margin_width">12dp</dimen>
 </resources>
