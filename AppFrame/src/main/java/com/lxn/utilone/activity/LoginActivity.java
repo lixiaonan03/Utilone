@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.volley.listener.HttpBackBeanListener;
 import android.volley.util.VolleyUtil;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,7 +16,9 @@ import com.lxn.utilone.R;
 import com.lxn.utilone.UtilApplication;
 import com.lxn.utilone.model.EnnMember;
 import com.lxn.utilone.util.CommonVariable;
+import com.lxn.utilone.util.StringUtils;
 import com.lxn.utilone.util.ToastUtils;
+import com.lxn.utilone.util.cache.ACache;
 import com.lxn.utilone.view.CustomProgressDialog;
 
 /**
@@ -32,11 +35,17 @@ public class LoginActivity extends BaseActivity {
 	private CustomProgressDialog customProgressDialog;
 	private ImageView login_wx;
 	private TextView top_text;
-    
+	private Button save,get;
+
+	private ACache mAcache;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+
+        //初始化缓存管理器
+		mAcache= ACache.get(this);
 
 		customProgressDialog = new CustomProgressDialog(LoginActivity.this,
 				"正在登录......");
@@ -61,6 +70,13 @@ public class LoginActivity extends BaseActivity {
 		goregister.setOnClickListener(new ViewOnClickListener());
 		forgetpassword.setOnClickListener(new ViewOnClickListener());
 		login_wx.setOnClickListener(new ViewOnClickListener());
+
+
+		//保存和获取缓存的按钮
+		save=(Button)findViewById(R.id.save);
+		get=(Button)findViewById(R.id.get);
+		save.setOnClickListener(new ViewOnClickListener());
+		get.setOnClickListener(new ViewOnClickListener());
 	}
 
 	private class ViewOnClickListener implements OnClickListener {
@@ -90,6 +106,18 @@ public class LoginActivity extends BaseActivity {
 			case R.id.login_wx:
 
 				break;
+				case R.id.save:
+                //保存缓存
+					 String username = editTextLoginCode.getText().toString().trim();
+					if(StringUtils.isBlank(username)){
+						ToastUtils.toastshort("请输入用户名");
+					}
+					mAcache.put("username",username);
+				break;
+				case R.id.get:
+                //获取缓存
+					editTextPassword.setText(mAcache.getAsString("username"));
+				break;
 
 			default:
 				break;
@@ -118,7 +146,7 @@ public class LoginActivity extends BaseActivity {
 		/*	String encryptStr = MD5Util.encryptStr("name=" + username
 					+ "&crypted_password=" + password);
 			// String url=CommonVariable.LoginURL+encryptStr;*/
-			String url = CommonVariable.LoginURL + username + "/" + password;
+		/*	String url = CommonVariable.LoginURL + username + "/" + password;
 			VolleyUtil.sendStringRequestByGetToBean(url, null, null,
 					EnnMember.class, new HttpBackBeanListener<EnnMember>() {
 
@@ -146,7 +174,7 @@ public class LoginActivity extends BaseActivity {
 							ToastUtils.toastshort("登录失败！");
 						}
 
-					}, false, null);
+					}, false, null);*/
 
 	}
 	/**

@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="忘记密码？（自动获取短信验证码和短信验证码倒计时验证）"
+                android:text="忘记密码(自动获取短信验证码和短信验证码倒计时验证"
                 android:textColor="@color/textcolor"
                 android:textSize="14sp" />
 
@@ -104,9 +104,7 @@
                         android:layout_toRightOf="@id/tv_pwd"
                         android:background="@null"
                         android:paddingLeft="15dp"
-                        android:password="true"
                          android:hint="请输入密码"
-                        android:singleLine="true"
                          android:textColorHint="#dddddd"
                         android:textColor="@color/textcolor"
                         android:textCursorDrawable="@null"
@@ -115,7 +113,7 @@
             </LinearLayout>
         </LinearLayout>
 
-       
+
 
         <Button
             android:id="@+id/login_submit"
@@ -130,6 +128,8 @@
             android:text="登录"
             android:textColor="#ffffff"
             android:textSize="14sp" />
+
+
         
         <TextView 
             android:id="@+id/othertext"
@@ -161,7 +161,34 @@
             android:layout_height="40dp"
             android:layout_marginTop="15dp"
             android:src="@drawable/ic_launcher" />
-       
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="100dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="34dp"
+            android:layout_below="@id/login_wx"
+            android:background="@drawable/login_button"
+            android:gravity="center"
+            android:text="缓存保存"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+        <Button
+            android:id="@+id/get"
+            android:layout_width="120dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="34dp"
+            android:layout_below="@id/login_wx"
+            android:layout_toRightOf="@+id/save"
+            android:background="@drawable/login_button"
+            android:gravity="center"
+            android:text="获取缓存的内容"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
         
     </RelativeLayout>
 

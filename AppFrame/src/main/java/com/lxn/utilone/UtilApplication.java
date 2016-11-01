@@ -99,8 +99,13 @@ public class UtilApplication extends Application {
      */
     public static void initImageLoader(Context context) {
         // 这个是你希望的缓存文件的目录：imageloader/Cache
-        File cacheDir = StorageUtils.getOwnCacheDirectory(context,
-                "/xyyy/lxn/imageloader/Cache");
+       // File cacheDir = StorageUtils.getOwnCacheDirectory(context, "/xyyy/lxn/imageloader/Cache");
+        //context.getExternalCacheDir()  /storage/emulated/0/Android/data/com.lxn.utilone/cache  这个目录在SD下 会随着系统卸载被删除
+        File cacheDir = context.getExternalCacheDir();
+        //这个目录在  data/data/com.lxn.utilone/cache 需要root才能查看数据
+        File cacheDir1 = context.getCacheDir();
+        LogUtils.i("getExternalCacheDir====="+cacheDir.getAbsolutePath());
+        LogUtils.i("getCacheDir====="+cacheDir1.getAbsolutePath());
 
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
                 context)
