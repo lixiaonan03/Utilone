@@ -2,13 +2,17 @@ package com.lxn.utilone.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -20,6 +24,7 @@ import android.widget.RelativeLayout;
 
 import com.lxn.utilone.R;
 import com.lxn.utilone.util.CommonVariable;
+import com.lxn.utilone.util.NetManager;
 import com.lxn.utilone.view.MySwipeRefreshLayout;
 import com.zbar.lib.CaptureActivity;
 import com.zxing.activity.MipcaActivityCapture;
@@ -111,11 +116,41 @@ public class HomeFragment extends BaseFragment {
     @SuppressLint({"SetJavaScriptEnabled", "JavascriptInterface"})
     private void initwebview() {
         WebSettings webSettings = webview.getSettings();
-        webSettings.setJavaScriptEnabled(true);
+        webSettings.setJavaScriptEnabled(true);//开启javascript
         webview.addJavascriptInterface(new JavaScriptInterface(), "shop");
         WebSettings settings = webview.getSettings();
+        //加入UA标示 让其可以加载微信专享的页面
         String useragent = settings.getUserAgentString() + "micromessenger";
         settings.setUserAgentString(useragent);
+
+        //同时有https和http 算mixed content   webview 5.0默认不支持mixed content
+        if (Build.VERSION.SDK_INT >= 21) {
+            webSettings.setMixedContentMode( WebSettings.MIXED_CONTENT_ALWAYS_ALLOW );
+        }
+
+        webSettings.setDomStorageEnabled(true);  //开启DOM
+        webSettings.setDefaultTextEncodingName("utf-8"); //设置编码
+        // // web页面处理
+        webSettings.setAllowFileAccess(true);// 支持文件流
+        // webSettings.setSupportZoom(true);// 支持缩放
+        // webSettings.setBuiltInZoomControls(true);// 支持缩放
+        webSettings.setUseWideViewPort(true);// 调整到适合webview大小
+        webSettings.setLoadWithOverviewMode(true);// 调整到适合webview大小
+        webSettings.setDefaultZoom(WebSettings.ZoomDensity.FAR);// 屏幕自适应网页,如果没有这个，在低分辨率的手机上显示可能会异常
+        webSettings.setRenderPriority(WebSettings.RenderPriority.HIGH);
+        //提高网页加载速度，暂时阻塞图片加载，然后网页加载好了，在进行加载图片
+        webSettings.setBlockNetworkImage(true);
+        //开启缓存机制
+        webSettings.setAppCacheEnabled(true);
+        //根据当前网页连接状态 如果是wifi设置无缓存
+        if(NetManager.getInstance().getCurrentNetType().equals("wifi")){
+            //设置无缓存
+            webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
+        }else{
+            //设置缓存
+            webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        }
+
         webview.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -156,9 +191,78 @@ public class HomeFragment extends BaseFragment {
                 }
                 super.onProgressChanged(view, newProgress);
             }
+
+            // 一个回调接口使用的主机应用程序通知当前页面的自定义视图已被撤职
+            CustomViewCallback customViewCallback;
+            // 进入全屏的时候的回调方法
+            @Override
+            public void onShowCustomView(View view, CustomViewCallback callback) {
+                // 赋值给callback
+                customViewCallback = callback;
+                // 设置webView隐藏
+                webview.setVisibility(View.GONE);
+              /*  // 声明video，把之后的视频放到这里面去
+                FrameLayout video = (FrameLayout) findViewById(R.id.video);
+                // 将video放到当前视图中
+                video.addView(view);
+                // 横屏显示
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                // 设置全屏
+                setFullScreen();*/
+            }
+            // 退出全屏的时候的回调方法
+            @Override
+            public void onHideCustomView() {
+                if (customViewCallback != null) {
+                    // 隐藏掉
+                    customViewCallback.onCustomViewHidden();
+                }
+           /*     // 用户当前的首选方向
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
+                // 退出全屏
+                quitFullScreen();*/
+                // 设置WebView可见
+                webview.setVisibility(View.VISIBLE);
+            }
+
+
+
+            /**
+             * 网页加载标题回调
+             * @param view
+             * @param title 网页标题
+             */
+            @Override
+            public void onReceivedTitle(WebView view, String title) {
+            }
         });
 
         webview.loadUrl(url);
+    }
+
+
+
+
+    /**
+     * 设置全屏
+     */
+    private void setFullScreen() {
+        // 设置全屏的相关属性，获取当前的屏幕状态，然后设置全屏
+        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        // 全屏下的状态码：1098974464
+        // 窗口下的状态吗：1098973440
+    }
+
+    /**
+     * 退出全屏
+     */
+    private void quitFullScreen() {
+        // 声明当前屏幕状态的参数并获取
+        final WindowManager.LayoutParams attrs = getActivity().getWindow().getAttributes();
+        attrs.flags &= (~WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getActivity().getWindow().setAttributes(attrs);
+        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
 
     /**
