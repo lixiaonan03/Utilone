@@ -1,7 +1,12 @@
 package com.lxn.utilone.activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.PermissionChecker;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.volley.listener.HttpBackBeanListener;
@@ -24,7 +29,7 @@ import com.lxn.utilone.view.CustomProgressDialog;
 /**
  * 登录界面
  */
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends MPermissionsActivity {
 
 	private EditText editTextLoginCode;
 	private EditText editTextPassword;
@@ -35,20 +40,20 @@ public class LoginActivity extends BaseActivity {
 	private CustomProgressDialog customProgressDialog;
 	private ImageView login_wx;
 	private TextView top_text;
-	private Button save,get;
+	private Button save, get;
 
 	private ACache mAcache;
+	private Button call;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 
-        //初始化缓存管理器
-		mAcache= ACache.get(this);
+		//初始化缓存管理器
+		mAcache = ACache.get(this);
 
-		customProgressDialog = new CustomProgressDialog(LoginActivity.this,
-				"正在登录......");
+		customProgressDialog = new CustomProgressDialog(LoginActivity.this, "正在登录......");
 		initView();
 	}
 
@@ -73,10 +78,12 @@ public class LoginActivity extends BaseActivity {
 
 
 		//保存和获取缓存的按钮
-		save=(Button)findViewById(R.id.save);
-		get=(Button)findViewById(R.id.get);
+		save = (Button) findViewById(R.id.save);
+		get = (Button) findViewById(R.id.get);
+		call = (Button) findViewById(R.id.call);
 		save.setOnClickListener(new ViewOnClickListener());
 		get.setOnClickListener(new ViewOnClickListener());
+		call.setOnClickListener(new ViewOnClickListener());
 	}
 
 	private class ViewOnClickListener implements OnClickListener {
@@ -85,42 +92,45 @@ public class LoginActivity extends BaseActivity {
 		public void onClick(View v) {
 			int viewid = v.getId();
 			switch (viewid) {
-			case R.id.top_back:
-				// 回退
-				finish();
-				break;
-			case R.id.login_submit:
-				// 登录
-				goLogin();
+				case R.id.top_back:
+					// 回退
+					finish();
+					break;
+				case R.id.login_submit:
+					// 登录
+					goLogin();
 
-				break;
-			case R.id.goregister:
+					break;
+				case R.id.goregister:
 
-				break;
-			case R.id.forgetpassword:
-				// 忘记密码
-				Intent intentfind = new Intent(LoginActivity.this,
-						FindPasswordActivity.class);
-				startActivity(intentfind);
-				break;
-			case R.id.login_wx:
+					break;
+				case R.id.forgetpassword:
+					// 忘记密码
+					Intent intentfind = new Intent(LoginActivity.this, FindPasswordActivity.class);
+					startActivity(intentfind);
+					break;
+				case R.id.login_wx:
 
-				break;
+					break;
 				case R.id.save:
-                //保存缓存
-					 String username = editTextLoginCode.getText().toString().trim();
-					if(StringUtils.isBlank(username)){
+					//保存缓存
+					String username = editTextLoginCode.getText().toString().trim();
+					if (StringUtils.isBlank(username)) {
 						ToastUtils.toastshort("请输入用户名");
 					}
-					mAcache.put("username",username);
-				break;
+					mAcache.put("username", username);
+					break;
 				case R.id.get:
-                //获取缓存
+					//获取缓存
 					editTextPassword.setText(mAcache.getAsString("username"));
-				break;
+					break;
+				case R.id.call:
+					//拨打电话检查权限
+					requestPermission(new String[]{Manifest.permission.CALL_PHONE}, 0x0001);
+					break;
 
-			default:
-				break;
+				default:
+					break;
 			}
 		}
 	}
@@ -137,12 +147,11 @@ public class LoginActivity extends BaseActivity {
 		final String username = editTextLoginCode.getText().toString().trim();
 		final String password = editTextPassword.getText().toString().trim();
 		// 判断是否输入内容
-		if (null == username || "" == username || "".equals(password)
-				|| null == password) {
+		if (null == username || "" == username || "".equals(password) || null == password) {
 			ToastUtils.toastshort("请输入用户名和密码！");
 			return;
 		}
-			customProgressDialog.show();
+		customProgressDialog.show();
 		/*	String encryptStr = MD5Util.encryptStr("name=" + username
 					+ "&crypted_password=" + password);
 			// String url=CommonVariable.LoginURL+encryptStr;*/
@@ -177,43 +186,44 @@ public class LoginActivity extends BaseActivity {
 					}, false, null);*/
 
 	}
+
 	/**
 	 * 根据传入的标记 决定登录完成之后 需要跳转的界面
 	 */
 	void logingofor() {
 		int flag = getIntent().getIntExtra("flag", 0);
 		switch (flag) {
-		case 01:
-			// 要回到主界面的
-			setResult(01);
-			finish();
-			break;
-		case 02:
-			// 要回到购物车的
-			setResult(02);
-			finish();
-			break;
-		case 03:
-			// 要回到会员卡的
-			setResult(03);
-			finish();
-			break;
-		case 04:
-			// 要回到个人中心
-			setResult(04);
-			finish();
-			break;
+			case 01:
+				// 要回到主界面的
+				setResult(01);
+				finish();
+				break;
+			case 02:
+				// 要回到购物车的
+				setResult(02);
+				finish();
+				break;
+			case 03:
+				// 要回到会员卡的
+				setResult(03);
+				finish();
+				break;
+			case 04:
+				// 要回到个人中心
+				setResult(04);
+				finish();
+				break;
 
 
-		default:
-			break;
+			default:
+				break;
 		}
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		if (null!=customProgressDialog&&customProgressDialog.isShowing()) {
+		if (null != customProgressDialog && customProgressDialog.isShowing()) {
 			customProgressDialog.dismiss();
 		}
 	}
@@ -221,10 +231,11 @@ public class LoginActivity extends BaseActivity {
 	@Override
 	protected void onStop() {
 		super.onStop();
-		if (null!=customProgressDialog&&customProgressDialog.isShowing()) {
+		if (null != customProgressDialog && customProgressDialog.isShowing()) {
 			customProgressDialog.dismiss();
 		}
 	}
+
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
@@ -235,5 +246,35 @@ public class LoginActivity extends BaseActivity {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
+	}
+
+
+	/**
+	 * 权限成功回调函数
+	 *
+	 * @param requestCode
+	 */
+	@Override
+	public void permissionSuccess(int requestCode) {
+		super.permissionSuccess(requestCode);
+		switch (requestCode) {
+			case 0x0001:
+				if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+					// TODO: Consider calling
+					//    ActivityCompat#requestPermissions
+					// here to request the missing permissions, and then overriding
+					//   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+					//                                          int[] grantResults)
+					// to handle the case where the user grants the permission. See the documentation
+					// for ActivityCompat#requestPermissions for more details.
+					//没有权限
+					return;
+				}else{
+					Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:15513094928"));
+					startActivity(intent);
+				}
+				break;
+		}
+
 	}
 }
