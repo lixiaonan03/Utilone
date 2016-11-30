@@ -58,7 +58,7 @@ public class MathUtil {
         return returnBigdecimal;
     }
     /**
-     * 把一个数字转换成百分比显示   eg:  20  转成 20%
+     * 把一个数字转换成百分比显示   eg:  20  转成 20%  (这种方式是四舍五入)
      * @param math
      * @return
      */
@@ -67,7 +67,7 @@ public class MathUtil {
         return df1.format(math/100);
     }
      /**
-     * 把一个double 数字转换成 小数点后2位显示的
+     * 把一个double 数字转换成 小数点后2位显示的 四舍五入的
      * @param math
      * @return
      */
@@ -76,6 +76,41 @@ public class MathUtil {
         return df.format(math);
     }
     /**
+     * 把一个double 数字转换成 小数点后2位显示的(截取的)
+     * @param math
+     * @return  String
+     */
+    public static String mathTodecimaltwoCapture(double math){
+
+        //这种方式是直接截取的  目前发现这种方法如果参数时double有一定的问题 17.02 截取之后变成了17.01
+        BigDecimal b = new BigDecimal(math+"");
+        b=b.setScale(2, BigDecimal.ROUND_DOWN); //小数位 直接舍去
+        return b.toString();
+        //另一种方式 截取字符串
+       /* String  rateStr=math+"";
+        if(rateStr.indexOf(".") != -1){
+            //获取小数点的位置
+            int num = 0;
+            num = rateStr.indexOf(".");
+
+            //获取小数点后面的数字 是否有两位 不足两位补足两位
+            String dianAfter = rateStr.substring(0,num+1);
+            String afterData = rateStr.replace(dianAfter, "");
+            if(afterData.length() < 2){
+                afterData = afterData + "0" ;
+            }
+            return rateStr.substring(0,num) + "." + afterData.substring(0,2);
+        }else{
+            if(rateStr == "1"){
+                return "100";
+            }else{
+                return rateStr;
+            }
+        }*/
+    }
+
+
+    /**
      * 将数字以千为单位，用“，”分割。
      *
      * @param str1
@@ -83,6 +118,9 @@ public class MathUtil {
      * @return String str eg: 123,456.76
      */
     public static String getMoneyString(String str1) {
+        if(StringUtils.isBlank(str1)){
+            return "";
+        }
         char firstWord = str1.charAt(0);
         if ("-".equals(firstWord + "")) {
             str1 = str1.replace("-", "");
