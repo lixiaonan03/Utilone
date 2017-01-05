@@ -88,7 +88,7 @@ public class StatusBarUtil {
 
 
     /**
-     * 设置当前activity页面的状态栏 为全透明
+     * 设置当前activity页面的状态栏 为全透明   ps:使用这个 让页面不给状态栏预留空间 就可以实现沉浸模式(ps:如果需要可以设置一个间距把状态栏的控件显示 26dp)
      * @param activity 当前activity上下文环境
      * @param fit  是否为系统状态栏预留空间
      */

@@ -24,7 +24,7 @@ public class CustomProgressDialog extends ProgressDialog {
 	private TextView loadingtext;
 	private int mResid;//帧动画资源的id
 	 public CustomProgressDialog(Context context, String content) {
-	    this(context,content, R.anim.loadanim);
+	    this(context,content, R.drawable.loadanim);
 	 }
     /**
      * @param context  上下文环境
