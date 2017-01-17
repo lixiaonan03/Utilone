@@ -23,10 +23,9 @@ public class DESUtil {
     public final static String Key = "qwe@1234";
 
     public static void main(String[] args) throws Exception {
-        String data = "123 456";
+        String data = "6Z79ZWCHcDKnXejrTwAs3CpqXT/81Nf41PY8Ds8F7rkbfUOSMJzt4JCVWZKdJ+n4fxQS+hIdGYPR\\nixj+tuEYb8gG9ka3NecxpkiAQkPdk2WKePmYDflGDNuCNjZ5r2mMH8Dawvg1IWfXA38cyrYLGwu2\\nSzITLig9l6xpWB+BscdShXrw545gX8P7Tu+trB91gCiVAxmmc193yAnmtKJEL6Smg36TVZ6OxHEm\\nGAAkSCn/TTPehli7LtkhJOAZ8D40BzUVCV8a/K1K25d89GHDkxcVaZa/RTI/Cui8FQ27t2HaqkuB\\nkj5VTw==";
         String key = "qwe@1234";
-        System.out.println(encrypt(data, key));
-        System.out.println(decrypt(encrypt(data, key), key));
+        System.out.println(decrypt(data, key));
     }
 
     /**

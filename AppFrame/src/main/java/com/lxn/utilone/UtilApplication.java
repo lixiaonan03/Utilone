@@ -1,16 +1,17 @@
 package com.lxn.utilone;
 
+import android.app.Activity;
 import android.app.Application;
-import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.volley.util.VolleyUtil;
 
 import com.alipay.euler.andfix.patch.PatchManager;
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 import com.lxn.utilone.util.BadHandler;
 import com.lxn.utilone.util.DeviceUtil;
 import com.lxn.utilone.util.LogUtils;
@@ -26,7 +27,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.io.IOException;
 
 /**
  * Created by lxn on 2015/12/7.
@@ -53,60 +53,98 @@ public class UtilApplication extends Application {
         //网路请求的请求队列
         requestQueue= VolleyUtil.getInstance();
 
+       //inithotfix();
 
-        patchManager = new PatchManager(this);
-        patchManager.init(DeviceUtil.getVersionname());
-
-        try {
-            // load patch
-            patchManager.loadPatch();
-            //从本地加载补丁包（ps：一般都是从服务器去下载） .apatch file path
-            String patchFileString = Environment.getExternalStorageDirectory()
-                    .getAbsolutePath() + APATCH_PATH;
-            patchManager.addPatch(patchFileString);
-            //加载补丁成功后，删除下载的补丁
-            File file = new File(patchFileString);
-            if (file.exists()) {
-                file.delete();
-            }
-
-
-
-            //从服务器去下载最新的补丁包 get patch under new thread
-            Intent patchDownloadIntent = new Intent(this, PatchDownloadIntentService.class);
-            patchDownloadIntent.putExtra("url", "http://xxx/patch/app-release-fix-shine.apatch");
-            startService(patchDownloadIntent);
-        } catch (Exception e) {
-        }
+        //注册activity 的生命周期
+        initactivitylife();
     }
 
     public static UtilApplication getInstance() {
         return application;
     }
 
-    public PatchManager getPatchManager() {
-        return patchManager;
-    }
-
-    public void setPatchManager(PatchManager patchManager) {
-        this.patchManager = patchManager;
-    }
 
     /**
+     * 注册activity的生命周期监听
+     */
+    private void initactivitylife(){
+        registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+            @Override
+            public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+
+            }
+
+            @Override
+            public void onActivityStarted(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityResumed(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityPaused(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityStopped(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+
+            }
+
+            @Override
+            public void onActivityDestroyed(Activity activity) {
+
+            }
+        });
+    }
+
+
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        if (newConfig.fontScale != 1){
+            //非默认值
+            getResources();
+        }
+        super.onConfigurationChanged(newConfig);
+    }
+    /**
+     * 处理修改系统字体大小对应用内部的布局有影响  强制把他设置为默认的
+     * @return
+     */
+    @Override
+    public Resources getResources() {
+        Resources res = super.getResources();
+        if (res.getConfiguration().fontScale != 1) {//非默认值
+            Configuration newConfig = new Configuration();
+            newConfig.setToDefaults();//设置默认
+            res.updateConfiguration(newConfig, res.getDisplayMetrics());
+        }
+        return res;
+    }
+    /**
      * 初始化Imageloader
-     *
      * @param context
      */
     public static void initImageLoader(Context context) {
-        // 这个是你希望的缓存文件的目录：imageloader/Cache
+        // 这个是你希望的缓存文件的目录：
        // File cacheDir = StorageUtils.getOwnCacheDirectory(context, "/xyyy/lxn/imageloader/Cache");
         //context.getExternalCacheDir()  /storage/emulated/0/Android/data/com.lxn.utilone/cache  这个目录在SD下 会随着系统卸载被删除
-        File cacheDir = context.getExternalCacheDir();
+        File cacheDir =null;
+        cacheDir = context.getExternalCacheDir();
+        if(null==cacheDir){
+            cacheDir = StorageUtils.getOwnCacheDirectory(context, "/xyyy/lxn/imageloader/Cache");
+        }
         //这个目录在  data/data/com.lxn.utilone/cache 需要root才能查看数据
         File cacheDir1 = context.getCacheDir();
-        LogUtils.i("getExternalCacheDir====="+cacheDir.getAbsolutePath());
-        LogUtils.i("getCacheDir====="+cacheDir1.getAbsolutePath());
-
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
                 context)
                 // 设置线程优先级
@@ -130,8 +168,44 @@ public class UtilApplication extends Application {
                 .discCacheFileNameGenerator(new Md5FileNameGenerator())
 
                 .tasksProcessingOrder(QueueProcessingType.LIFO)
-                .writeDebugLogs() // Remove for release app
+                //.writeDebugLogs() // Remove for release app
                 .build();
         ImageLoader.getInstance().init(config);
+    }
+
+
+    public PatchManager getPatchManager() {
+        return patchManager;
+    }
+
+    public void setPatchManager(PatchManager patchManager) {
+        this.patchManager = patchManager;
+    }
+
+    /**
+     * 初始化淘宝热更新的东西
+     */
+    private void inithotfix(){
+        patchManager = new PatchManager(this);
+        patchManager.init(DeviceUtil.getVersionname());
+        try {
+            // load patch
+            patchManager.loadPatch();
+            //从本地加载补丁包（ps：一般都是从服务器去下载） .apatch file path
+            String patchFileString = Environment.getExternalStorageDirectory()
+                    .getAbsolutePath() + APATCH_PATH;
+            patchManager.addPatch(patchFileString);
+            //加载补丁成功后，删除下载的补丁
+            File file = new File(patchFileString);
+            if (file.exists()) {
+                file.delete();
+            }
+            //从服务器去下载最新的补丁包 get patch under new thread
+            Intent patchDownloadIntent = new Intent(this, PatchDownloadIntentService.class);
+            patchDownloadIntent.putExtra("url", "http://xxx/patch/app-release-fix-shine.apatch");
+            startService(patchDownloadIntent);
+        } catch (Exception e) {
+        }
+
     }
 }

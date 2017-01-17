@@ -189,7 +189,20 @@
             android:text="获取缓存的内容"
             android:textColor="#ffffff"
             android:textSize="14sp" />
-        
+        <Button
+            android:id="@+id/call"
+            android:layout_width="200dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="34dp"
+            android:layout_below="@id/get"
+            android:background="@drawable/login_button"
+            android:gravity="center"
+            android:text="拨打电话需要验证权限"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
     </RelativeLayout>
+
 
 </LinearLayout>

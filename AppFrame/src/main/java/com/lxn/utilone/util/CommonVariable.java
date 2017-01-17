@@ -5,10 +5,10 @@ package com.lxn.utilone.util;
  */
 public class CommonVariable {
 
-    // 测试服务器地址
-    public static String IP = "http://101.200.228.203:8181";
-    //嵌套页地址
-    public static String IP1="http://test.sun-yard.com";
+    //正式服务器地址
+    public static String IP = "http://weixin.sun-yard.com:51";
+    //正式服务器的嵌套页地址
+    public static String IP1="http://weixin.sun-yard.com";
     /**
      * 登录的url
      */

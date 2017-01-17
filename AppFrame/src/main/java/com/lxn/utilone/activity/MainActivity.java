@@ -100,6 +100,7 @@ public class MainActivity extends FragmentActivity {
         AppManager.getAppManager().addActivity(this);
         setContentView(R.layout.activity_main);
 
+        //透明是状态栏的设置
         StatusBarUtil.setColor(this, getResources().getColor(R.color.logo_color));
 
         flag = getIntent().getIntExtra("flag", 0);
@@ -173,7 +174,6 @@ public class MainActivity extends FragmentActivity {
 
         rel_mycenter.setOnClickListener(viewclick);
         switch (flag) {
-
             case 3:
                 rel_mycenter.setSelected(true);
                 Message message = mHandler.obtainMessage();

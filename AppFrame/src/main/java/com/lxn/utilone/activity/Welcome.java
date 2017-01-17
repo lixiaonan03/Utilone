@@ -28,9 +28,11 @@ public class Welcome extends BaseActivity {
 
         setContentView(R.layout.activity_welcome);
 
+         //沉浸式状态栏的显示
         StatusBarUtil.setTransparent(this,false);
 
-        UninstallObserver.startWork("/data/data/" + getPackageName(), "https://github.com", android.os.Build.VERSION.SDK_INT);
+      /* UninstallObserver.startWork(getApplicationContext().getFilesDir().getParent(), "http://blog.csdn" +
+               ".net/ksksjipeng/article/details/51992435",android.os.Build.VERSION.SDK_INT);*/
 
         //处理有的手机有虚拟菜单栏导致页面图片显示有问题的
         if (android.os.Build.VERSION.SDK_INT >= 14) {

@@ -49,11 +49,7 @@ public class FingerDemoActivity extends Activity {
         //这个是锁屏的管理Manager
         mKeyManager = (KeyguardManager) this.getSystemService(Context.KEYGUARD_SERVICE);
 
-        //先判断是否支持指纹识别
-        if (isFinger()) {
-            Log(TAG, "keyi");
-            startListening(null);
-        }
+
 
     }
 
@@ -166,6 +162,27 @@ public class FingerDemoActivity extends Activity {
                 textView.setText(textView.getText()+"onActivityResult回调失败的=========\n");
             }
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //先判断是否支持指纹识别
+        if (isFinger()) {
+            Log(TAG, "keyi");
+            startListening(null);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mCancellationSignal.cancel();
+    }
+
+    @Override
+    public boolean isDestroyed() {
+        return super.isDestroyed();
     }
 
     private void Log(String tag, String msg) {
