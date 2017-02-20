@@ -8,6 +8,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.volley.util.VolleyUtil;
 
 import com.alipay.euler.andfix.patch.PatchManager;
@@ -42,6 +43,10 @@ public class UtilApplication extends Application {
 
     private PatchManager patchManager;
     private static final String APATCH_PATH = "/lixiaonan/out.apatch";
+
+
+
+    public int count = 0;//判断程序在前后台的 activity个数的标记
     @Override
     public void onCreate() {
         super.onCreate();
@@ -76,11 +81,16 @@ public class UtilApplication extends Application {
 
             @Override
             public void onActivityStarted(Activity activity) {
+                if (count == 0) {
+                    LogUtils.i(">>>>>>>>>>>>>>>>>>>切到前台  lifecycle");
 
+                }
+                count++;
             }
 
             @Override
             public void onActivityResumed(Activity activity) {
+                  //判断下离开时常 如果大于需要验证的  判断是否需要密码验证
 
             }
 
@@ -91,7 +101,10 @@ public class UtilApplication extends Application {
 
             @Override
             public void onActivityStopped(Activity activity) {
-
+                count--;
+                if (count == 0) {
+                   //TODO 程序切换到了后台之后 会调用 可以做一些处理工作
+                }
             }
 
             @Override

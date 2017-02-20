@@ -1,2 +1,2 @@
-include ':AppFrame'
+include ':AppFrame', ':javademo'
 include ':pullToRefreshlibrary'
