@@ -113,6 +113,16 @@ public class SearchActivity extends BaseActivity {
 	}
 
 	/**
+	 * 启动当前activity
+	 * @param context  上下文环境
+	 * @param id     商品ID 为-1是表示查询的是全部
+     */
+	public static void actionStart(Context context,int id){
+		Intent intent=new Intent(context,SearchActivity.class);
+		intent.putExtra("id",id);
+		context.startActivity(intent);
+	}
+	/**
 	 * 初始化控件
 	 */
 	private void initView() {
