@@ -161,7 +161,13 @@ public class UpdateDialogUtil {
 
     public String readContent(String url) throws IOException {
         StringBuilder sb = new StringBuilder();
-        URL getUrl = new URL(url);
+        URL getUrl = null;
+        try {
+            getUrl = new URL(url);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            return "";
+        }
         HttpURLConnection connection = (HttpURLConnection) getUrl.openConnection();
         // 进行连接，但是实际上get request要在下一句的connection.getInputStream()函数中才会真正发到   连接超时之后直接进入首页
         connection.setConnectTimeout(5000);
@@ -169,7 +175,7 @@ public class UpdateDialogUtil {
             connection.connect();
         } catch (IOException e) {
             e.printStackTrace();
-            handle.sendMessage(handle.obtainMessage(2));
+            return "";
         }
         InputStream is = connection.getInputStream();
         BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"), 8192);

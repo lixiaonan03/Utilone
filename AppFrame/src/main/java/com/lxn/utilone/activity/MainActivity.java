@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -17,7 +18,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.lxn.utilone.AppManager;
 import com.lxn.utilone.R;
 import com.lxn.utilone.db.CartDao;
@@ -25,9 +29,28 @@ import com.lxn.utilone.fragment.CartFragment;
 import com.lxn.utilone.fragment.ClassifyFragment;
 import com.lxn.utilone.fragment.HomeFragment;
 import com.lxn.utilone.fragment.MycenterFragment;
+import com.lxn.utilone.retrofit.RetrofitHelper;
+import com.lxn.utilone.retrofit.ToolResultList;
+import com.lxn.utilone.retrofit.bean.BindCardRecommendBankBean;
+import com.lxn.utilone.retrofit.datamanger.DataManager;
+import com.lxn.utilone.retrofit.service.DataService;
+import com.lxn.utilone.retrofit.service.Status;
+import com.lxn.utilone.util.DateUtil;
+import com.lxn.utilone.util.LogUtils;
 import com.lxn.utilone.util.status.StatusBarUtil;
 
+import java.io.IOException;
 import java.lang.ref.WeakReference;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 /**
  * 主Activity
@@ -94,6 +117,7 @@ public class MainActivity extends FragmentActivity {
             }
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,8 +136,7 @@ public class MainActivity extends FragmentActivity {
         classifyFragment = new ClassifyFragment();
         cartFragment = new CartFragment();
         mycenterFragment = new MycenterFragment();
-        fragments = new Fragment[]{homeFragment, classifyFragment,
-                cartFragment, mycenterFragment};
+        fragments = new Fragment[]{homeFragment, classifyFragment, cartFragment, mycenterFragment};
 
 
 
@@ -126,35 +149,68 @@ public class MainActivity extends FragmentActivity {
                 .show(homeFragment).commit();*/
 
 
-
-
         // 根据不同的进入的标志添加fragment
-        if(0==flag){
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, homeFragment)
-                    .addToBackStack(null)
-                    .show(homeFragment).commit();
-        }else if(1==flag){
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, classifyFragment)
-                    .addToBackStack(null)
-                    .show(homeFragment).commit();
-        }else if(3==flag){
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, mycenterFragment)
-                    .addToBackStack(null)
-                    .show(mycenterFragment).commit();
+        if (0 == flag) {
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,
+                    homeFragment).addToBackStack(null).show(homeFragment).commit();
+        } else if (1 == flag) {
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,
+                    classifyFragment).addToBackStack(null).show(homeFragment).commit();
+        } else if (3 == flag) {
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,
+                    mycenterFragment).addToBackStack(null).show(mycenterFragment).commit();
         }
 
 
         // 初始化广播
         receiver = new ChangeReceiver();
-        LocalBroadcastManager broadcastManager = LocalBroadcastManager
-                .getInstance(MainActivity.this);
+        LocalBroadcastManager broadcastManager = LocalBroadcastManager.getInstance(MainActivity
+                .this);
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("changeallmoney");
         broadcastManager.registerReceiver(receiver, intentFilter);
 
+        DataManager manager=new DataManager();
+       /* Call<JSONObject> data=manager.getdata();
+        //data.execute();//同步执行
+        //异步执行
+        data.enqueue(new Callback<JSONObject>() {
+            @Override
+            public void onResponse(Call call, Response response) {
+                LogUtils.i("==="+response.body());
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+
+            }
+        });*/
+        LogUtils.i("zhih");
+        Observable<ToolResultList<BindCardRecommendBankBean>> repos = RetrofitHelper.getInstance().getRetrofit().create(DataService.class).getdata();
+        repos.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ToolResultList<BindCardRecommendBankBean>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        LogUtils.i("onSubscribe====");
+                    }
+
+                    @Override
+                    public void onNext(ToolResultList<BindCardRecommendBankBean> value) {
+                        LogUtils.i("值===="+value.getStatus().getError_code());
+                        LogUtils.i("值===="+value.getData().size());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        LogUtils.i("onError===="+e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        LogUtils.i("onComplete====");
+                    }
+                });
     }
 
     /**
@@ -208,16 +264,15 @@ public class MainActivity extends FragmentActivity {
                     break;
             }
             if (currentTabIndex != index) {
-                FragmentTransaction trx = getSupportFragmentManager()
-                        .beginTransaction();
+                FragmentTransaction trx = getSupportFragmentManager().beginTransaction();
                 trx.hide(fragments[currentTabIndex]);
                 if (!fragments[index].isAdded()) {
                     trx.add(R.id.fragment_container, fragments[index]);
                     trx.addToBackStack(null);
                     if (index == FLAG_MYCENTER) {
-						/* 创建一个Bundle用来存储数据，传递到Fragment中 */
+                        /* 创建一个Bundle用来存储数据，传递到Fragment中 */
                         Bundle bundle = new Bundle();
-						/* 往bundle中添加数据 */
+                        /* 往bundle中添加数据 */
                         bundle.putString("imgurl", imgurl);
                         bundle.putString("name", username);
 						/* 把数据设置到Fragment中 */
@@ -298,14 +353,14 @@ public class MainActivity extends FragmentActivity {
     protected void onResume() {
         // TODO Auto-generated method stub
         super.onResume();
-            // 未登录 查询本地数据库 查询出所有商品数量的 总数
-            int goodnum = CartDao.getInstance().queryNumAll();
-            if (goodnum > 0) {
-                num_rel.setVisibility(View.VISIBLE);
-                item_count.setText("" + goodnum);
-            } else {
-                num_rel.setVisibility(View.GONE);
-            }
+        // 未登录 查询本地数据库 查询出所有商品数量的 总数
+        int goodnum = CartDao.getInstance().queryNumAll();
+        if (goodnum > 0) {
+            num_rel.setVisibility(View.VISIBLE);
+            item_count.setText("" + goodnum);
+        } else {
+            num_rel.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -328,27 +383,27 @@ public class MainActivity extends FragmentActivity {
                 cartFragment.onActivityResult(requestCode, resultCode, data);
             }
         }
-        if (currentTabIndex==3) {
+        if (currentTabIndex == 3) {
             if (mycenterFragment != null) {
-                mycenterFragment
-                        .onActivityResult(requestCode, resultCode, data);
+                mycenterFragment.onActivityResult(requestCode, resultCode, data);
             }
         }
     }
+
     private class ChangeReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if ("changeallmoney".equals(action)) {
-                    // 未登录 查询本地数据库 查询出所有商品数量的 总数
-                    int goodnum = CartDao.getInstance().queryNumAll();
-                    if (goodnum > 0) {
-                        num_rel.setVisibility(View.VISIBLE);
-                        item_count.setText("" + goodnum);
-                    } else {
-                        num_rel.setVisibility(View.GONE);
-                    }
+                // 未登录 查询本地数据库 查询出所有商品数量的 总数
+                int goodnum = CartDao.getInstance().queryNumAll();
+                if (goodnum > 0) {
+                    num_rel.setVisibility(View.VISIBLE);
+                    item_count.setText("" + goodnum);
+                } else {
+                    num_rel.setVisibility(View.GONE);
+                }
             }
         }
     }

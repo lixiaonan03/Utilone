@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '23.0.3'
+    buildToolsVersion '25.0.0'
     defaultConfig {
         applicationId "com.lxn.utilone"
         minSdkVersion 14
@@ -63,12 +63,24 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/rxjava.properties'
+        exclude 'META-INF/rxjava.PROPERTIES'
+        exclude 'META-INF/RXJAVA.properties'
+        exclude 'META-INF/RXJAVA.PROPERTIES'
+        exclude 'META-INF/rxjava'
+        exclude 'META-INF/RXJAVA'
+    }
 }
 
 dependencies {
     compile 'com.alipay.euler:andfix:0.3.1@aar'
-
-
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.1'
@@ -77,15 +89,24 @@ dependencies {
     compile 'com.google.code.gson:gson:2.5'
     compile 'com.github.tony19:logback-android-parent:1.1.1-4'
     compile 'org.slf4j:slf4j-android:1.7.13'
-
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     compile 'com.alibaba:fastjson:1.2.7'
     compile project(':pullToRefreshlibrary')
     compile 'com.j256.ormlite:ormlite-android:4.48'
     compile 'com.j256.ormlite:ormlite-core:4.48'
     compile files('libs/core.jar')
-
     //极光推送的集成的
-    compile 'cn.jiguang.sdk:jpush:3.0.0'  // 此处以JPush 3.0.0 版本为例。
-    compile 'cn.jiguang.sdk:jcore:1.0.0'  // 此处以JCore 1.0.0 版本为例。
+    compile 'cn.jiguang.sdk:jpush:3.0.0'
+    // 此处以JPush 3.0.0 版本为例。
+    compile 'cn.jiguang.sdk:jcore:1.0.0'
+    // 此处以JCore 1.0.0 版本为例。
+    //集成retrofit 访问框架的
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+//    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
+//    retrofit 回调适配器
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+    //集成Rxandroid
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    //查看访问日志的
+    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
 }
