@@ -1,5 +1,6 @@
 package com.lxn.utilone.util;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -33,6 +34,7 @@ public final class DeviceUtil {
     private static final DisplayMetrics mDisplayMetrics = new DisplayMetrics();
 
     /**上下文**/
+    @SuppressLint("StaticFieldLeak")
     private static final Context context = UtilApplication.getInstance();
 
     /**操作系统名称(GT-I9100G)***/

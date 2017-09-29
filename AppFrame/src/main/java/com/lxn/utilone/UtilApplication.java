@@ -23,6 +23,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.utils.StorageUtils;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,12 +64,25 @@ public class UtilApplication extends Application {
 
         //注册activity 的生命周期
         initactivitylife();
+        //
+        setupLeakCanary();
     }
 
     public static UtilApplication getInstance() {
         return application;
     }
 
+
+    /**
+     * 内存检测工具的初始化
+     * @return
+     */
+    protected RefWatcher setupLeakCanary() {
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return RefWatcher.DISABLED;
+        }
+        return LeakCanary.install(this);
+    }
 
     /**
      * 注册activity的生命周期监听

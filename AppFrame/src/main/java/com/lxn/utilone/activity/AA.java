@@ -6,7 +6,5 @@ package com.lxn.utilone.activity;
  */
 public class AA {
     void one(){}
-    
-    void two(){}
 
 }

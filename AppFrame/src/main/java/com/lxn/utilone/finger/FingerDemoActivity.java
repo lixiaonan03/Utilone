@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.lxn.utilone.R;
 import com.lxn.utilone.activity.LoginActivity;
+import com.lxn.utilone.util.LogUtils;
 
 
 /**
@@ -29,7 +30,7 @@ import com.lxn.utilone.activity.LoginActivity;
 @TargetApi(Build.VERSION_CODES.M)
 public class FingerDemoActivity extends Activity {
     //FingerprintManager manager;
-    KeyguardManager mKeyManager;
+    private KeyguardManager mKeyManager;
     private final static int REQUEST_CODE_CONFIRM_DEVICE_CREDENTIALS = 0;
     private final static String TAG = "finger_log";
     private TextView textView;
@@ -39,13 +40,15 @@ public class FingerDemoActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fingerdemo);
+        //TODO 内存泄漏的一种情况模拟
+        ContextTest contextTest=new ContextTest(this);
 
         textView=(TextView)findViewById(R.id.textView);
 
         // android 6.0 23 获取指纹管理的类的获取方式
         // manager = (FingerprintManager) this.getSystemService(Context.FINGERPRINT_SERVICE);
         //这个是v4兼容包的 获取方式 名字改成了 FingerprintManagerCompat
-        manager = FingerprintManagerCompat.from(this);
+        manager = FingerprintManagerCompat.from(getApplicationContext());
         //这个是锁屏的管理Manager
         mKeyManager = (KeyguardManager) this.getSystemService(Context.KEYGUARD_SERVICE);
 
@@ -182,7 +185,10 @@ public class FingerDemoActivity extends Activity {
 
     @Override
     public boolean isDestroyed() {
+        LogUtils.i("回收====");
+        manager=null;
         return super.isDestroyed();
+
     }
 
     private void Log(String tag, String msg) {

@@ -75,7 +75,7 @@ public class FindPasswordActivity extends BaseActivity {
 				//TODO 正则表达式工具类的使用
 				String check = RegularExpression.checkRegularExpression(phone,
 						RegularExpression.MOBILE_PHONE, "请输入正确的手机号码！");
-				
+
 				if (StringUtils.isNotBlank(check)) {
 					ToastUtils.toastshort(check);
 					return;

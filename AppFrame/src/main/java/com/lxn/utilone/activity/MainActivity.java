@@ -198,7 +198,6 @@ public class MainActivity extends FragmentActivity {
                     @Override
                     public void onNext(ToolResultList<BindCardRecommendBankBean> value) {
                         LogUtils.i("值===="+value.getStatus().getError_code());
-                        LogUtils.i("值===="+value.getData().size());
                     }
 
                     @Override

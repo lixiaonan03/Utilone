@@ -30,6 +30,8 @@ public class RegularExpression {
 	public static final String username= "[\\u4e00-\\u9fa5a-zA-Z0-9\\-\\——]{4,20}";
 	
 	public static final String userpass= "[\\u4e00-\\u9fa5a-zA-Z0-9\\-\\——]{6,12}";
+	//
+	public static final String newuserpass= "'/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,}$/'";
 	public static final String paypassword= "[\\d]{6}";
 	private static final String STR_LENGTH = "STR_LENGTH";
 	public static String getStrLen(int begin) {
