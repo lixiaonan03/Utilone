@@ -1,16 +1,9 @@
 package com.lxn.utilone.tabfragmentdemo;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.ViewGroup;
 
 import com.lxn.utilone.R;
@@ -20,12 +13,18 @@ import com.lxn.utilone.view.TitleIndicator;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 /**
  * @copyright:北京爱钱帮财富科技有限公司 功能描述:  tab页切换的fragment 使用的简单demo
  * 作 者:  李晓楠
  * 时 间： 2016/8/12 14:52
  */
-public class IndicatorFragmentActivity extends FragmentActivity{
+public class IndicatorFragmentActivity extends FragmentActivity {
 
 
     protected int mCurrentTab = 0;
@@ -92,9 +91,10 @@ public class IndicatorFragmentActivity extends FragmentActivity{
         mPager = (MyViewPager) findViewById(R.id.pager);
         mPager.setAdapter(myAdapter);
         //滑动监听
-        mPager.addOnPageChangeListener(new OnPageChangeListener() {
+        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            public void onPageScrolled(int position, float positionOffset,
+                                       int positionOffsetPixels) {
                 mIndicator.onScrolled((mPager.getWidth() + mPager.getPageMargin()) * position + positionOffsetPixels);
             }
 
@@ -119,8 +119,6 @@ public class IndicatorFragmentActivity extends FragmentActivity{
         mPager.setCurrentItem(mCurrentTab);
         mLastTab = mCurrentTab;
     }
-
-
 
 
     @Override

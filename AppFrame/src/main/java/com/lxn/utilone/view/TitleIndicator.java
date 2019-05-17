@@ -11,7 +11,6 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -24,6 +23,8 @@ import android.widget.TextView;
 
 import com.lxn.utilone.R;
 import com.lxn.utilone.tabfragmentdemo.IndicatorFragmentActivity;
+
+import androidx.viewpager.widget.ViewPager;
 
 
 /**

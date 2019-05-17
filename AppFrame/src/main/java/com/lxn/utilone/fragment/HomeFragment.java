@@ -2,12 +2,9 @@ package com.lxn.utilone.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,10 +23,11 @@ import com.lxn.utilone.R;
 import com.lxn.utilone.util.CommonVariable;
 import com.lxn.utilone.util.NetManager;
 import com.lxn.utilone.view.MySwipeRefreshLayout;
-import com.zbar.lib.CaptureActivity;
 import com.zxing.activity.MipcaActivityCapture;
 
 import java.math.BigDecimal;
+
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 /**
  * 首页模块
@@ -75,24 +73,21 @@ public class HomeFragment extends BaseFragment {
         });
 
 
-        swipeLayout = (MySwipeRefreshLayout) getView().findViewById(
-                R.id.swipe_container);
+        swipeLayout = (MySwipeRefreshLayout) getView().findViewById(R.id.swipe_container);
 
-        swipeLayout
-                .setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
-                    @Override
-                    public void onRefresh() {
-                        // 重新刷新页面
-                        if (webview.getProgress() == 100) {
-                            webview.loadUrl(url);
-                        }
+            @Override
+            public void onRefresh() {
+                // 重新刷新页面
+                if (webview.getProgress() == 100) {
+                    webview.loadUrl(url);
+                }
 
-                    }
-                });
-        swipeLayout.setColorSchemeResources(R.color.holo_blue_bright,
-                R.color.holo_green_light, R.color.holo_orange_light,
-                R.color.holo_red_light);
+            }
+        });
+        swipeLayout.setColorSchemeResources(R.color.holo_blue_bright, R.color.holo_green_light,
+                R.color.holo_orange_light, R.color.holo_red_light);
 
         webview = (WebView) getView().findViewById(R.id.webview);
         webview.setHorizontalScrollBarEnabled(false);// 水平不显示
@@ -125,7 +120,7 @@ public class HomeFragment extends BaseFragment {
 
         //同时有https和http 算mixed content   webview 5.0默认不支持mixed content
         if (Build.VERSION.SDK_INT >= 21) {
-            webSettings.setMixedContentMode( WebSettings.MIXED_CONTENT_ALWAYS_ALLOW );
+            webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         }
 
         webSettings.setDomStorageEnabled(true);  //开启DOM
@@ -143,10 +138,10 @@ public class HomeFragment extends BaseFragment {
         //开启缓存机制
         webSettings.setAppCacheEnabled(true);
         //根据当前网页连接状态 如果是wifi设置无缓存
-        if(NetManager.getInstance().getCurrentNetType().equals("wifi")){
+        if (NetManager.getInstance().getCurrentNetType().equals("wifi")) {
             //设置无缓存
             webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
-        }else{
+        } else {
             //设置缓存
             webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         }
@@ -159,8 +154,8 @@ public class HomeFragment extends BaseFragment {
             }
 
             @Override
-            public void onReceivedError(WebView view, int errorCode,
-                                        String description, String failingUrl) {
+            public void onReceivedError(WebView view, int errorCode, String description,
+                                        String failingUrl) {
                 progressbar.setVisibility(View.GONE);
                 webview.setVisibility(View.GONE);
                 super.onReceivedError(view, errorCode, description, failingUrl);
@@ -186,14 +181,14 @@ public class HomeFragment extends BaseFragment {
                     // 隐藏进度条
                     swipeLayout.setRefreshing(false);
                 } else {
-                    if (!swipeLayout.isRefreshing())
-                        swipeLayout.setRefreshing(true);
+                    if (!swipeLayout.isRefreshing()) swipeLayout.setRefreshing(true);
                 }
                 super.onProgressChanged(view, newProgress);
             }
 
             // 一个回调接口使用的主机应用程序通知当前页面的自定义视图已被撤职
             CustomViewCallback customViewCallback;
+
             // 进入全屏的时候的回调方法
             @Override
             public void onShowCustomView(View view, CustomViewCallback callback) {
@@ -210,6 +205,7 @@ public class HomeFragment extends BaseFragment {
                 // 设置全屏
                 setFullScreen();*/
             }
+
             // 退出全屏的时候的回调方法
             @Override
             public void onHideCustomView() {
@@ -226,7 +222,6 @@ public class HomeFragment extends BaseFragment {
             }
 
 
-
             /**
              * 网页加载标题回调
              * @param view
@@ -239,8 +234,6 @@ public class HomeFragment extends BaseFragment {
 
         webview.loadUrl(url);
     }
-
-
 
 
     /**

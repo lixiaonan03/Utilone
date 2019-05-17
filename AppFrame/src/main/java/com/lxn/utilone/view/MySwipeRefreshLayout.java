@@ -1,9 +1,10 @@
 package com.lxn.utilone.view;
 
 import android.content.Context;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 /**
  * 处理下拉刷新监听和首页轮播图左右滑动监听的冲突
@@ -29,8 +30,9 @@ public class MySwipeRefreshLayout extends SwipeRefreshLayout {
 
     /**
      * 用来拦截event 正常情况下 如果执行了下拉刷新方法
-     *    这个方法返回了true  现在改成了如果左右滑动距离大于上下滑动距离
-     *    让它返回false 交个下一个view处理
+     * 这个方法返回了true  现在改成了如果左右滑动距离大于上下滑动距离
+     * 让它返回false 交个下一个view处理
+     *
      * @param ev
      * @return
      */
@@ -55,6 +57,8 @@ public class MySwipeRefreshLayout extends SwipeRefreshLayout {
                 if (xDistance > yDistance) {
                     return false;
                 }
+            default:
+                break;
         }
         return super.onInterceptTouchEvent(ev);
     }

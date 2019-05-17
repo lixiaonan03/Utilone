@@ -9,19 +9,11 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.Settings;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.LocalBroadcastManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.lxn.utilone.AppManager;
 import com.lxn.utilone.R;
 import com.lxn.utilone.db.CartDao;
@@ -34,22 +26,20 @@ import com.lxn.utilone.retrofit.ToolResultList;
 import com.lxn.utilone.retrofit.bean.BindCardRecommendBankBean;
 import com.lxn.utilone.retrofit.datamanger.DataManager;
 import com.lxn.utilone.retrofit.service.DataService;
-import com.lxn.utilone.retrofit.service.Status;
-import com.lxn.utilone.util.DateUtil;
 import com.lxn.utilone.util.LogUtils;
 import com.lxn.utilone.util.status.StatusBarUtil;
 
-import java.io.IOException;
 import java.lang.ref.WeakReference;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 /**
@@ -170,7 +160,7 @@ public class MainActivity extends FragmentActivity {
         intentFilter.addAction("changeallmoney");
         broadcastManager.registerReceiver(receiver, intentFilter);
 
-        DataManager manager=new DataManager();
+        DataManager manager = new DataManager();
        /* Call<JSONObject> data=manager.getdata();
         //data.execute();//同步执行
         //异步执行
@@ -186,30 +176,29 @@ public class MainActivity extends FragmentActivity {
             }
         });*/
         LogUtils.i("zhih");
-        Observable<ToolResultList<BindCardRecommendBankBean>> repos = RetrofitHelper.getInstance().getRetrofit().create(DataService.class).getdata();
-        repos.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<ToolResultList<BindCardRecommendBankBean>>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        LogUtils.i("onSubscribe====");
-                    }
+        Observable<ToolResultList<BindCardRecommendBankBean>> repos =
+                RetrofitHelper.getInstance().getRetrofit().create(DataService.class).getdata();
+        repos.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<ToolResultList<BindCardRecommendBankBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                LogUtils.i("onSubscribe====");
+            }
 
-                    @Override
-                    public void onNext(ToolResultList<BindCardRecommendBankBean> value) {
-                        LogUtils.i("值===="+value.getStatus().getError_code());
-                    }
+            @Override
+            public void onNext(ToolResultList<BindCardRecommendBankBean> value) {
+                LogUtils.i("值====" + value.getStatus().getError_code());
+            }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        LogUtils.i("onError===="+e.getLocalizedMessage());
-                    }
+            @Override
+            public void onError(Throwable e) {
+                LogUtils.i("onError====" + e.getLocalizedMessage());
+            }
 
-                    @Override
-                    public void onComplete() {
-                        LogUtils.i("onComplete====");
-                    }
-                });
+            @Override
+            public void onComplete() {
+                LogUtils.i("onComplete====");
+            }
+        });
     }
 
     /**
@@ -274,7 +263,7 @@ public class MainActivity extends FragmentActivity {
                         /* 往bundle中添加数据 */
                         bundle.putString("imgurl", imgurl);
                         bundle.putString("name", username);
-						/* 把数据设置到Fragment中 */
+                        /* 把数据设置到Fragment中 */
                         fragments[index].setArguments(bundle);
                     }
                 }

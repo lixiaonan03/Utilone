@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/AppFrame/AppFrame.iml" filepath="$PROJECT_DIR$/AppFrame/AppFrame.iml" />
       <module fileurl="file://$PROJECT_DIR$/Utilone.iml" filepath="$PROJECT_DIR$/Utilone.iml" />
       <module fileurl="file://$PROJECT_DIR$/javademo/javademo.iml" filepath="$PROJECT_DIR$/javademo/javademo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/liveness/liveness.iml" filepath="$PROJECT_DIR$/liveness/liveness.iml" />
       <module fileurl="file://$PROJECT_DIR$/pullToRefreshlibrary/pullToRefreshlibrary.iml" filepath="$PROJECT_DIR$/pullToRefreshlibrary/pullToRefreshlibrary.iml" />
     </modules>
   </component>

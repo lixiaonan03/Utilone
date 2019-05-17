@@ -505,7 +505,7 @@ public class SearchActivity extends BaseActivity {
         adapter = new SearchItemAdapter(SearchActivity.this, list);
 		listview.setAdapter(adapter);
 		
-		listview.setOnRefreshListener(new OnRefreshListener2() {
+		listview.setOnRefreshListener(new OnRefreshListener2<ListView>() {
 
 			@Override
 			public void onPullDownToRefresh(PullToRefreshBase refreshView) {

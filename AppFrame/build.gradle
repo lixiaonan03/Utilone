@@ -1,15 +1,22 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '25.0.0'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.lxn.utilone"
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-
+        flavorDimensions "versionCode"
+        //可以在这写入变量
+        buildConfigField "String", "channel", "\"1\""
+        //注释掉的是support 支持包的
+//        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        //只保留印尼文
+        resConfigs "in"
         //极光推送集成的
         ndk {
             //选择要添加的对应cpu类型的.so库。
@@ -24,19 +31,23 @@ android {
     }
 
    /* 配置打包密码
-   签名配置
+   签名配置*/
    signingConfigs {
-        debug {
-            storeFile file("debug.keystore")
-        }
-
-        myConfig {
-            storeFile file("other.keystore")
-            storePassword "android"
-            keyAlias "androiddebugkey"
-            keyPassword "android"
-        }
-    }*/
+       debug {
+           storeFile file("../jks/cashloan.jks")
+           storePassword "cashloan"
+           keyAlias "koocash"
+           keyPassword "cashloan"
+           v2SigningEnabled false
+       }
+       release {
+           storeFile file("../jks/cashloan.jks")
+           storePassword "cashloan"
+           keyAlias "koocash"
+           keyPassword "cashloan"
+           v2SigningEnabled true
+       }
+    }
 
 
 
@@ -48,9 +59,26 @@ android {
         }
     //配置新的构建类型 构建类型 buldType默认有debug和release两个版本
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            multiDexEnabled true
+            zipAlignEnabled true
+            jniDebuggable true
+            debuggable true
+            signingConfig signingConfigs.release
+        }
+        release {
+            //启用Proguard
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //是否清理无用资源,依赖于minifyEnabled
+            multiDexEnabled true
+            //是否启用zipAlign压缩
+            zipAlignEnabled true
+            jniDebuggable false
+            debuggable false
+            signingConfig signingConfigs.release
         }
     }
     //定制产品  不同的版本
@@ -59,11 +87,17 @@ android {
         }
     }
     sourceSets {
+        //这种方式下 lib放在
         main {
             jniLibs.srcDirs = ['libs']
         }
     }
-
+    buildToolsVersion '28.0.3'
+    compileOptions {
+        //配置使用Java8
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES.txt'
         exclude 'META-INF/NOTICE'
@@ -80,37 +114,59 @@ android {
 }
 
 dependencies {
-    compile 'com.alipay.euler:andfix:0.3.1@aar'
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.2.1'
-    compile 'com.android.support:design:23.2.1'
-    compile 'eu.the4thfloor.volley:com.android.volley:2015.05.28'
-    compile 'com.google.code.gson:gson:2.5'
-    compile 'com.github.tony19:logback-android-parent:1.1.1-4'
-    compile 'org.slf4j:slf4j-android:1.7.13'
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
-    compile 'com.alibaba:fastjson:1.2.7'
-    compile project(':pullToRefreshlibrary')
-    compile 'com.j256.ormlite:ormlite-android:4.48'
-    compile 'com.j256.ormlite:ormlite-core:4.48'
-    compile files('libs/core.jar')
+
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    //implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    //implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+
+    //androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    //androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    //#####################################################################
+    //          Support Library
+    //#####################################################################
+
+    //implementation "com.android.support:design:${rootProject.ext.supportLibVersion}"
+    //implementation "com.android.support:exifinterface:${rootProject.ext.supportLibVersion}"
+    //implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.google.android.material:material:1.1.0-alpha06'
+    implementation 'androidx.exifinterface:exifinterface:1.0.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+
+    implementation 'com.alipay.euler:andfix:0.3.1@aar'
+    //noinspection GradleCompatible
+    implementation 'eu.the4thfloor.volley:com.android.volley:2015.05.28'
+    implementation 'com.google.code.gson:gson:2.7'
+    implementation 'com.github.tony19:logback-android-parent:1.1.1-4'
+    implementation 'org.slf4j:slf4j-android:1.7.13'
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    implementation 'com.alibaba:fastjson:1.2.7'
+    implementation project(':pullToRefreshlibrary')
+    implementation 'com.j256.ormlite:ormlite-android:4.48'
+    implementation 'com.j256.ormlite:ormlite-core:4.48'
+    implementation files('libs/core.jar')
     //极光推送的集成的
-    compile 'cn.jiguang.sdk:jpush:3.0.0'
+    implementation 'cn.jiguang.sdk:jpush:3.0.0'
     // 此处以JPush 3.0.0 版本为例。
-    compile 'cn.jiguang.sdk:jcore:1.0.0'
+    implementation 'cn.jiguang.sdk:jcore:1.0.0'
     // 此处以JCore 1.0.0 版本为例。
     //集成retrofit 访问框架的
-    compile 'com.squareup.retrofit2:retrofit:2.2.0'
-//    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
-//    retrofit 回调适配器
-    compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.2.0'
+    //    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
+    //    retrofit 回调适配器
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
     //集成Rxandroid
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
     //查看访问日志的
-    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
 
     //检测内存泄漏的工具  leakcanary
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.4'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+    debugApi 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    releaseApi 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
 }

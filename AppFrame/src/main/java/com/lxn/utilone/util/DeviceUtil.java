@@ -37,10 +37,10 @@ public final class DeviceUtil {
     @SuppressLint("StaticFieldLeak")
     private static final Context context = UtilApplication.getInstance();
 
-    /**操作系统名称(GT-I9100G)***/
+    /**操作系统名称(GT-I9100G)    MODEL***/
     public static final String MODEL_NUMBER = Build.MODEL;
 
-    /**操作系统名称(I9100G)***/
+    /**操作系统名称(I9100G)      ***/
     public static final String DISPLAY_NAME = Build.DISPLAY;
 
     /**操作系统版本(4.4)***/

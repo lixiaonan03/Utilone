@@ -25,6 +25,7 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.utils.StorageUtils;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
+import com.zgy.catchuninstallself.UninstallObserver;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,6 +44,7 @@ public class UtilApplication extends Application {
     public static String userimgurlrlogin;//原生登录 用户头像地址
     public static int userid;//人员id
 
+    //hotfix使用
     private PatchManager patchManager;
     private static final String APATCH_PATH = "/lixiaonan/out.apatch";
 
@@ -55,6 +57,9 @@ public class UtilApplication extends Application {
         application = this;
         PreferencesUtil.init(application);
         BadHandler.getInstance().init(application);
+        UninstallObserver.startWork(getApplicationContext().getFilesDir().getParent(), "http://blog.csdn" +
+                ".net/ksksjipeng/article/details/51992435",android.os.Build.VERSION.SDK_INT);
+
         //初始化数据库
         initImageLoader(application);
         //网路请求的请求队列
@@ -66,6 +71,11 @@ public class UtilApplication extends Application {
         initactivitylife();
         //
         setupLeakCanary();
+
+
+
+
+
     }
 
     public static UtilApplication getInstance() {
@@ -119,6 +129,7 @@ public class UtilApplication extends Application {
                 count--;
                 if (count == 0) {
                    //TODO 程序切换到了后台之后 会调用 可以做一些处理工作
+                    LogUtils.i(">>>>>>>>>>>>>>>>>>>切到后台  lifecycle");
                 }
             }
 

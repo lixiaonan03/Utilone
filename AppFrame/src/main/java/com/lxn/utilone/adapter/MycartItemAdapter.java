@@ -2,7 +2,6 @@ package com.lxn.utilone.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.content.LocalBroadcastManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -21,6 +20,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.math.BigDecimal;
 import java.util.List;
+
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 /**
  * 我的购物车适配器

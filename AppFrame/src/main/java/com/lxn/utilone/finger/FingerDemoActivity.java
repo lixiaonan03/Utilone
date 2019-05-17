@@ -9,9 +9,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
-import android.support.v4.os.CancellationSignal;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +16,10 @@ import android.widget.Toast;
 import com.lxn.utilone.R;
 import com.lxn.utilone.activity.LoginActivity;
 import com.lxn.utilone.util.LogUtils;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
+import androidx.core.os.CancellationSignal;
 
 
 /**
