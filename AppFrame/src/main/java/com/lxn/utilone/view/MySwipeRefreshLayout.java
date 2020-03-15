@@ -6,6 +6,7 @@ import android.view.MotionEvent;
 
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+
 /**
  * 处理下拉刷新监听和首页轮播图左右滑动监听的冲突
  *

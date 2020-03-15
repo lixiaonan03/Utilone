@@ -2,28 +2,32 @@
 
 buildscript {
     repositories {
-        jcenter()
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
         google()
+        mavenCentral()
+        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
+        jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.0'
+        classpath 'com.android.tools.build:gradle:3.6.1'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+        //滴滴哆啦A梦 的插件 流量监控以及其他AOP功能（可选）
+        classpath 'com.didichuxing.doraemonkit:doraemonkit-plugin:3.0_beta3'
+
     }
 }
 
 allprojects {
     repositories {
+        google()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
+        maven { url 'https://dl.bintray.com/umsdk/release' }  //友盟需要
+        //通用工程项目需要的
+        maven { url 'https://dl.bintray.com/bbt/bbtCommon/' }
         jcenter()
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
     }
 
 }

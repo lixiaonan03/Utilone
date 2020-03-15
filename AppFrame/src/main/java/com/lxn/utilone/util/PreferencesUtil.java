@@ -8,20 +8,22 @@ import android.content.SharedPreferences.Editor;
 import com.lxn.utilone.UtilApplication;
 
 /**
- * SharedPreferences的使用工具类 (暂时先也在一个文件SHOP_CONFIG中  后面如果有需要在进行修改)
- */
+  *  @author lixiaonan
+  *  功能描述: SharedPreferences的使用工具类 (暂时先也在一个文件SHOP_CONFIG中  后面如果有需要在进行修改)
+  *  时 间： 2020/3/15 下午5:31
+  */
 public class PreferencesUtil {
-
-    public static final String SHOP_CONFIG = "shop_config";//文件名称
+    //文件名称
+    public static final String SHOP_CONFIG = "shop_config";
     public static final String APP_INIT = "appInit";
     public static final String USER_NAME = "user_name";
     public static final String USER_PWD = "user_pwd";
     public static final String REMEMBER_PWD = "remember_pwd";
     public static final String SEARCH_HISTORY = "search_history";
-    public static final String GUIDE_INIT = "guide_init";//是否展示过引导页 0未展示 1已展示
-
-
-    public static final String IS_LOGIN = "is_login";//判断是否登录 0 退出状态 1 登录状态
+    //是否展示过引导页 0未展示 1已展示
+    public static final String GUIDE_INIT = "guide_init";
+    //判断是否登录 0 退出状态 1 登录状态
+    public static final String IS_LOGIN = "is_login";
 
     private static SharedPreferences spf;
 
@@ -32,7 +34,8 @@ public class PreferencesUtil {
      * @return
      */
     public static void init(Context app) {
-        spf = app.getSharedPreferences(SHOP_CONFIG, 0);// 0私有模式
+        // 0私有模式
+        spf = app.getSharedPreferences(SHOP_CONFIG, 0);
         if (spf.getInt(APP_INIT, -1) == -1) {
             init();
         }
@@ -44,7 +47,8 @@ public class PreferencesUtil {
      * @return
      */
     public static SharedPreferences initother(String sharepreferencesname) {
-        SharedPreferences spfother = UtilApplication.getInstance().getSharedPreferences(sharepreferencesname, 0);// 0私有模式
+        // 0私有模式
+        SharedPreferences spfother = UtilApplication.getInstance().getSharedPreferences(sharepreferencesname, 0);
         return spfother;
     }
 

@@ -1,22 +1,26 @@
+import java.text.SimpleDateFormat
+
 apply plugin: 'com.android.application'
+//滴滴多啦A梦的
+apply plugin: 'com.didi.dokit'
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
+    compileSdkVersion 29
+    buildToolsVersion '29.0.2'
     defaultConfig {
         applicationId "com.lxn.utilone"
-        minSdkVersion 14
-        targetSdkVersion 28
+        minSdkVersion 21
+        targetSdkVersion 29
         versionCode 1
-        versionName "1.0"
+        versionName '1.0.0'
         flavorDimensions "versionCode"
         //可以在这写入变量
         buildConfigField "String", "channel", "\"1\""
         //注释掉的是support 支持包的
 //        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        //只保留印尼文
-        resConfigs "in"
+        //只保留部分国家的资源  只保留中文和英文
+        resConfigs "zh","en"
         //极光推送集成的
         ndk {
             //选择要添加的对应cpu类型的.so库。
@@ -24,39 +28,36 @@ android {
             // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
         }
         manifestPlaceholders = [
-                JPUSH_PKGNAME : applicationId,
+                JPUSH_PKGNAME: applicationId,
                 JPUSH_APPKEY : "4a7fe0074d22c267c6ef164f", //JPush上注册的包名对应的appkey.
-                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
     }
 
-   /* 配置打包密码
-   签名配置*/
-   signingConfigs {
-       debug {
-           storeFile file("../jks/cashloan.jks")
-           storePassword "cashloan"
-           keyAlias "koocash"
-           keyPassword "cashloan"
-           v2SigningEnabled false
-       }
-       release {
-           storeFile file("../jks/cashloan.jks")
-           storePassword "cashloan"
-           keyAlias "koocash"
-           keyPassword "cashloan"
-           v2SigningEnabled true
-       }
-    }
-
-
-
-        lintOptions {
-            checkReleaseBuilds false
-            // Or, if you prefer, you can continue to check for errors in release builds,
-            // but continue the build even when errors are found:
-            abortOnError false
+    /* 配置打包密码
+    签名配置*/
+    signingConfigs {
+        debug {
+            storeFile file("../jks/cashloan.jks")
+            storePassword "cashloan"
+            keyAlias "koocash"
+            keyPassword "cashloan"
+            v2SigningEnabled false
         }
+        release {
+            storeFile file("../jks/cashloan.jks")
+            storePassword "cashloan"
+            keyAlias "koocash"
+            keyPassword "cashloan"
+            v2SigningEnabled true
+        }
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
     //配置新的构建类型 构建类型 buldType默认有debug和release两个版本
     buildTypes {
         debug {
@@ -78,8 +79,44 @@ android {
             zipAlignEnabled true
             jniDebuggable false
             debuggable false
+            //签名
             signingConfig signingConfigs.release
         }
+
+        //处理打包之后的打包名称
+        applicationVariants.all { variant ->
+            variant.outputs.all {
+                //只有release版本才指定编译后的apk输出路径
+                if (variant.buildType.name == "release") {
+                    variant.getPackageApplicationProvider().get().outputDirectory = new File(project.rootDir.absolutePath + "/build/outputs/apk")
+                    outputFileName = "Util_${variant.versionName}_${variant.flavorName}.apk"
+                }
+            }
+            if (variant.buildType.name.equals("release") && variant.flavorName == "beta") {
+                def t = "${project.rootDir.absolutePath}/mappings ${new SimpleDateFormat("MM-dd HH-mm-ss").format(new Date())}"
+                variant.assembleProvider.get().doLast {
+                    copy {
+                        from variant.mappingFile
+                        into t
+                        rename { String fileName ->
+                            "mapping_${variant.versionName}_${variant.flavorName}.txt"
+                        }
+                    }
+                }
+            }
+        }
+    }
+    dexOptions {
+        //使用增量模式构建
+        incremental true
+        //最大堆内存
+        javaMaxHeapSize "8g"
+        //是否支持大工程模式
+        jumboMode = true
+        //预编译
+        preDexLibraries = true
+        //线程数
+        threadCount = 8
     }
     //定制产品  不同的版本
     productFlavors {
@@ -92,7 +129,6 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
-    buildToolsVersion '28.0.3'
     compileOptions {
         //配置使用Java8
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -110,63 +146,131 @@ android {
         exclude 'META-INF/RXJAVA.PROPERTIES'
         exclude 'META-INF/rxjava'
         exclude 'META-INF/RXJAVA'
+
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+        doNotStrip '*/mips/*.so'
+        doNotStrip '*/mips64/*.so'
+        //如果有重复的so就选择第一个
+        pickFirst 'lib/*/libsqlcipher.so'
     }
 }
 
 dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
 
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-
-    //implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
-    //implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    //切记这里跟新到1.1.0 的时候webview会有bug 更新要慎重  这里使用rc01是因为rc01没有那个bug https://issuetracker.google.com/issues/141132133?pli=1
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
 
-    //androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    //androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     //#####################################################################
     //          Support Library
     //#####################################################################
-
-    //implementation "com.android.support:design:${rootProject.ext.supportLibVersion}"
-    //implementation "com.android.support:exifinterface:${rootProject.ext.supportLibVersion}"
-    //implementation 'com.android.support:multidex:1.0.3'
-    implementation 'com.google.android.material:material:1.1.0-alpha06'
-    implementation 'androidx.exifinterface:exifinterface:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.exifinterface:exifinterface:1.1.0'
     implementation 'androidx.multidex:multidex:2.0.1'
+
+    //#####################################################################
+    // 官方一些组件的
+    //#####################################################################
+    //生命周期的管理的
+    def lifecycle_version = "2.2.0"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-process:$lifecycle_version"
+    //内部广播管理
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
+    //下拉刷新组件的
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+
+    implementation 'com.google.zxing:core:3.4.0'
+    implementation 'com.google.zxing:android-core:3.3.0'
+    //#####################################################################
+    // 一些通用组件的
+    //#####################################################################
+    implementation "com.bbt.common:commonlib:1.0.1"
+
+    //#####################################################################
+    // 图片加载框架的  gilde是从子项目中加载的
+    //#####################################################################
+
+
+
+    //#####################################################################
+    // 网络层相关框架的
+    //#####################################################################
+
+
+    //#####################################################################
+    // 数据转换的
+    //#####################################################################
+
+
+    //#####################################################################
+    // Rx 相关的
+    //#####################################################################
+
+
+    //#####################################################################
+    // 线程间通信的
+    //#####################################################################
+
+
+    //#####################################################################
+    // 一些UI 组件的
+    //#####################################################################
+
+
+
+    //#####################################################################
+    // 第三方的SDK的
+    //#####################################################################
+
+
+    //#####################################################################
+    //调试和日志等调试组件的
+    //#####################################################################
+
+
+
+    //#####################################################################
+    //性能框架 发布时去掉
+    //#####################################################################
+    //滴滴哆啦A梦的
+    debugImplementation 'com.didichuxing.doraemonkit:doraemonkit:3.0_beta3'
+    releaseImplementation 'com.didichuxing.doraemonkit:doraemonkit-no-op:3.0_beta3'
+    //如果有需要集成 LeakCanary 的需求可以直接添加下面依赖
+    debugImplementation 'com.didichuxing.doraemonkit:doraemonkit-leakcanary:3.0_beta3'
 
 
     implementation 'com.alipay.euler:andfix:0.3.1@aar'
     //noinspection GradleCompatible
     implementation 'eu.the4thfloor.volley:com.android.volley:2015.05.28'
-    implementation 'com.google.code.gson:gson:2.7'
+    implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.github.tony19:logback-android-parent:1.1.1-4'
-    implementation 'org.slf4j:slf4j-android:1.7.13'
+    implementation 'org.slf4j:slf4j-android:1.7.30'
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
-    implementation 'com.alibaba:fastjson:1.2.7'
+    implementation 'com.alibaba:fastjson:1.2.62'
     implementation project(':pullToRefreshlibrary')
-    implementation 'com.j256.ormlite:ormlite-android:4.48'
-    implementation 'com.j256.ormlite:ormlite-core:4.48'
-    implementation files('libs/core.jar')
+    implementation 'com.j256.ormlite:ormlite-android:5.1'
+    implementation 'com.j256.ormlite:ormlite-core:5.1'
     //极光推送的集成的
     implementation 'cn.jiguang.sdk:jpush:3.0.0'
     // 此处以JPush 3.0.0 版本为例。
     implementation 'cn.jiguang.sdk:jcore:1.0.0'
     // 此处以JCore 1.0.0 版本为例。
     //集成retrofit 访问框架的
-    implementation 'com.squareup.retrofit2:retrofit:2.2.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.7.1'
     //    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     //    retrofit 回调适配器
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.7.1'
     //集成Rxandroid
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
     //查看访问日志的
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.4.0'
 
-    //检测内存泄漏的工具  leakcanary
-    debugApi 'com.squareup.leakcanary:leakcanary-android:1.5.4'
-    releaseApi 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+
+
 }

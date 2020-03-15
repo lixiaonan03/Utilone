@@ -90,7 +90,7 @@ public class Welcome extends BaseActivity {
                     Welcome.this.finish();
                 }
             };
-            timer.schedule(task, 5000l);
+            timer.schedule(task, 500L);
 
 
         }

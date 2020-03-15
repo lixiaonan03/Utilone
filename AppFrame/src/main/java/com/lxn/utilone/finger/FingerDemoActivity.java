@@ -186,7 +186,7 @@ public class FingerDemoActivity extends Activity {
 
     @Override
     public boolean isDestroyed() {
-        LogUtils.i("回收====");
+        LogUtils.iLi("回收====");
         manager=null;
         return super.isDestroyed();
 

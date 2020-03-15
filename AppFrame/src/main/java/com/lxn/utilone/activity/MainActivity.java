@@ -175,28 +175,28 @@ public class MainActivity extends FragmentActivity {
 
             }
         });*/
-        LogUtils.i("zhih");
+        LogUtils.iLi("zhih");
         Observable<ToolResultList<BindCardRecommendBankBean>> repos =
                 RetrofitHelper.getInstance().getRetrofit().create(DataService.class).getdata();
         repos.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<ToolResultList<BindCardRecommendBankBean>>() {
             @Override
             public void onSubscribe(Disposable d) {
-                LogUtils.i("onSubscribe====");
+                LogUtils.iLi("onSubscribe====");
             }
 
             @Override
             public void onNext(ToolResultList<BindCardRecommendBankBean> value) {
-                LogUtils.i("值====" + value.getStatus().getError_code());
+                LogUtils.iLi("值====" + value.getStatus().getError_code());
             }
 
             @Override
             public void onError(Throwable e) {
-                LogUtils.i("onError====" + e.getLocalizedMessage());
+                LogUtils.iLi("onError====" + e.getLocalizedMessage());
             }
 
             @Override
             public void onComplete() {
-                LogUtils.i("onComplete====");
+                LogUtils.iLi("onComplete====");
             }
         });
     }

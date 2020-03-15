@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.lxn.utilone" >
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.lxn.utilone">
 
     <!-- 访问Internet -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -44,6 +45,7 @@
         android:allowBackup="true"
         android:name=".UtilApplication"
         android:icon="@drawable/logo"
+        tools:replace="android:name"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
@@ -59,63 +61,63 @@
         </activity>
         <!--引导页-->
         <activity android:name=".activity.GuideActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="fullSensor">
         </activity>
         <!--主页-->
         <activity android:name=".activity.MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="fullSensor">
         </activity>
         <!-- 登录的  处理输入法的弹出界面的影响-->
         <activity
             android:name=".activity.LoginActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="fullSensor" >
         </activity>
         <!-- 选择图片-->
         <activity
             android:name=".activity.PhotoPickActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="fullSensor" >
         </activity>
         <!-- 找回密码 里面有短信验证码的功能-->
         <activity
             android:name=".activity.FindPasswordActivity"
             android:windowSoftInputMode="adjustResize"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="fullSensor" >
         </activity>
         <!-- 嵌套网页的activity-->
         <activity
             android:name=".activity.TraceActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="fullSensor" >
         </activity>
         <!-- 自定义控件的使用demoactivity-->
         <activity
             android:name=".activity.CircularProgressBarDemoActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="fullSensor" />
         <!-- 自定义控件的使用demoactivity-->
         <activity
             android:name="com.lxn.utilone.tabfragmentdemo.IndicatorFragmentActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="fullSensor" >
         </activity>
         <!-- 搜索 android:exported="true"是否被其他app调用-->
         <activity
             android:name=".activity.SearchActivity"
             android:exported="true"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="fullSensor" >
         </activity>
         <!-- 商品详情页-->
         <activity
             android:name=".activity.ProductdeatilActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="fullSensor" >
         </activity>
         <!-- 二维码扫描界面 -->
         <activity
             android:name="com.zbar.lib.CaptureActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="fullSensor" >
         </activity>
         <!-- zxing二维码扫描界面 -->
         <activity
             android:name="com.zxing.activity.MipcaActivityCapture"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="fullSensor" >
         </activity>
 
 
@@ -124,7 +126,7 @@
         <!-- 指纹识别的demo使用的activity -->
         <activity
             android:name="com.lxn.utilone.finger.FingerDemoActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="fullSensor" >
         </activity>
 
 
@@ -148,6 +150,14 @@
                 <category android:name="com.lxn.utilone" />
             </intent-filter>
         </receiver>
+
+
+        <!--哆啦A梦 线上真实版本记得一定要去掉以下代码,dokit的所有功能只在开发环境中使用，千万不要带到线上-->
+        <service
+            android:name="com.didichuxing.doraemonkit.kit.colorpick.ScreenRecorderService"
+            android:enabled="true"
+            android:foregroundServiceType="mediaProjection"
+            tools:targetApi="q" />
     </application>
 
 </manifest>

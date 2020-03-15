@@ -127,7 +127,7 @@ public class JpushReceiver extends BroadcastReceiver {
                 }
                 if (null != recentTasks1) {
                     for (ActivityManager.RecentTaskInfo one : recentTasks1) {
-                        LogUtils.i("=one.origActivity==="+one.baseIntent.getComponent()
+                        LogUtils.iLi("=one.origActivity==="+one.baseIntent.getComponent()
                                 .getClassName());
                         if (one.baseIntent.getComponent()
                                 .getPackageName().equals(context.getPackageName())) {

@@ -42,7 +42,7 @@ public class SortRequestData {
 	
 	public static Map<String, String> getmap(){
 		Map<String, String> map = new HashMap<>();
-		map.put("device_id", DeviceUtil.DEVICE_ID);
+		map.put("device_id", "");
 		map.put("system_type", "android");
 		map.put("system_version", DeviceUtil.OS_VERSION);
 		map.put("app_version", DeviceUtil.APP_VERSIONNAME);

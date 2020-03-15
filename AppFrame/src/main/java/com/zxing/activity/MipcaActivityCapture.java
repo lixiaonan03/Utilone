@@ -11,6 +11,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.net.Uri;
+import android.nfc.FormatException;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -29,7 +30,6 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.ChecksumException;
 import com.google.zxing.DecodeHintType;
-import com.google.zxing.FormatException;
 import com.google.zxing.NotFoundException;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
@@ -211,8 +211,9 @@ public class MipcaActivityCapture extends Activity implements Callback , View.On
 		scanBitmap = BitmapFactory.decodeFile(path, options);
 		options.inJustDecodeBounds = false; // 获取新的大小
 		int sampleSize = (int) (options.outHeight / (float) 200);
-		if (sampleSize <= 0)
+		if (sampleSize <= 0) {
 			sampleSize = 1;
+		}
 		options.inSampleSize = sampleSize;
 		scanBitmap = BitmapFactory.decodeFile(path, options);
 		RGBLuminanceSource source = new RGBLuminanceSource(scanBitmap);
@@ -225,7 +226,7 @@ public class MipcaActivityCapture extends Activity implements Callback , View.On
 			e.printStackTrace();
 		} catch (ChecksumException e) {
 			e.printStackTrace();
-		} catch (FormatException e) {
+		} catch (com.google.zxing.FormatException e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -414,6 +415,7 @@ public class MipcaActivityCapture extends Activity implements Callback , View.On
 	 * When the beep has finished playing, rewind to queue up another one.
 	 */
 	private final OnCompletionListener beepListener = new OnCompletionListener() {
+		@Override
 		public void onCompletion(MediaPlayer mediaPlayer) {
 			mediaPlayer.seekTo(0);
 		}
