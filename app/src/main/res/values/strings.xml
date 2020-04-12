@@ -1,0 +1,13 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="MissingTranslation">Utilone</string>
+    <string name="action_settings" tools:ignore="MissingTranslation">Settings</string>
+
+
+    <string name="scan_text" tools:ignore="MissingTranslation">将二维码图片对准扫描框即可自动扫描</string>
+
+
+    <string name="open_native" tools:ignore="MissingTranslation">open native page</string>
+    <string name="open_flutter" tools:ignore="MissingTranslation">open flutter page</string>
+    <string name="open_flutter_fragment" translatable="false">open flutter fragment page</string>
+    <string name="native_info" translatable="false">This is a native activity</string>
+</resources>

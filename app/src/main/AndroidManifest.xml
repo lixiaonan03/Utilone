@@ -130,6 +130,23 @@
         </activity>
 
 
+        <!-- flutter学习的一些页面的 -->
+        <activity
+            android:name="com.lxn.utilone.flutterdemo.MainFlutterActivity"
+            android:screenOrientation="fullSensor" >
+        </activity>
+        <!-- flutter学习的一些页面的 -->
+        <activity
+            android:name="com.lxn.utilone.flutterdemo.FlutterFragmentPageActivity"
+            android:screenOrientation="fullSensor" >
+        </activity>
+        <!-- flutter学习的一些页面的 -->
+        <activity
+            android:name="com.lxn.utilone.flutterdemo.NativePageActivity"
+            android:screenOrientation="fullSensor" >
+        </activity>
+
+
 
 
 
@@ -158,6 +175,21 @@
             android:enabled="true"
             android:foregroundServiceType="mediaProjection"
             tools:targetApi="q" />
+
+
+        <!--flutter相关的-->
+        <activity
+            android:name="com.idlefish.flutterboost.containers.BoostFlutterActivity"
+            android:theme="@style/Theme.AppCompat"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
+            <!--
+            <meta-data android:name="io.flutter.embedding.android.SplashScreenDrawable" android:resource="@drawable/logo"/>
+            -->
+        </activity>
+        <meta-data android:name="flutterEmbedding" android:value="2"/>
+       <!-- flutter相关结束的-->
     </application>
 
 </manifest>

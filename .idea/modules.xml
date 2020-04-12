@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AppFrame/AppFrame.iml" filepath="$PROJECT_DIR$/AppFrame/AppFrame.iml" group="Utilone/AppFrame" />
       <module fileurl="file://$PROJECT_DIR$/Utilone.iml" filepath="$PROJECT_DIR$/Utilone.iml" group="Utilone" />
+      <module fileurl="file://$PROJECT_DIR$/../../flutterSdk/flutter/.pub-cache/git/flutter_boost-343191d2c7e14e7e660999009a0f5cfae83d2674/android/android-flutter_boost.iml" filepath="$PROJECT_DIR$/../../flutterSdk/flutter/.pub-cache/git/flutter_boost-343191d2c7e14e7e660999009a0f5cfae83d2674/android/android-flutter_boost.iml" group="Utilone/flutter_boost" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="Utilone/app" />
+      <module fileurl="file://$PROJECT_DIR$/../flutterstudy/.android/Flutter/flutter.iml" filepath="$PROJECT_DIR$/../flutterstudy/.android/Flutter/flutter.iml" group="Utilone/flutter" />
+      <module fileurl="file://$PROJECT_DIR$/../../flutterSdk/flutter/.pub-cache/git/flutter_boost-e9fe251792f4392eaf267f824315e208ccf9424b/android/flutter_boost.iml" filepath="$PROJECT_DIR$/../../flutterSdk/flutter/.pub-cache/git/flutter_boost-e9fe251792f4392eaf267f824315e208ccf9424b/android/flutter_boost.iml" group="Utilone/flutter_boost" />
       <module fileurl="file://$PROJECT_DIR$/pullToRefreshlibrary/pullToRefreshlibrary.iml" filepath="$PROJECT_DIR$/pullToRefreshlibrary/pullToRefreshlibrary.iml" group="Utilone/pullToRefreshlibrary" />
     </modules>
   </component>

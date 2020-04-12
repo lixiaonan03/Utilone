@@ -221,6 +221,43 @@
                         android:background="@color/listView_line_color" />
 
                     <RelativeLayout
+                        android:id="@+id/rlFlutter"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/mycenter_item_height"
+                        android:layout_marginLeft="@dimen/mycenter_item_marginLeftAndRight"
+                        android:layout_marginRight="@dimen/mycenter_item_marginLeftAndRight" >
+
+                        <ImageView
+                            android:id="@+id/ivFlutter"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_launcher" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/mycenter_item_textmarginleft"
+                            android:layout_toRightOf="@id/ivFlutter"
+                            android:text="flutter使用的"
+                            android:textColor="@color/mycenter_item_textcolor"
+                            android:textSize="@dimen/mycenter_item_textsize" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/mycenter_jiantou" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/listview_line_height"
+                        android:background="@color/listView_line_color" />
+
+                    <RelativeLayout
                         android:id="@+id/mythisdelivery"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/mycenter_item_height"

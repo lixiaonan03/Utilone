@@ -11,9 +11,11 @@
         <option name="gradleHome" value="E:\Androidstudio\android-studio\gradle\gradle-2.14.1" />
         <option name="modules">
           <set>
+            <option value="$PROJECT_DIR$/../../flutterSdk/flutter/.pub-cache/git/flutter_boost-343191d2c7e14e7e660999009a0f5cfae83d2674/android" />
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/AppFrame" />
+            <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/pullToRefreshlibrary" />
+            <option value="$PROJECT_DIR$/../flutterstudy/.android/Flutter" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

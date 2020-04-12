@@ -1,2 +1,18 @@
-include ':AppFrame'
+include ':app'
 include ':pullToRefreshlibrary'
+//
+//setBinding(new Binding([gradle: this]))
+//evaluate(new File(
+//        settingsDir.parentFile,
+//        '/flutterutil/.android/include_flutter.groovy'
+//))
+//
+//include ':flutterutil'
+//project(':flutterutil').projectDir = new File('../flutterutil')
+
+
+setBinding(new Binding([gradle: this]))
+evaluate(new File(
+        settingsDir.parentFile,
+        '/flutterstudy/.android/include_flutter.groovy'
+))

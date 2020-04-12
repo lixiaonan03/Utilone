@@ -29,6 +29,7 @@ import com.lxn.utilone.activity.CircularProgressBarDemoActivity;
 import com.lxn.utilone.activity.LoginActivity;
 import com.lxn.utilone.activity.PhotoPickActivity;
 import com.lxn.utilone.finger.FingerDemoActivity;
+import com.lxn.utilone.flutterdemo.MainFlutterActivity;
 import com.lxn.utilone.tabfragmentdemo.IndicatorFragmentActivity;
 import com.lxn.utilone.util.BitmapUtil;
 import com.lxn.utilone.util.CommonVariable;
@@ -43,6 +44,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
+
+import io.flutter.view.FlutterMain;
 
 /**
  * 我的新侬模块
@@ -60,6 +63,7 @@ public class MycenterFragment extends BaseFragment {
     private String imgurl;
     private TextView user_name;
     private Button logout;
+    private RelativeLayout rlFlutter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -102,11 +106,15 @@ public class MycenterFragment extends BaseFragment {
         mytaste = (RelativeLayout) getView().findViewById(R.id.mytaste);
         mydeliverynotice = (RelativeLayout) getView().findViewById(R.id.mydeliverynotice);
 
+        rlFlutter = (RelativeLayout) getView().findViewById(R.id.rlFlutter);
+
+
 
         myorder.setOnClickListener(viewclick);
         mytaste.setOnClickListener(viewclick);
         mydeliverynotice.setOnClickListener(viewclick);
         logout.setOnClickListener(viewclick);
+        rlFlutter.setOnClickListener(viewclick);
 
     }
 
@@ -120,7 +128,7 @@ public class MycenterFragment extends BaseFragment {
             switch (id) {
                 case R.id.user_information:
                     // 个人资料
-                    if (UtilApplication.isLogin) {
+                    if (true) {
                         onClick_Img();
                     } else {
                         intent.setClass(getActivity(), LoginActivity.class);
@@ -146,16 +154,20 @@ public class MycenterFragment extends BaseFragment {
                     startActivity(intent);
 
                     break;
+                case R.id.rlFlutter:
+                    //flutter boost使用的
+                    intent.setClass(getActivity(), MainFlutterActivity.class);
+                    startActivity(intent);
+
+                    break;
                 case R.id.logout:
                     //退出
-                    if (UtilApplication.isLogin) {
-                        UtilApplication.isLogin = false;
+                    if (true) {
+
                         logout.setVisibility(View.GONE);
                         user_img.setImageResource(R.drawable.user_img);
                         user_name.setText("请登录");
-                        UtilApplication.userid=0;
-                        UtilApplication.usernamelogin="";
-                        UtilApplication.userimgurlrlogin="";
+
                         intent.setClass(getActivity(), LoginActivity.class);
                         intent.putExtra("flag", 04);
                         getActivity().startActivityForResult(intent, 04);
@@ -178,7 +190,7 @@ public class MycenterFragment extends BaseFragment {
      * 更新用户信息的展示
      */
     private void changeuserinfo() {
-        if (UtilApplication.isLogin) {
+        if (true) {
             logout.setVisibility(View.VISIBLE);
             // 设置登录完成的信息
                 // 使用DisplayImageOptions.Builder()创建DisplayImageOptions
@@ -188,12 +200,12 @@ public class MycenterFragment extends BaseFragment {
                         .showImageOnFail(R.drawable.user_img)       // 设置图片加载或解码过程中发生错误显示的图片
                         .cacheInMemory(true)                        // 设置下载的图片是否缓存在内存中
                         .build();                                   // 创建配置过得DisplayImageOption对象
-                ImageLoader.getInstance().displayImage(UtilApplication.userimgurlrlogin, user_img,options);
-                if(StringUtils.isNotBlank(UtilApplication.usernamelogin)){
-                    user_name.setText(UtilApplication.usernamelogin);
-                }else{
-                    user_name.setText("请设置昵称");
-                }
+//                ImageLoader.getInstance().displayImage(UtilApplication.userimgurlrlogin, user_img,options);
+//                if(StringUtils.isNotBlank(UtilApplication.usernamelogin)){
+//                    user_name.setText(UtilApplication.usernamelogin);
+//                }else{
+//                    user_name.setText("请设置昵称");
+//                }
 
         }else{
             logout.setVisibility(View.GONE);
@@ -243,9 +255,7 @@ public class MycenterFragment extends BaseFragment {
                         }); // 设置监听器监听上传状态
                 Map<String, String> params = new HashMap<String, String>();
                 int userid = 0;
-                if (UtilApplication.isLogin) {
-                        userid = UtilApplication.userid;
-                }
+
                 params.put("membId", userid+"");
                 uploadUtil.uploadFile(bitmap, "file",
                         CommonVariable.UpdateMemberinfoImgURL, params);
@@ -283,7 +293,6 @@ public class MycenterFragment extends BaseFragment {
                                     String userimgurl = (String) response
                                             .get("membImg");
                                     if (null != userimgurl) {
-                                        UtilApplication.userimgurlrlogin = userimgurl;
                                     }
                                 }
                             }
