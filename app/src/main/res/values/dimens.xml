@@ -19,10 +19,6 @@
     <dimen name="mycenter_item_textmarginleft">10dp</dimen>
 
 
-
-
-
-
     <!-- 新加的tab切换的实现 -->
     <dimen name="common_text_size_large">18dp</dimen>
     <!-- For list texts (top line) -->
@@ -33,4 +29,6 @@
     <dimen name="common_text_size_small_2">10dp</dimen>
     <dimen name="common_text_size_small_3">12dp</dimen>
     <dimen name="page_margin_width">12dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>

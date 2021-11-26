@@ -1,20 +1,21 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+
+    //更新版本时需要注意其他三方库未更新及时可能造成的影响
+    //举例：https://stackoverflow.com/questions/67410992/upgrading-android-kotlin-version-to-1-5-0-throwing-error-message-on-build
+    ext.kotlin_version = '1.5.31'
+
     repositories {
         google()
         mavenCentral()
-        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
-        jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.1'
+        classpath "com.android.tools.build:gradle:7.0.3"
 
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
-        //滴滴哆啦A梦 的插件 流量监控以及其他AOP功能（可选）
-        classpath 'com.didichuxing.doraemonkit:doraemonkit-plugin:3.0_beta3'
-
     }
 }
 
@@ -22,14 +23,7 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven { url "https://jitpack.io" }
-        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
-        maven { url 'https://dl.bintray.com/umsdk/release' }  //友盟需要
-        //通用工程项目需要的
-        maven { url 'https://dl.bintray.com/bbt/bbtCommon/' }
-        jcenter()
     }
-
 }
 
 task clean(type: Delete) {

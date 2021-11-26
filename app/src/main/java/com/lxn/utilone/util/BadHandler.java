@@ -3,10 +3,6 @@ package com.lxn.utilone.util;
 import android.content.Context;
 
 
-import com.lxn.utilone.AppManager;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.text.SimpleDateFormat;
@@ -17,7 +13,6 @@ import java.text.SimpleDateFormat;
  *
  */
 public class BadHandler implements UncaughtExceptionHandler {
-	private static final Logger logger = LoggerFactory.getLogger(BadHandler.class);
 	// 是否开启Debug
 	public static final boolean DEBUG = true;
 	// 默认的UncaughtExceptionHandler处理类
@@ -60,11 +55,11 @@ public class BadHandler implements UncaughtExceptionHandler {
 		if (ex == null) {
 			return;
 		}
-		logger.error(getDriverInfo().toString());
-		logger.error("BadHandler", ex);
-		//ex.printStackTrace();
-		//ShopApplication.doEdit();
-		AppManager.getAppManager().AppExit();
+//		logger.error(getDriverInfo().toString());
+//		logger.error("BadHandler", ex);
+//		//ex.printStackTrace();
+//		//ShopApplication.doEdit();
+//		AppManager.getAppManager().AppExit();
 		System.exit(1);
 		android.os.Process.killProcess(android.os.Process.myPid());
 
