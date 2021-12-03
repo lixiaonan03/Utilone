@@ -37,7 +37,16 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- util 工具类相关的 -->
+        </activity>
+
+        <activity
+            android:name=".activity.MainActivity"
+            android:screenOrientation="unspecified"/>
+        <activity
+            android:name=".activity.OkhttpActivity"
+            android:screenOrientation="unspecified"/>
+
+        <!-- util 工具类相关的 -->
         <provider
             android:name=".util.operationutil.UtilsFileProvider"
             android:authorities="${applicationId}.bzcommonlib.provider"

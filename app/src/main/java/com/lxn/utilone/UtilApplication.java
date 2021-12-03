@@ -5,7 +5,9 @@ import android.app.Application;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Debug;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.lxn.utilone.util.LogUtils;
 import com.lxn.utilone.util.operationutil.ProcessUtils;
 
@@ -30,7 +32,17 @@ public class UtilApplication extends Application {
             application = this;
             //注册activity 的生命周期
             initActivityLife();
+            initARouter();
         }
+    }
+
+    private void initARouter(){
+//        if (Debug.()) {
+//            ARouter.openLog();
+//            ARouter.openDebug();
+//        }
+        // 尽可能早，推荐在Application中初始化
+        ARouter.init(application);
     }
 
     public static UtilApplication getInstance() {

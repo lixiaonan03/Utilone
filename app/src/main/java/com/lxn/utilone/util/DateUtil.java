@@ -159,7 +159,7 @@ public class DateUtil {
 	}
 
 	public static String getNowDateDetail() {
-		SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+		SimpleDateFormat format = new SimpleDateFormat(FORMAT);
 		return format.format(System.currentTimeMillis());
 	}
 }

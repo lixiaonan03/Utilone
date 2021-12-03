@@ -10,7 +10,7 @@
         android:background="@color/logo_color" >
 
         <ImageView
-            android:id="@+id/top_back"
+            android:id="@+id/topBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -19,7 +19,7 @@
             android:src="@drawable/top_back" />
 
         <TextView
-            android:id="@+id/top_text"
+            android:id="@+id/topText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"

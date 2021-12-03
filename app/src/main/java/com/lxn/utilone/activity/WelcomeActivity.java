@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.lxn.utilone.R;
 
 /**
@@ -25,7 +26,7 @@ public class WelcomeActivity extends BaseActivity {
         ivGoMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ARouter.getInstance().build(ActivityConstans.MAIN_PATH).navigation();
             }
         });
 
