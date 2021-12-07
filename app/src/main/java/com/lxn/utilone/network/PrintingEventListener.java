@@ -1,6 +1,7 @@
 package com.lxn.utilone.network;
 
 import com.lxn.utilone.util.DateUtil;
+import com.lxn.utilone.util.Log;
 import com.lxn.utilone.util.toolutil.TimeUtil;
 
 import okhttp3.*;
@@ -25,7 +26,7 @@ public class PrintingEventListener extends EventListener {
             callStartNanos = nowNanos;
         }
         long elapsedNanos = nowNanos - callStartNanos;
-        System.out.printf(DateUtil.getNowDateDetail()+"====%.3f %s%n", elapsedNanos / 1000000000d, name);
+        Log.i("lxnevent",String.format(DateUtil.getNowDateDetail()+"====%.3f %s%n", elapsedNanos / 1000000000d, name));
     }
 
     @Override public void callStart(Call call) {
@@ -77,6 +78,7 @@ public class PrintingEventListener extends EventListener {
     @Override
     public void connectFailed(Call call, InetSocketAddress inetSocketAddress, Proxy proxy, Protocol protocol, IOException ioe) {
         super.connectFailed(call, inetSocketAddress, proxy, protocol, ioe);
+        printEvent("connectFailed=链接失败=="+inetSocketAddress.toString()+"=="+proxy.hashCode());
     }
 
     @Override
@@ -116,6 +118,7 @@ public class PrintingEventListener extends EventListener {
     @Override
     public void requestFailed(Call call, IOException ioe) {
         super.requestFailed(call, ioe);
+        printEvent("requestFailed=请求失败==");
     }
 
     @Override
@@ -137,16 +140,19 @@ public class PrintingEventListener extends EventListener {
     @Override
     public void responseBodyEnd(Call call, long byteCount) {
         super.responseBodyEnd(call, byteCount);
-        printEvent("responseBodyStart 回应结束");
+        printEvent("responseBodyEnd 回应结束");
     }
 
     @Override
     public void responseFailed(Call call, IOException ioe) {
         super.responseFailed(call, ioe);
+        printEvent("responseFailed==响应失败==");
     }
 
     @Override
     public void callFailed(Call call, IOException ioe) {
         super.callFailed(call, ioe);
+        //socketTimeout 会回调这个
+        printEvent("callFailed==call失败==");
     }
 }

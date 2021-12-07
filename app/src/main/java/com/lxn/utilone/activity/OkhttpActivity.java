@@ -7,6 +7,15 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.lxn.utilone.R;
 import com.lxn.utilone.databinding.ActivityOkhttpBinding;
+import com.lxn.utilone.network.OkHttpClientsUtils;
+import com.lxn.utilone.util.operationutil.ThreadUtils;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
   *  @author lixiaonan
@@ -31,11 +40,54 @@ public class OkhttpActivity extends BaseActivity{
      */
     private void initView(){
         binding.linTop.topText.setText("okhttp学习");
-        binding.linTop.topBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
+        binding.linTop.topBack.setOnClickListener(v -> finish());
+
+        binding.tvGetSync.setOnClickListener(v -> {
+            ThreadUtils.executeByCached(new ThreadUtils.Task<String>() {
+                @Override
+                public String doInBackground() throws Throwable {
+                    return getRequest();
+                }
+
+                @Override
+                public void onSuccess(String result) {
+                      binding.tvGetSyncResponse.setText(result);
+                }
+
+                @Override
+                public void onCancel() {
+
+                }
+
+                @Override
+                public void onFail(Throwable t) {
+
+                }
+            });
         });
+    }
+
+
+    /**
+     * get请求的
+     * @return
+     */
+    private static String getRequest() {
+        try {
+//            String url="http://172.16.3.228:8081/test1/hello2";
+            String url="https://mapi.wanwustore.cn/rewss";
+            //这种默认请求的是get
+            OkHttpClient client = OkHttpClientsUtils.getClient();
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            Call call = client.newCall(request);
+            //
+            Response response = call.execute();
+            return response.body().string();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 }
