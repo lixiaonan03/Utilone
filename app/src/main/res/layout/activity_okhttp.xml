@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fitsSystemWindows="false"
     android:background="@color/common_white"
+    android:fitsSystemWindows="false"
     android:orientation="vertical">
 
     <include
         android:id="@+id/linTop"
-        layout="@layout/top_back"/>
+        layout="@layout/top_back" />
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:scrollbars="none"
+        android:layout_height="match_parent"
         android:padding="16dp"
-        android:layout_height="match_parent">
+        android:scrollbars="none">
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             app:divider="@drawable/lin_divider"
-            app:showDividers="middle"
-            android:layout_height="wrap_content">
+            app:showDividers="middle">
 
             <TextView
                 android:id="@+id/tvGetSync"
@@ -30,14 +32,19 @@
                 android:gravity="center"
                 android:text="get 同步测试的"
                 android:textColor="#ffffff"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
+
             <TextView
                 android:id="@+id/tvGetSyncResponse"
                 android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"/>
+                android:layout_height="48dp"
+                android:background="@drawable/login_button"
+                android:gravity="center"
+                android:text="get 异步测试的"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
-        
+
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>

@@ -8,11 +8,14 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.lxn.utilone.R;
 import com.lxn.utilone.databinding.ActivityOkhttpBinding;
 import com.lxn.utilone.network.OkHttpClientsUtils;
+import com.lxn.utilone.util.Log;
 import com.lxn.utilone.util.operationutil.ThreadUtils;
 
 import java.io.IOException;
 
+import androidx.annotation.NonNull;
 import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -64,6 +67,27 @@ public class OkhttpActivity extends BaseActivity{
 
                 }
             });
+        });
+        binding.tvGetSyncResponse.setOnClickListener(v ->{
+                String url="https://mapi.wanwustore.cn/rewss";
+                //这种默认请求的是get
+                OkHttpClient client = OkHttpClientsUtils.getClient();
+                Request request = new Request.Builder()
+                        .url(url)
+                        .build();
+                Call call = client.newCall(request);
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                        Log.i("net","失败的===="+call.toString());
+                    }
+
+                    @Override
+                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                        Log.i("net","成功的===="+response.toString());
+                    }
+                });
+
         });
     }
 

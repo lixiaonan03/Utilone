@@ -1,6 +1,13 @@
 package com.lxn.utilone.activity;
 
+import android.app.Activity;
+import android.app.Instrumentation;
 import android.os.Bundle;
+
+import com.lxn.utilone.hook.InstrumentationProxy;
+
+import java.io.File;
+import java.lang.reflect.Field;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +23,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -32,6 +40,11 @@ public class BaseActivity extends AppCompatActivity {
         //overridePendingTransition(R.anim.out_to_left, R.anim.out_to_right);
         //overridePendingTransition(R.anim.out_to_right, R.anim.out_to_left);
 
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 
     @Override

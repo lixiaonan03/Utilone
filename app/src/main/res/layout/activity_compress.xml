@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_white"
+    android:fitsSystemWindows="false"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/linTop"
+        layout="@layout/top_back" />
+
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/greeting"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvChange"
+        android:layout_width="match_parent"
+
+        android:layout_height="100dp" />
+</LinearLayout>

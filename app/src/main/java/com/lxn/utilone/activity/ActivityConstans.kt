@@ -17,5 +17,10 @@ class ActivityConstans {
          * okhtttp path地址
          */
         const val OKHTTP_PATH = "/lxn/okhttp"
+
+        /**
+         * compose 学习地址
+         */
+        const val COMPOSE_PATH = "/lxn/compose"
     }
 }

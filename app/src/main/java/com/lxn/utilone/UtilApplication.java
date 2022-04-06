@@ -8,8 +8,13 @@ import android.os.Bundle;
 import android.os.Debug;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.dianping.logan.Logan;
+import com.dianping.logan.LoganConfig;
 import com.lxn.utilone.util.LogUtils;
 import com.lxn.utilone.util.operationutil.ProcessUtils;
+import com.tencent.mmkv.MMKV;
+
+import java.io.File;
 
 import androidx.annotation.NonNull;
 
@@ -33,6 +38,9 @@ public class UtilApplication extends Application {
             //注册activity 的生命周期
             initActivityLife();
             initARouter();
+            initLogan();
+
+            MMKV.initialize(this);
         }
     }
 
@@ -50,6 +58,19 @@ public class UtilApplication extends Application {
     }
 
 
+    /**
+     * 美团的logan实现
+     */
+    private void initLogan(){
+        LoganConfig config = new LoganConfig.Builder()
+                .setCachePath(getApplicationContext().getFilesDir().getAbsolutePath())
+                .setPath(getApplicationContext().getExternalFilesDir(null).getAbsolutePath()
+                        + File.separator + "logan_v1")
+                .setEncryptKey16("".getBytes())
+                .setEncryptIV16("".getBytes())
+                .build();
+        Logan.init(config);
+    }
     /**
      * 注册activity的生命周期监听
      */
