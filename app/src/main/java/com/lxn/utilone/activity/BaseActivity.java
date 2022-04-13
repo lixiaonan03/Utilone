@@ -3,13 +3,19 @@ package com.lxn.utilone.activity;
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.os.Bundle;
+import android.view.View;
 
+import com.lxn.utilone.click.ClickDelegate;
+import com.lxn.utilone.click.ProxyManager;
 import com.lxn.utilone.hook.InstrumentationProxy;
 
 import java.io.File;
 import java.lang.reflect.Field;
+import java.lang.reflect.Proxy;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.TaskStackBuilder;
 
 
 /**
@@ -24,6 +30,20 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //hookview的
+        ProxyManager.hookViews(getWindow().getDecorView());
+
+        new ClickDelegate(getWindow().getDecorView());
+    }
+
+    @Override
+    public void openContextMenu(View view) {
+        super.openContextMenu(view);
     }
 
     @Override

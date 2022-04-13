@@ -21,6 +21,8 @@ public abstract class NoDoubleClickListener implements View.OnClickListener {
         if (currentTime - lastClickTime > MIN_CLICK_DELAY_TIME) {
             lastClickTime = currentTime;
             onNoDoubleClick(v);
+            //可以做一些埋点监控的事情
+
         }
     }
 
