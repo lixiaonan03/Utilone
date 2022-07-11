@@ -2,6 +2,7 @@ package com.lxn.utilone;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import com.dianping.logan.Logan;
 import com.dianping.logan.LoganConfig;
 import com.lxn.utilone.util.LogUtils;
 import com.lxn.utilone.util.operationutil.ProcessUtils;
+import com.pgyer.pgyersdk.PgyerSDKManager;
 import com.tencent.mmkv.MMKV;
 
 import java.io.File;
@@ -146,6 +148,12 @@ public class UtilApplication extends Application {
             res.updateConfiguration(newConfig, res.getDisplayMetrics());
         }
         return res;
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        //在attachBaseContext方法中调用初始化sdk
     }
 
 }

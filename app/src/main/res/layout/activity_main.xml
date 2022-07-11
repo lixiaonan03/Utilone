@@ -36,6 +36,15 @@
                 android:text="compose学习的"
                 android:textColor="#ffffff"
                 android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/jsBridge"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/login_button"
+                android:gravity="center"
+                android:text="jsBridge(修改js发送失败的情况)"
+                android:textColor="#ffffff"
+                android:textSize="14sp"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
         
     </androidx.core.widget.NestedScrollView>

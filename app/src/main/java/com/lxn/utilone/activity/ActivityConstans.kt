@@ -22,5 +22,9 @@ class ActivityConstans {
          * compose 学习地址
          */
         const val COMPOSE_PATH = "/lxn/compose"
+        /**
+         * jswebview
+         */
+        const val JS_WebView_PATH = "/lxn/jswebview"
     }
 }
