@@ -36,4 +36,17 @@
         <attr name="footerColor" format="color" />
         <attr name="footerTriangleHeight" format="dimension" />
     </declare-styleable>
+
+
+    <!--九宫格布局-->
+    <declare-styleable name="GiftDetailGridLayout_Layout">
+        <attr name="android:layout_gravity" />
+        <attr name="layout_sticky" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="GiftDetailGridLayout">
+        <attr name="android:rowCount" />
+        <attr name="android:columnCount" />
+        <attr name="rowWeight" format="string" />
+        <attr name="columnWeight" format="string" />
+    </declare-styleable>
 </resources>

@@ -61,6 +61,11 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/util_code_provider_paths" />
         </provider>
+
+
+        <meta-data android:name="xposedmodule" android:value="false" />
+        <meta-data android:name="xposeddescription" android:value="@string/app_name" />
+        <meta-data android:name="xposedminversion" android:value="54" />
     </application>
 
 </manifest>
