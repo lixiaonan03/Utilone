@@ -69,7 +69,7 @@ public class OkhttpActivity extends BaseActivity{
             });
         });
         binding.tvGetSyncResponse.setOnClickListener(v ->{
-                String url="https://mapi.wanwustore.cn/rewss";
+                String url="https://api.github.com/users/lxn03/repos";
                 //这种默认请求的是get
                 OkHttpClient client = OkHttpClientsUtils.getClient();
                 Request request = new Request.Builder()
@@ -79,12 +79,13 @@ public class OkhttpActivity extends BaseActivity{
                 call.enqueue(new Callback() {
                     @Override
                     public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                        Log.i("net","失败的===="+call.toString());
+                        Log.i("net",Thread.currentThread().getName()+"失败的===="+call.toString());
                     }
 
                     @Override
                     public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                        Log.i("net","成功的===="+response.toString());
+                        Log.i("lxn123","当期的线程的==="+Thread.currentThread().getName());
+                        Log.i("lxn123",Thread.currentThread().getName()+"==成功的===="+response.toString());
                     }
                 });
 

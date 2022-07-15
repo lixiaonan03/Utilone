@@ -48,18 +48,19 @@ public class MainActivity extends BaseActivity{
                 kv.removeValuesForKeys(new String[]{"1","2"});
                 Log.i("lxnmmkv","准备点击删除之后的====="+kv.count()+kv.allKeys());
                 v.invalidate();
-                Uri uri = Uri.parse("wwopenc2fe743aaeec03f9://openvc%3A%2F%2F%3Ftab%3Dmallhomevc");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-                ThreadUtils.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Uri uri = Uri.parse("wwopenc2fe743aaeec03f9://openvc%3A%2F%2F%3Ftab%3Dorganizehomevc");
-                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(intent);
-                    }
-                });
-//                ARouter.getInstance().build(ActivityConstans.OKHTTP_PATH).navigation();
+                  //测试发送万物的
+//                Uri uri = Uri.parse("wwopenc2fe743aaeec03f9://openvc%3A%2F%2F%3Ftab%3Dmallhomevc");
+//                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+//                startActivity(intent);
+//                ThreadUtils.runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Uri uri = Uri.parse("wwopenc2fe743aaeec03f9://openvc%3A%2F%2F%3Ftab%3Dorganizehomevc");
+//                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+//                        startActivity(intent);
+//                    }
+//                });
+                ARouter.getInstance().build(ActivityConstans.OKHTTP_PATH).navigation();
             }
         });
 

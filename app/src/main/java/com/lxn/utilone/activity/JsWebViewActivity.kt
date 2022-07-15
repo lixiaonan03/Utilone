@@ -16,6 +16,11 @@ import com.github.lzyzsd.jsbridge.DefaultHandler
 import com.google.gson.Gson
 import com.lxn.utilone.R
 
+/**
+  *  @author 李晓楠
+  *  功能描述: 测试js 交互数据
+  *  时 间： 2022/7/15 11:48 
+  */
 @Route(path = ActivityConstans.JS_WebView_PATH, name = "jsWebView使用的")
 class JsWebViewActivity : AppCompatActivity(),View.OnClickListener{
 

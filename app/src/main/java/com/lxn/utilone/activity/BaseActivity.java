@@ -1,21 +1,12 @@
 package com.lxn.utilone.activity;
 
-import android.app.Activity;
-import android.app.Instrumentation;
 import android.os.Bundle;
 import android.view.View;
 
 import com.lxn.utilone.click.ClickDelegate;
 import com.lxn.utilone.click.ProxyManager;
-import com.lxn.utilone.hook.InstrumentationProxy;
 
-import java.io.File;
-import java.lang.reflect.Field;
-import java.lang.reflect.Proxy;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.TaskStackBuilder;
 
 
 /**
