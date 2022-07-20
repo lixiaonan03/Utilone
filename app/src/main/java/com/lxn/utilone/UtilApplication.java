@@ -19,6 +19,8 @@ import com.tencent.mmkv.MMKV;
 import java.io.File;
 
 import androidx.annotation.NonNull;
+import androidx.multidex.MultiDex;
+import androidx.multidex.MultiDexApplication;
 
 /**
  * @author lixiaonan
@@ -29,6 +31,10 @@ public class UtilApplication extends Application {
 
     public static UtilApplication application = null;
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+    }
 
     @Override
     public void onCreate() {
@@ -148,12 +154,6 @@ public class UtilApplication extends Application {
             res.updateConfiguration(newConfig, res.getDisplayMetrics());
         }
         return res;
-    }
-
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-        //在attachBaseContext方法中调用初始化sdk
     }
 
 }

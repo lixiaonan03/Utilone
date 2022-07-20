@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Looper;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -38,7 +39,6 @@ public class WelcomeActivity extends BaseActivity {
                 ARouter.getInstance().build(ActivityConstans.MAIN_PATH).navigation();
             }
         });
-
     }
 
     /**

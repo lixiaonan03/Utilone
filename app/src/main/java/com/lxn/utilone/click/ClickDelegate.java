@@ -15,6 +15,7 @@ public class ClickDelegate extends View.AccessibilityDelegate {
     @Override
     public void sendAccessibilityEvent(View host, int eventType) {
         super.sendAccessibilityEvent(host, eventType);
+        //有事件响应是进行判断
         if (eventType == AccessibilityEvent.TYPE_VIEW_CLICKED) {
             //发送埋点日志的
             Log.i("lxnAccessibilityDelegate", "辅助发送日志host=" + host.toString());

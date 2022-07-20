@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.lxn.utilone.R;
+import com.lxn.utilone.aspect.BehaviorAnno;
 import com.lxn.utilone.modle.PersonLxn;
 import com.lxn.utilone.util.Log;
 import com.lxn.utilone.util.LogUtils;
@@ -105,6 +106,7 @@ public class MainActivity extends BaseActivity{
     /**
      * 测试mmkv的
      */
+//    @BehaviorAnno(value = "lxn测试AOP")
     private void testMMKV(){
         MMKV kv = MMKV.mmkvWithID("lxn");
         kv.encode("1",new PersonLxn("lxn1",21));
