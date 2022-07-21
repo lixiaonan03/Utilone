@@ -1,0 +1,53 @@
+if (rootProject.ext.config["needAppTestPlugin"]) {
+    //多啦A梦 配置的的
+    apply plugin: 'com.didi.dokit'
+    //多啦A梦配置的
+    dokitExt {
+        //通用设置
+        comm {
+            //地图经纬度开关
+            gpsSwitch true
+            //网络开关
+            networkSwitch true
+            //大图开关
+            bigImgSwitch true
+            //webView js 抓包
+            webViewSwitch true
+        }
+        slowMethod {
+            //0:默认模式 打印函数调用栈 需添加指定入口  默认为application onCreate 和attachBaseContext
+            //1:普通模式 运行时打印某个函数的耗时 全局业务代码函数插入    (过期的新的在配置文件中)
+            strategy 1
+            //函数功能开关
+            methodSwitch false
+
+            //调用栈模式配置
+//            stackMethod {
+//                //默认值为 5ms 小于该值的函数在调用栈中不显示
+//                thresholdTime 5
+//                //调用栈函数入口
+//    //            enterMethods = ["com.didichuxing.doraemondemo.MainDebugActivity.test1"]
+//            }
+            //普通模式配置
+            normalMethod {
+                //默认值为 500ms 小于该值的函数在运行时不会在控制台中被打印
+                thresholdTime 500
+                //需要针对函数插装的包名
+                //            packageNames = ["com.didichuxing.doraemondemo"]
+                //不需要针对函数插装的包名&类名
+                methodBlacklist = ["com.didichuxing.doraemondemo.dokit"]
+            }
+        }
+    }
+    // 这里引用正常库
+    dependencies {
+        //性能框架
+        implementation "io.github.didi.dokit:dokitx:$rootProject.ext.dokitVersion"
+        implementation "io.github.didi.dokit:dokitx-mc:$rootProject.ext.dokitVersion"
+    }
+} else {
+    // 引用no-op的库
+    dependencies {
+        implementation "io.github.didi.dokit:dokitx-no-op:$rootProject.ext.dokitVersion"
+    }
+}
