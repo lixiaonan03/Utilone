@@ -12,17 +12,25 @@ buildscript {
         mavenCentral()
         google()
 
+        //自定义插件的maven 地址的
+        maven {
+            url uri('./lxnplugin/my-plugin')
+        }
+
     }
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.3"
 
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
         //aspect 插件
         classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.10'
         // aspectj  修复版本但也有问题
 //        classpath 'io.github.wurensen:gradle-android-plugin-aspectjx:2.0.11'
+
+        //引入自定义插件的
+        classpath 'com.lu.plugin:lxnplugin:0.0.2'
     }
 }
 

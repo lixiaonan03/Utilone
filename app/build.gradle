@@ -2,9 +2,11 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'com.lu'
     // 带kotlin的 目前支持有问题 参考 https://github.com/HujiangTechnology/gradle_plugin_android_aspectjx/issues/335
 //    id 'android-aspectjx'
 }
+
 //aspectjx {
 //
 //    include 'com.lxn'

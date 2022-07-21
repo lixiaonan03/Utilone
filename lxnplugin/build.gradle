@@ -1,0 +1,84 @@
+//因为我们要用到groovy以及后面打包要用到maven,所以在我们自定义的Module下的build.gradle需要添加如下代码：
+plugins {
+    id 'groovy'
+    // 7.0 之后用新的插件包了
+    id 'maven-publish'
+}
+
+
+dependencies {
+    //gradle sdk
+    implementation gradleApi()
+    //groovy sdk
+    implementation localGroovy()
+
+    //引入 Transform API
+    implementation 'com.android.tools.build:gradle:7.0.3'
+    //引入 javassist 框架的
+    implementation group: 'org.javassist', name: 'javassist', version: '3.22.0-GA'
+
+    implementation 'com.android.tools:common:30.0.3'
+    implementation 'commons-codec:commons-codec:1.11'
+
+}
+
+repositories {
+    mavenCentral()
+}
+
+//group和version在后面使用自定义插件的时候会用到
+group = 'com.lu.plugin'
+version = '0.0.1'
+
+
+
+beforeEvaluate {
+
+}
+
+
+afterEvaluate {
+    println "afterEvaluate回调..."
+
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                // Applies the component for the release build variant.
+
+                //如果是war包填写components.web，如果是jar包填写components.java
+                from components.java
+
+                // You can then customize attributes of the publication as shown below.
+                group = 'com.lu.plugin'
+                version = '0.0.2'
+//                uri('./my-plugin')
+            }
+            // Creates a Maven publication called “debug”.
+            debug(MavenPublication) {
+                // Applies the component for the debug build variant.
+//                from components.debug
+
+                group = 'com.lu.plugin'
+                version = '0.0.2'
+//                uri('./my-plugin')
+            }
+        }
+        repositories {
+            maven {
+                //重新指定仓库地址
+                url uri('./my-plugin')
+            }
+            //指定远程的
+//            maven {
+//                // 凭证
+//                credentials {
+//                    username 'username' // 仓库发布用户名
+//                    password 'password' // 仓库发布用户密码
+//                }
+//                // 地址
+//                url 'https://maven.aliyun.com/nexus/content/groups/public/'
+//            }
+        }
+    }
+}
