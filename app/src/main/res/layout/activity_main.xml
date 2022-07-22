@@ -45,6 +45,10 @@
                 android:text="jsBridge(修改js发送失败的情况)"
                 android:textColor="#ffffff"
                 android:textSize="14sp"/>
+            <ImageView
+                android:id="@+id/ivImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
         
     </androidx.core.widget.NestedScrollView>
