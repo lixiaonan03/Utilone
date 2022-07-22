@@ -1,6 +1,7 @@
 package com.lxn.utilone.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Binder;
 import android.os.Bundle;
@@ -11,8 +12,13 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.Transformation;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.lxn.utilone.R;
 import com.lxn.utilone.aspect.BehaviorAnno;
+import com.lxn.utilone.databinding.ActivityMainBinding;
+import com.lxn.utilone.databinding.ActivityOkhttpBinding;
 import com.lxn.utilone.modle.PersonLxn;
 import com.lxn.utilone.util.Log;
 import com.lxn.utilone.util.LogUtils;
@@ -32,12 +38,13 @@ public class MainActivity extends BaseActivity{
     private long mLastFrameTime;
 
     private int mFrameCount;
+    private ActivityMainBinding vb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_main);
+        vb = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(vb.getRoot());
 
         testMMKV();
         TextView tvOkHttp= findViewById(R.id.tvOkhttp);
@@ -97,10 +104,18 @@ public class MainActivity extends BaseActivity{
                 } else {
                     ++mFrameCount;
                 }
-                //注册监听下一次 vsync信号
+                //注册监听下一次 vsync信号  不需要一直监听
 //                Choreographer.getInstance().postFrameCallback(this);
             }
         });
+
+//        Transformation<Bitmap> circleCrop = new CircleCrop();
+//        Glide.with(this)
+//                .load("https://upload-images.jianshu.io/upload_images/6038844-a7cc326f385542f5.gif?imageMogr2/auto-orient/strip|imageView2/2/format/webp")
+//                .optionalTransform(WebpDrawable.class, new WebpDrawableTransformation(circleCrop))
+//                .into(vb.ivImage);
+
+        Glide.with(this).load("https://upload-images.jianshu.io/upload_images/6038844-a7cc326f385542f5.gif?imageMogr2/auto-orient/strip|imageView2/2/format/webp").into(vb.ivImage);
     }
 
     /**
