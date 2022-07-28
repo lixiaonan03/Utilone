@@ -7,18 +7,26 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Debug;
+import android.os.Handler;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.dianping.logan.Logan;
 import com.dianping.logan.LoganConfig;
+import com.lxn.utilone.anr.ANRError;
+import com.lxn.utilone.anr.ANRWatchDog;
+import com.lxn.utilone.util.Log;
 import com.lxn.utilone.util.LogUtils;
 import com.lxn.utilone.util.operationutil.ProcessUtils;
 import com.pgyer.pgyersdk.PgyerSDKManager;
 import com.tencent.mmkv.MMKV;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 
@@ -49,7 +57,44 @@ public class UtilApplication extends Application {
             initLogan();
 
             MMKV.initialize(this);
+            //等一些第三放应用初始化完了 再绑定到生命周期的
+            ProcessLifecycleOwner.get().getLifecycle().addObserver(new ApplicationObserver());
         }
+
+        anrWatchDog
+                //anr 异常的
+                .setANRListener(new ANRWatchDog.ANRListener() {
+                    @Override
+                    public void onAppNotResponding(@NonNull ANRError error) {
+                        Log.e("ANR-Watchdog-Demo", "Detected Application Not Responding!");
+
+                        // Some tools like ACRA are serializing the exception, so we must make sure the exception serializes correctly
+                        try {
+                            new ObjectOutputStream(new ByteArrayOutputStream()).writeObject(error);
+                        }
+                        catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+
+                        Log.i("ANR-Watchdog-Demo", "Error was successfully serialized");
+
+                        throw error;
+                    }
+                })
+                //ANR 间隔时间的回调
+                .setANRInterceptor(new ANRWatchDog.ANRInterceptor() {
+                    @Override
+                    public long intercept(long duration) {
+                        //剩余多少时间的
+                        long ret = UtilApplication.this.duration * 1000 - duration;
+                        if (ret > 0) {
+                            Log.w("ANR-Watchdog-Demo", "Intercepted ANR that is too short (" + duration + " ms), postponing for " + ret + " ms.");
+                        }
+                        return ret;
+                    }
+                })
+        ;
+        anrWatchDog.start();
     }
 
     private void initARouter(){
@@ -155,5 +200,19 @@ public class UtilApplication extends Application {
         }
         return res;
     }
+
+
+
+
+    ANRWatchDog anrWatchDog = new ANRWatchDog(2000);
+
+    int duration = 4;
+
+    final ANRWatchDog.ANRListener silentListener = new ANRWatchDog.ANRListener() {
+        @Override
+        public void onAppNotResponding(@NonNull ANRError error) {
+            Log.e("lxnAnr",error.toString());
+        }
+    };
 
 }

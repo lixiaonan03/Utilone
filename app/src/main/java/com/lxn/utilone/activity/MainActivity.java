@@ -1,11 +1,17 @@
 package com.lxn.utilone.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Binder;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.util.ArrayMap;
+import android.util.LogPrinter;
+import android.util.Printer;
 import android.view.Choreographer;
 import android.view.View;
 import android.widget.TextView;
@@ -39,6 +45,8 @@ public class MainActivity extends BaseActivity{
 
     private int mFrameCount;
     private ActivityMainBinding vb;
+
+    private Handler handler =ThreadUtils.getMainHandler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,7 +124,14 @@ public class MainActivity extends BaseActivity{
 //                .into(vb.ivImage);
 
         Glide.with(this).load("https://upload-images.jianshu.io/upload_images/6038844-a7cc326f385542f5.gif?imageMogr2/auto-orient/strip|imageView2/2/format/webp").into(vb.ivImage);
+
+//        testAnr();
+        //给looper设置自定义的打印器的
+        Looper.myLooper().setMessageLogging(x -> {
+              Log.i("lxn123",x);
+        });
     }
+
 
     /**
      * 测试mmkv的
@@ -131,6 +146,4 @@ public class MainActivity extends BaseActivity{
         kv.encode("5",new PersonLxn("lxn5",25));
         Log.i("lxnmmkv",kv.count()+"");
     }
-
-
 }
