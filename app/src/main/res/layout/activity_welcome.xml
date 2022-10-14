@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@drawable/transparent"
+    android:background="@drawable/welcome"
     android:orientation="vertical" >
 
     <ImageView
