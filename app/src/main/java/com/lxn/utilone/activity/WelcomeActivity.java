@@ -39,7 +39,7 @@ public class WelcomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        //设置状态栏沉浸的
+        //设置状态栏沉浸的   https://blog.csdn.net/guolin_blog/article/details/51763825
         StatusBarUtil.setTranslucent(this,0);
 
         replaceActivityInstrumentation(this);

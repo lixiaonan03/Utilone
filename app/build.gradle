@@ -23,12 +23,12 @@ plugins {
 //}
 
 android {
-    compileSdk 31
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.lxn.utilone"
         minSdk 21
-        targetSdk 31
+        targetSdk 33
         versionCode 1
         versionName "1.0.0"
 
@@ -123,6 +123,10 @@ dependencies {
     //使用主题的
     implementation "com.google.accompanist:accompanist-appcompat-theme:0.16.0"
 
+    //启动页引导动画的
+    implementation 'androidx.core:core-splashscreen:1.0.0'
+
+
     //#####################################################################
     // 一些通用组件的
     //#####################################################################
@@ -131,7 +135,7 @@ dependencies {
     //#####################################################################
     // 图片加载框架的  gilde是从子项目中加载的
     //#####################################################################
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
     // 因为glide 对webp动图支持有问题 所以引入这个库
     implementation "com.github.zjupure:webpdecoder:2.0.4.12.0"
@@ -152,10 +156,10 @@ dependencies {
     // 数据转换的
     //#####################################################################
     //gson
-    implementation 'com.google.code.gson:gson:2.8.9'
+    implementation 'com.google.code.gson:gson:2.9.0'
 
     //fastjson
-    implementation 'com.alibaba:fastjson:1.1.72.android'
+    implementation 'com.alibaba:fastjson:1.2.79'
 
 
 
