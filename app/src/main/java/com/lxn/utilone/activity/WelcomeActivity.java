@@ -25,6 +25,7 @@ import java.lang.reflect.Field;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.core.splashscreen.SplashScreen;
 
 /**
  * @author lixiaonan
@@ -37,11 +38,13 @@ public class WelcomeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
+        splashScreen.setKeepOnScreenCondition(() -> true);
         setContentView(R.layout.activity_welcome);
 
         //设置状态栏沉浸的   https://blog.csdn.net/guolin_blog/article/details/51763825
         StatusBarUtil.setTranslucent(this,0);
-
+        splashScreen.setKeepOnScreenCondition(() -> false);
         replaceActivityInstrumentation(this);
 
         ImageView ivGoMain= findViewById(R.id.ivWelcome);
