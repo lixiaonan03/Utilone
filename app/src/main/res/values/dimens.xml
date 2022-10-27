@@ -31,4 +31,10 @@
     <dimen name="page_margin_width">12dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+
+
+
+    <dimen name="viewsize_sw">196dp</dimen>
+
+    <dimen name="viewsize_px">600px</dimen>
 </resources>

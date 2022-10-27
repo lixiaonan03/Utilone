@@ -78,7 +78,7 @@ public final class ScreenUtils {
      * 获取导航栏的真实高度
      * @return 导航栏高度
      */
-    private int getNavigationBarHeight() {
+    public static int getNavigationBarHeight() {
         int result = 0;
         Resources resources = Utils.getApp().getResources();
         int resourceId =
@@ -93,7 +93,7 @@ public final class ScreenUtils {
      * 获取状态栏高度
      * @return int 高度
      */
-    private int getStatusBarHeight() {
+    public static int getStatusBarHeight() {
         int result = 0;
         Resources resources = Utils.getApp().getResources();
         int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");

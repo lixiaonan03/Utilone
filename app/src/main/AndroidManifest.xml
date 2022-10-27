@@ -29,6 +29,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:replace="android:name">
+
         <activity
             android:name=".activity.CompressActivity"
             android:exported="false" />
@@ -49,6 +50,12 @@
             android:name=".activity.JsWebViewActivity"
             android:exported="false" />
         <activity
+            android:name=".activity.SizeViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Test1Activity"
+            android:exported="false" />
+        <activity
             android:name=".activity.OkhttpActivity"
             android:screenOrientation="unspecified" /> <!-- util 工具类相关的 -->
         <provider
@@ -62,10 +69,15 @@
                 android:resource="@xml/util_code_provider_paths" />
         </provider>
 
-
-        <meta-data android:name="xposedmodule" android:value="false" />
-        <meta-data android:name="xposeddescription" android:value="@string/app_name" />
-        <meta-data android:name="xposedminversion" android:value="54" />
+        <meta-data
+            android:name="xposedmodule"
+            android:value="false" />
+        <meta-data
+            android:name="xposeddescription"
+            android:value="@string/app_name" />
+        <meta-data
+            android:name="xposedminversion"
+            android:value="54" />
     </application>
 
 </manifest>

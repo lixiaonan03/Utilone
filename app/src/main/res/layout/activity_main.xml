@@ -45,6 +45,15 @@
                 android:text="jsBridge(修改js发送失败的情况)"
                 android:textColor="#ffffff"
                 android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/sizeView"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:background="@drawable/login_button"
+                android:gravity="center"
+                android:text="屏幕适配学习的"
+                android:textColor="#ffffff"
+                android:textSize="14sp"/>
             <ImageView
                 android:id="@+id/ivImage"
                 android:layout_width="wrap_content"

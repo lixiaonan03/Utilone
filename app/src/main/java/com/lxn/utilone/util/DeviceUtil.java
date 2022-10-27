@@ -9,7 +9,6 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.SystemClock;
-import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.WindowManager;
@@ -61,6 +60,8 @@ public final class DeviceUtil {
     public static final float scaledDensity = getDisplayMetrics().scaledDensity;
     //获取靠近的屏幕密度  取值为320 480。。中的一个
     public static final int densityDpi = getDisplayMetrics().densityDpi;
+
+    public static final float density = getDisplayMetrics().density;
 
     /***本机手机号码**/
 //    public static final String PHONE_NUMBER = ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();

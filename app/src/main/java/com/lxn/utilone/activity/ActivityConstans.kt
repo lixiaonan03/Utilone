@@ -26,5 +26,9 @@ class ActivityConstans {
          * jswebview
          */
         const val JS_WebView_PATH = "/lxn/jswebview"
+        /**
+         * 屏幕适配的学习的
+         */
+        const val View_PATH = "/lxn/view"
     }
 }

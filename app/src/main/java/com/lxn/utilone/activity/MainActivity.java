@@ -26,6 +26,7 @@ import com.lxn.utilone.aspect.BehaviorAnno;
 import com.lxn.utilone.databinding.ActivityMainBinding;
 import com.lxn.utilone.databinding.ActivityOkhttpBinding;
 import com.lxn.utilone.modle.PersonLxn;
+import com.lxn.utilone.util.DeviceUtil;
 import com.lxn.utilone.util.Log;
 import com.lxn.utilone.util.LogUtils;
 import com.lxn.utilone.util.operationutil.ThreadUtils;
@@ -91,6 +92,9 @@ public class MainActivity extends BaseActivity{
         TextView jsBridge= findViewById(R.id.jsBridge);
         jsBridge.setOnClickListener(v -> ARouter.getInstance().build(ActivityConstans.JS_WebView_PATH).navigation());
 
+        TextView sizeView= findViewById(R.id.sizeView);
+        sizeView.setOnClickListener(v -> ARouter.getInstance().build(ActivityConstans.View_PATH).navigation());
+
 
         //监听掉帧的情况的
         Choreographer.getInstance().postFrameCallback(new Choreographer.FrameCallback() {
@@ -130,6 +134,14 @@ public class MainActivity extends BaseActivity{
         Looper.myLooper().setMessageLogging(x -> {
               Log.i("lxn123",x);
         });
+
+
+        //测试屏幕分辨率的
+        Log.i("lxnDpi","=densityDpi===="+ DeviceUtil.densityDpi);
+        Log.i("lxnDpi","=scaledDensity===="+ DeviceUtil.scaledDensity);
+        Log.i("lxnDpi","=density===="+ DeviceUtil.density);
+        Log.i("lxnDpi","=xdpi===="+ DeviceUtil.getDisplayMetrics().xdpi);
+
     }
 
 

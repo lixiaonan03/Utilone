@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_white"
+    android:fitsSystemWindows="false"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/linTop"
+        layout="@layout/top_back" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="16dp"
+        android:scrollbars="none">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:divider="@drawable/lin_divider"
+            app:showDividers="middle">
+
+            <TextView
+                android:id="@+id/dpTestOne"
+                android:layout_width="196dp"
+                android:layout_height="40dp"
+                android:background="@drawable/login_button"
+                android:gravity="center"
+                android:text="最基础的dp测试的"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="以小米8为例 分辨率为 2248*1080px  dpi 为440 density 为2.75
+                根据公式 px = density * dp  可得小米8的满屏为 392.727272.....   dp 上面的占一半屏幕"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="@dimen/viewsize_sw"
+                android:layout_height="40dp"
+                android:background="@drawable/login_button"
+                android:gravity="center"
+                android:text="最小宽度指定 swXXXdp "
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="小米8的屏幕宽度为392.7dp  默认会找比他小的最近的360dp viewsize_sw 上面指定了296所以看起来比第一个长"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="@dimen/viewsize_px"
+                android:layout_height="40dp"
+                android:background="@drawable/login_button"
+                android:gravity="center"
+                android:text="指定的的适配的px"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tvToutiao"
+                android:layout_width="392.7dp"
+                android:layout_height="40dp"
+                android:background="@drawable/login_button"
+                android:gravity="center"
+                android:text="新的的的的头条适配方案的"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/goIntent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="因为上面使用了头条的方案并且基准宽度小于392.7(小米8) 所以实际显示显的可能大 match除外"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="100pt"
+                android:layout_height="40dp"
+                android:background="@drawable/login_button"
+                android:gravity="center"
+                android:text="pt适配方案的"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>
