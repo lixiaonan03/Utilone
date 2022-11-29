@@ -30,5 +30,9 @@ class ActivityConstans {
          * 屏幕适配的学习的
          */
         const val View_PATH = "/lxn/view"
+        /**
+         * mvvm 模式相关学习的
+         */
+        const val MVVM_PATH = "/lxn/mvvm"
     }
 }

@@ -100,7 +100,8 @@ public class OkhttpActivity extends BaseActivity{
     private static String getRequest() {
         try {
 //            String url="http://172.16.3.228:8081/test1/hello2";
-            String url="https://mapi.wanwustore.cn/rewss";
+//            String url="https://mapi.wanwustore.cn/rewss";
+            String url="https://kyfw.12306.cn/otn/resources/login.html";
             //这种默认请求的是get
             OkHttpClient client = OkHttpClientsUtils.getClient();
             Request request = new Request.Builder()

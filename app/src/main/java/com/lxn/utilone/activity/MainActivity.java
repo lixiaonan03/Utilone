@@ -95,6 +95,9 @@ public class MainActivity extends BaseActivity{
         TextView sizeView= findViewById(R.id.sizeView);
         sizeView.setOnClickListener(v -> ARouter.getInstance().build(ActivityConstans.View_PATH).navigation());
 
+        TextView mvvm= findViewById(R.id.mvvm);
+        mvvm.setOnClickListener(v -> ARouter.getInstance().build(ActivityConstans.MVVM_PATH).navigation());
+
 
         //监听掉帧的情况的
         Choreographer.getInstance().postFrameCallback(new Choreographer.FrameCallback() {
@@ -132,7 +135,7 @@ public class MainActivity extends BaseActivity{
 //        testAnr();
         //给looper设置自定义的打印器的
         Looper.myLooper().setMessageLogging(x -> {
-              Log.i("lxn123",x);
+//              Log.i("lxn123",x);
         });
 
 

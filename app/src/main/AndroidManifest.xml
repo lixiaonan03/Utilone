@@ -57,7 +57,11 @@
             android:exported="false" />
         <activity
             android:name=".activity.OkhttpActivity"
-            android:screenOrientation="unspecified" /> <!-- util 工具类相关的 -->
+            android:screenOrientation="unspecified" />
+        <activity
+            android:name=".activity.MvvmActivity"
+            android:screenOrientation="unspecified" />
+        <!-- util 工具类相关的 -->
         <provider
             android:name=".util.operationutil.UtilsFileProvider"
             android:authorities="${applicationId}.bzcommonlib.provider"
