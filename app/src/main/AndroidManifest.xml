@@ -53,7 +53,7 @@
             android:name=".activity.SizeViewActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.Test1Activity"
+            android:name=".activity.DevActivity"
             android:exported="false" />
         <activity
             android:name=".activity.OkhttpActivity"

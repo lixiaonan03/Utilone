@@ -98,6 +98,8 @@ public class MainActivity extends BaseActivity{
         TextView mvvm= findViewById(R.id.mvvm);
         mvvm.setOnClickListener(v -> ARouter.getInstance().build(ActivityConstans.MVVM_PATH).navigation());
 
+        findViewById(R.id.tvDev).setOnClickListener(v -> startActivity(new Intent(MainActivity.this,DevActivity.class)));
+
 
         //监听掉帧的情况的
         Choreographer.getInstance().postFrameCallback(new Choreographer.FrameCallback() {
