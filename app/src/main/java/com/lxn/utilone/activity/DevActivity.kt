@@ -3,8 +3,13 @@ package com.lxn.utilone.activity
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Intent
+import android.graphics.ColorFilter
+import android.graphics.ColorMatrix
+import android.graphics.ColorMatrixColorFilter
+import android.graphics.Paint
 import android.os.Bundle
 import android.os.Process
+import android.view.View
 import com.lxn.utilone.databinding.ActivityDevBinding
 import com.lxn.utilone.util.ToastUtils
 import kotlin.system.exitProcess
@@ -46,6 +51,16 @@ class DevActivity : BaseActivity() {
                 startActivity(i)
                 Process.killProcess(Process.myPid())
             }
+        }
+
+        //整个页面置灰的效果
+        binding.tvGrey.setOnClickListener {
+            val paint = Paint()
+            val colorMatrix = ColorMatrix()
+            //设置灰度 0最灰  1最亮
+            colorMatrix.setSaturation(0.1f)
+            paint.colorFilter = ColorMatrixColorFilter(colorMatrix)
+            window.decorView.setLayerType(View.LAYER_TYPE_HARDWARE,paint)
         }
     }
 }

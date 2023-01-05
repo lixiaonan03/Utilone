@@ -35,6 +35,19 @@
                 android:textColor="#ffffff"
                 android:textSize="14sp" />
 
+            <TextView
+                android:id="@+id/tvGrey"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/login_button"
+                android:gravity="center"
+                android:text="整个页面置灰的效果"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+
+
+
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
