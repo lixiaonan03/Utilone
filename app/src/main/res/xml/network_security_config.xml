@@ -1,4 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<network-security-config>
-    <base-config cleartextTrafficPermitted="true" />
+<network-security-config xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- 相关配置参考：https://developer.android.com/training/articles/security-config?hl=zh-cn  -->
+
+
+    <!-- 方便自己工程/release-->
+    <!--  TODO 一定要注意
+      这个地方需要注意的几个点：
+     1、trust-anchors 和 pin-set 是平级关系 不要配置错误了
+     2、即使 pin-set 配置对了   trust-anchors 里面不配置值也是错误的 有点类似先检查trust-anchors再检查pin
+     -->
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">static.bbtkids.cn</domain>
+        <domain includeSubdomains="true">bangbangtown.cn</domain>
+        <domain includeSubdomains="true">wanwustore.cn</domain>
+        <!--配置自定义ca  假设您要连接到使用自签名 SSL 证书的主机，或者连接到其 SSL 证书由您信任的非公共 CA（如公司的内部 CA）颁发的主机。-->
+        <trust-anchors>
+            <certificates src="@raw/lixioanancal" />
+            <certificates src="system" />
+        </trust-anchors>
+
+        <!--  如需固定证书，您可以通过按公钥的哈希值（X.509 证书的 SubjectPublicKeyInfo）提供证书集。然后，只有至少包含一个已固定公钥的证书链才有效。-->
+        <!--  请注意，固定证书时，您应始终包含一个备用密钥，这样，当您被强制切换到新密钥或更改 CA 时（固定到某个 CA 证书或该 CA 的中间证书时），应用的连接性不会受到影响。否则，您必须推送应用更新以恢复连接性。-->
+        <!--  此外，可以设置证书固定的到期时间，在该时间之后不再固定证书。这有助于防止尚未更新的应用出现连接性问题。不过，设置证书固定的到期时间可能会绕过证书固定。-->
+        <pin-set>
+            <pin digest="SHA-256">K29eS30xtD6XoGqBrCbYYlgnC4vA8iLN6Ozwi0cuycI=</pin>
+            <pin digest="SHA-256">B2o6KjBMvs+b5LG04FOX1d+Dw82KgV4aPdu+Q6Wq764=</pin>
+            <pin digest="SHA-256">x4QzPSC810K5/cMjb05Qm4k3Bw5zBn4lTdO/nEW/Td4=</pin>
+        </pin-set>
+    </domain-config>
+
+    <!--公钥校验  这个数据是真实的 这个是通过命名行搞出来的
+    因为配置了这个所以访问这个域名的的时候 就进行判断 如果set中有一个公钥摘要能匹配上就能访问 要不然就会报ssl错误
+    -->
+    <domain-config>
+        <domain includeSubdomains="true">infinisign.com</domain>
+        <pin-set>
+            <!--直接证书的公钥摘要-->
+            <pin digest="SHA-256">bAExy9pPp0EnzjAlYn1bsSEGvqYi1shl1OOshfH3XDA=</pin>
+            <!--中间证书的公钥摘要-->
+            <pin digest="SHA-256">RkhWTcfJAQN/YxOR12VkPo+PhmIoSfWd/JVkg44einY=</pin>
+            <!--根证书的公钥摘要-->
+            <pin digest="SHA-256">x4QzPSC810K5/cMjb05Qm4k3Bw5zBn4lTdO/nEW/Td4=</pin>
+        </pin-set>
+    </domain-config>
+
+    <!--证书锁定-->
+    <domain-config>
+        <domain includeSubdomains="true">bing.com</domain>
+        <trust-anchors>
+            <!--获取证书: openssl s_client -connect bing.com:443 -servername bing.com | openssl x509 -out bing.pem-->
+            <certificates src="@raw/lixioanancal" />
+        </trust-anchors>
+
+    </domain-config>
+
+
+    <!-- 阿里一键登录的 -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">cmpassport.com</domain>
+    </domain-config>
+
+
+    <!-- 方便自己工程/debug -->
+    <debug-overrides cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates
+                overridePins="true"
+                src="system" />
+            <certificates
+                overridePins="true"
+                src="user" />
+            <!--把这个注释掉之后就不能抓包了-->
+            <certificates src="@raw/lixioanancal" />
+        </trust-anchors>
+    </debug-overrides>
+
 </network-security-config>
