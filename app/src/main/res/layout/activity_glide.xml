@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_white"
+    android:fitsSystemWindows="false"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/linTop"
+        layout="@layout/top_back" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="16dp"
+        android:scrollbars="none">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:divider="@drawable/lin_divider"
+            android:gravity="center_horizontal"
+            app:showDividers="middle">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:gravity="center"
+                android:text="正常图片地址是300*300 其中如果需要加载300 把后面的改成300\n
+                https://pic.wanwustore.cn/Fjt_IddpcNV6aNAyxCfRRBFHU_-c?imageView2/2/w/300"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvGet"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/login_button"
+                android:gravity="center"
+                android:text="获取参数的"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+
+            <ImageView
+                 android:id="@+id/ivLocale"
+                 android:layout_width="wrap_content"
+                 android:background="@color/common_red"
+                 android:adjustViewBounds="true"
+                 android:layout_height="wrap_content"/>
+            <ImageView
+                 android:id="@+id/ivWrap"
+                 android:layout_width="wrap_content"
+                 android:layout_marginTop="10dp"
+                android:adjustViewBounds="true"
+                 android:background="@color/common_red"
+                 android:layout_height="wrap_content"/>
+
+             <ImageView
+                 android:id="@+id/iv50dp"
+                 android:layout_width="50dp"
+                 android:layout_marginTop="10dp"
+                 android:background="@color/common_blue"
+                 android:layout_height="50dp"/>
+             <ImageView
+                 android:id="@+id/iv100dp"
+                 android:layout_width="100dp"
+                 android:layout_marginTop="10dp"
+                 android:layout_height="100dp"/>
+             <ImageView
+                 android:id="@+id/iv150dp"
+                 android:layout_width="150dp"
+                 android:layout_marginTop="10dp"
+                 android:layout_height="150dp"/>
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

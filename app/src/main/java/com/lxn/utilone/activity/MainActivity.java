@@ -100,6 +100,9 @@ public class MainActivity extends BaseActivity{
 
         findViewById(R.id.tvDev).setOnClickListener(v -> startActivity(new Intent(MainActivity.this,DevActivity.class)));
 
+        //Glide 测试的
+        findViewById(R.id.tvGlide).setOnClickListener(v ->  ARouter.getInstance().build(ActivityConstans.GLIDE_PATH).navigation());
+
 
         //监听掉帧的情况的
         Choreographer.getInstance().postFrameCallback(new Choreographer.FrameCallback() {
@@ -132,7 +135,11 @@ public class MainActivity extends BaseActivity{
 //                .optionalTransform(WebpDrawable.class, new WebpDrawableTransformation(circleCrop))
 //                .into(vb.ivImage);
 
-        Glide.with(this).load("https://upload-images.jianshu.io/upload_images/6038844-a7cc326f385542f5.gif?imageMogr2/auto-orient/strip|imageView2/2/format/webp").into(vb.ivImage);
+//        Glide.with(this).load("https://upload-images.jianshu.io/upload_images/6038844-a7cc326f385542f5.gif?imageMogr2/auto-orient/strip|imageView2/2/format/webp").into(vb.ivImage);
+
+        String picPath = "https://pic.wanwustore.cn/Fjt_IddpcNV6aNAyxCfRRBFHU_-c?imageView2/2/w/300";
+
+        Glide.with(this).load(picPath).into(vb.ivImage1);
 
 //        testAnr();
         //给looper设置自定义的打印器的
@@ -145,8 +152,8 @@ public class MainActivity extends BaseActivity{
         Log.i("lxnDpi","=densityDpi===="+ DeviceUtil.densityDpi);
         Log.i("lxnDpi","=scaledDensity===="+ DeviceUtil.scaledDensity);
         Log.i("lxnDpi","=density===="+ DeviceUtil.density);
+        Log.i("lxnDpi","=SCREEN_HEIGHT===="+ DeviceUtil.SCREEN_HEIGHT);
         Log.i("lxnDpi","=xdpi===="+ DeviceUtil.getDisplayMetrics().xdpi);
-
     }
 
 

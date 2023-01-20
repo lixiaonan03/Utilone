@@ -72,8 +72,21 @@
                 android:text="开发者管理页面"
                 android:textColor="#ffffff"
                 android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/tvGlide"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:background="@drawable/login_button"
+                android:gravity="center"
+                android:text="glide 学习测试"
+                android:textColor="#ffffff"
+                android:textSize="14sp"/>
             <ImageView
                 android:id="@+id/ivImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:id="@+id/ivImage1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
