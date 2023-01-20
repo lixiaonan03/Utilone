@@ -7,6 +7,7 @@ import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Url
 
 /**
   *  @author 李晓楠
@@ -24,6 +25,11 @@ interface ApiService {
     @FormUrlEncoded
     @POST("user/login")
     suspend fun login(@Field("username") userName: String, @Field("password") passWord: String): ApiResponse<User?>
+
+
+    @FormUrlEncoded
+    @POST("user/login")
+    suspend fun login1(@Url url: String,@Field("username") userName: String, @Field("password") passWord: String): ApiResponse<User?>
 
     companion object {
         const val BASE_URL = "https://wanandroid.com/"
