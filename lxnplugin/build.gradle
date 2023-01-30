@@ -13,11 +13,11 @@ dependencies {
     implementation localGroovy()
 
     //引入 Transform API
-    implementation 'com.android.tools.build:gradle:7.0.3'
+    implementation 'com.android.tools.build:gradle:7.3.0'
     //引入 javassist 框架的
     implementation group: 'org.javassist', name: 'javassist', version: '3.22.0-GA'
 
-    implementation 'com.android.tools:common:30.0.3'
+    implementation 'com.android.tools:common:30.4.0'
     implementation 'commons-codec:commons-codec:1.11'
 
 }

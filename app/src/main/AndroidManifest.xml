@@ -32,11 +32,12 @@
 
         <activity
             android:name=".activity.CompressActivity"
+            tools:ignore="Instantiatable"
             android:exported="false" />
         <activity
             android:name=".activity.WelcomeActivity"
-            android:exported="true"
-            android:label="@string/app_name">
+            tools:ignore="Instantiatable"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,25 +46,32 @@
         </activity>
         <activity
             android:name=".activity.MainActivity"
+            tools:ignore="Instantiatable"
             android:screenOrientation="unspecified" />
         <activity
             android:name=".activity.JsWebViewActivity"
+            tools:ignore="Instantiatable"
             android:exported="false" />
         <activity
             android:name=".activity.SizeViewActivity"
+            tools:ignore="Instantiatable"
             android:exported="false" />
         <activity
             android:name=".activity.DevActivity"
-            android:exported="false" />
+            android:exported="false"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".activity.OkhttpActivity"
-            android:screenOrientation="unspecified" />
+            android:screenOrientation="unspecified"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".activity.MvvmActivity"
-            android:screenOrientation="unspecified" />
+            android:screenOrientation="unspecified"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".activity.GlideActivity"
-            android:screenOrientation="unspecified" />
+            android:screenOrientation="unspecified"
+            tools:ignore="Instantiatable" />
         <!-- util 工具类相关的 -->
         <provider
             android:name=".util.operationutil.UtilsFileProvider"
