@@ -69,6 +69,18 @@
             android:screenOrientation="unspecified"
             tools:ignore="Instantiatable" />
         <activity
+            android:name=".activity.rv.RvActivity"
+            android:screenOrientation="unspecified"
+            tools:ignore="Instantiatable" />
+        <activity
+            android:name=".activity.rv.RvTest1Activity"
+            android:screenOrientation="unspecified"
+            tools:ignore="Instantiatable" />
+        <activity
+            android:name=".activity.rv.RvTest2Activity"
+            android:screenOrientation="unspecified"
+            tools:ignore="Instantiatable" />
+        <activity
             android:name=".activity.GlideActivity"
             android:screenOrientation="unspecified"
             tools:ignore="Instantiatable" />

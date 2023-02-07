@@ -81,6 +81,15 @@
                 android:text="glide 学习测试"
                 android:textColor="#ffffff"
                 android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/tvRV"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:background="@drawable/login_button"
+                android:gravity="center"
+                android:text="recyclerview 学习测试"
+                android:textColor="#ffffff"
+                android:textSize="14sp"/>
             <ImageView
                 android:id="@+id/ivImage"
                 android:layout_width="wrap_content"
