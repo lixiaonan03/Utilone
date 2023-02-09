@@ -55,6 +55,9 @@ public class WaterfallLayoutManager extends RecyclerView.LayoutManager implement
 
     private final int INVALID_INT = Integer.MIN_VALUE;
 
+
+    private static final int Size = 64;
+
     private final class Span {
         final int index;
 
@@ -175,7 +178,7 @@ public class WaterfallLayoutManager extends RecyclerView.LayoutManager implement
             if (oldSize >= size) {
                 return;
             }
-            size = Math.max(size, 32);
+            size = Math.max(size, Size);
             size = Math.max(size, oldSize + (oldSize << 1));
             array = (array == null) ? new byte[size] : Arrays.copyOf(array, size);
             Arrays.fill(array, oldSize, size, (byte) -1);

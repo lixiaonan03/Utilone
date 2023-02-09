@@ -76,8 +76,10 @@ class RvTest2Activity : BaseActivity() {
                     }
                 }
             })
+
         }
 
+        vb.rv.scrollToPosition(32)
     }
 
     private class TextHolder(tv: TextView) : RecyclerView.ViewHolder(tv) {
@@ -95,7 +97,7 @@ class RvTest2Activity : BaseActivity() {
 
     private class Adapter : RecyclerView.Adapter<TextHolder>() {
 
-        val dataSet = ArrayList<Bean>(32).apply {
+        val dataSet = ArrayList<Bean>(64).apply {
             val heightEnum = arrayOf(
                 151.dp,
                 197.dp,
@@ -104,7 +106,7 @@ class RvTest2Activity : BaseActivity() {
                 134.dp,
             )
 
-            for (i in 0 until 32) {
+            for (i in 0 until 64) {
                 val bean = Bean(
                     text = i.toString(),
                     height = heightEnum[i % heightEnum.size],
