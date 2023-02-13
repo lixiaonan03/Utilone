@@ -36,7 +36,9 @@ class ApiViewModel : BaseViewModel() {
 
     fun requestNet() {
         viewModelScope.launch {
+            showLoading.value = true
             wxArticleLiveData.value = repository.fetchWxArticleFromNet()
+            showLoading.value = false
         }
     }
 

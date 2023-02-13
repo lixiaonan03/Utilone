@@ -85,7 +85,7 @@ public class MainActivity extends BaseActivity{
         sizeView.setOnClickListener(v -> ARouter.getInstance().build(ActivityConstans.View_PATH).navigation());
 
         TextView mvvm= findViewById(R.id.mvvm);
-        mvvm.setOnClickListener(v -> ARouter.getInstance().build(ActivityConstans.MVVM_PATH).navigation());
+        mvvm.setOnClickListener(v -> ARouter.getInstance().build(ActivityConstans.MVVM1_PATH).navigation());
 
         findViewById(R.id.tvDev).setOnClickListener(v -> startActivity(new Intent(MainActivity.this,DevActivity.class)));
 

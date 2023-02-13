@@ -219,6 +219,8 @@ dependencies {
     implementation 'com.jaeger.statusbarutil:library:1.4.0'
 
 
+    implementation 'com.kaopiz:kprogresshud:1.2.0'
+
 
     //#####################################################################
     // 第三方的SDK的
@@ -227,7 +229,7 @@ dependencies {
     implementation 'com.alibaba:arouter-api:1.5.2'
     kapt 'com.alibaba:arouter-compiler:1.5.2'
 
-    implementation 'com.tencent:mmkv:1.2.11'
+    implementation 'com.tencent:mmkv:1.2.13'
 
     //美团的logan日志框架
     implementation 'com.dianping.android.sdk:logan:1.2.4'

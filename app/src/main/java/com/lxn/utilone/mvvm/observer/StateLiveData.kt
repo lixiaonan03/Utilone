@@ -11,7 +11,7 @@ import com.lxn.utilone.util.ToastUtils
   *  功能描述: 带状态的livedata
   *  时 间： 2022/10/27 16:44
   */
-class StateLiveData<T> : MutableLiveData<ApiResponse<T>>() {
+class StateLiveData<T> : SingleLiveEvent<ApiResponse<T>>() {
 
     fun observeState(owner: LifecycleOwner, listenerBuilder: ListenerBuilder.() -> Unit) {
         val listener = ListenerBuilder().also(listenerBuilder)

@@ -34,6 +34,7 @@ class ActivityConstans {
          * mvvm 模式相关学习的
          */
         const val MVVM_PATH = "/lxn/mvvm"
+        const val MVVM1_PATH = "/lxn/mvvm1"
         /**
          * glide 学习测试
          */

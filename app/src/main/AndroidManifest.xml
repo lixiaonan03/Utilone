@@ -70,6 +70,10 @@
             android:screenOrientation="unspecified"
             tools:ignore="Instantiatable" />
         <activity
+            android:name=".activity.MvvmNewActivity"
+            android:screenOrientation="unspecified"
+            tools:ignore="Instantiatable" />
+        <activity
             android:name=".activity.rv.RvActivity"
             android:screenOrientation="unspecified"
             tools:ignore="Instantiatable" />
