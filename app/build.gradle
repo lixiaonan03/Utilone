@@ -3,6 +3,12 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'com.lu'
+
+    id 'com.google.gms.google-services'
+    // firebase 奔溃服务的
+    id 'com.google.firebase.crashlytics'
+    // firebase 性能监控的
+    id 'com.google.firebase.firebase-perf'
     // 带kotlin的 目前支持有问题 参考 https://github.com/HujiangTechnology/gradle_plugin_android_aspectjx/issues/335
 //    id 'android-aspectjx'
 }
@@ -233,6 +239,19 @@ dependencies {
 
     //美团的logan日志框架
     implementation 'com.dianping.android.sdk:logan:1.2.4'
+
+
+
+    //firebase的
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:31.2.1')
+
+    // Add the dependencies for the Crashlytics and Analytics libraries
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-analytics'
+    //性能监控的
+    implementation 'com.google.firebase:firebase-perf'
 
 
     //#####################################################################

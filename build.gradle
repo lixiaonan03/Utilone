@@ -29,6 +29,12 @@ buildscript {
         // aspectj  修复版本但也有问题
 //        classpath 'io.github.wurensen:gradle-android-plugin-aspectjx:2.0.11'
 
+        classpath 'com.google.gms:google-services:4.3.15'
+        // Add the dependency for the Crashlytics Gradle plugin
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.4'
+        // firebase 性能监控插件的
+        classpath 'com.google.firebase:perf-plugin:1.4.2'
+
         //引入自定义插件的
         classpath 'com.lu.plugin:lxnplugin:0.0.2'
     }

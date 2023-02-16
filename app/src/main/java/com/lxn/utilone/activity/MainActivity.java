@@ -21,6 +21,9 @@ import com.lxn.utilone.util.LogUtils;
 import com.lxn.utilone.util.operationutil.ThreadUtils;
 import com.tencent.mmkv.MMKV;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
   *  @author lixiaonan
   *  功能描述: 首页的
@@ -93,6 +96,14 @@ public class MainActivity extends BaseActivity{
         findViewById(R.id.tvGlide).setOnClickListener(v ->  ARouter.getInstance().build(ActivityConstans.GLIDE_PATH).navigation());
         //tvRV 测试的
         findViewById(R.id.tvRV).setOnClickListener(v ->  RvActivity.Companion.startActivity(MainActivity.this));
+
+        //firebase 测试的
+        findViewById(R.id.tvFirebase).setOnClickListener(v ->  {
+            List<String> list =new ArrayList<>();
+            list.add("1");
+            list.get(2);
+
+        } );
 
 
         //监听掉帧的情况的

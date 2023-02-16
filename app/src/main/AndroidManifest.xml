@@ -111,6 +111,11 @@
         <meta-data
             android:name="xposedminversion"
             android:value="54" />
+
+
+        <meta-data
+            android:name="firebase_performance_logcat_enabled"
+            android:value="true" />
     </application>
 
 </manifest>
