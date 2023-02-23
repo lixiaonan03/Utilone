@@ -177,6 +177,14 @@ public class UtilApplication extends Application {
     }
 
 
+    /**
+     *onConfigurationChanged() 是 Android 中的一个生命周期回调方法，当设备配置发生更改时（例如屏幕旋转，语言环境更改等），系统会调用该方法来通知应用程序。该方法会接收一个 Configuration 对象，表示设备的新配置信息。
+     * 通常情况下，当配置发生更改时，Android 会销毁并重新创建当前活动（Activity）以适应新的配置。不过，你可以通过在 AndroidManifest.xml 文件中为活动设置 android:configChanges 属性来指定某些配置发生更改时不销毁活动。
+     * 在这种情况下，当配置发生更改时，系统会调用 onConfigurationChanged() 方法，应用程序可以在该方法中进行必要的处理，例如重新加载资源、重新计算布局等。
+     *
+     * 注意：自己使用代码设置配置改变，暂时不会回调到这里。回调到这里之后，所有的activity回到前台的时候都会带着原来的信息重新创建,用的是新的资源配置
+     * @param newConfig
+     */
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         if (newConfig.fontScale != 1) {

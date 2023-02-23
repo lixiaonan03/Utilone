@@ -104,6 +104,9 @@ public class MainActivity extends BaseActivity{
             list.get(2);
 
         } );
+        //语言设置的
+        findViewById(R.id.tvLanguage).setOnClickListener(v ->  ARouter.getInstance().build(ActivityConstans.LANGUAGE_PATH).withInt("lxn",100).navigation());
+
 
 
         //监听掉帧的情况的

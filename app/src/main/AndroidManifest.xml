@@ -89,6 +89,10 @@
             android:name=".activity.GlideActivity"
             android:screenOrientation="unspecified"
             tools:ignore="Instantiatable" />
+       <activity
+           android:name=".activity.uiconfig.LanguageActivity"
+           android:configChanges="locale|layoutDirection"
+           />
         <activity android:name=".activity.TwoActivity"/>
         <!-- util 工具类相关的 -->
         <provider

@@ -39,5 +39,9 @@ class ActivityConstans {
          * glide 学习测试
          */
         const val GLIDE_PATH = "/lxn/glide"
+        /**
+         *  语言设置学习的
+         */
+        const val LANGUAGE_PATH = "/lxn/language"
     }
 }

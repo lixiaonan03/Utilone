@@ -40,6 +40,8 @@ abstract class BaseKtActivity : AppCompatActivity() {
             updateTopBarView(binding.linTop,null)
 //            binding.linTop.topText.setText(getToolbarTitleRes())
         }
+        //TODO 这个地方得测试下
+        initView(savedInstanceState)
     }
 
     /**

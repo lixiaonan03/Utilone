@@ -99,6 +99,15 @@
                 android:text="firebase测试数据的"
                 android:textColor="#ffffff"
                 android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/tvLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:background="@drawable/login_button"
+                android:gravity="center"
+                android:text="语言设置的"
+                android:textColor="#ffffff"
+                android:textSize="14sp"/>
             <ImageView
                 android:id="@+id/ivImage"
                 android:layout_width="wrap_content"
