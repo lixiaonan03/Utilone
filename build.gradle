@@ -12,14 +12,19 @@ buildscript {
         mavenCentral()
         google()
 
+        //自己参考别人写的插件的地址
+        maven {
+            url = uri('./repo')
+        }
         //自定义插件的maven 地址的
         maven {
             url uri('./lxnplugin/my-plugin')
         }
 
+
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:7.3.0"
+        classpath "com.android.tools.build:gradle:7.3.1"
         // 使用 kotlin的Gradle插件   作用是提供编译 Kotlin 源文件（.kt 编译成 .class）的脚本，由 JetBrains 开发。
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong
@@ -37,6 +42,9 @@ buildscript {
 
         //引入自定义插件的
         classpath 'com.lu.plugin:lxnplugin:0.0.2'
+
+        //自定义的处理 exported 的插件
+        classpath 'com.lxn1:exportedOk:1.1.4'
     }
 }
 

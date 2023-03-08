@@ -1,0 +1,4 @@
+<resources>
+
+    <style name="Theme.Utilone" parent="Theme.MaterialComponents.Light" />
+</resources>

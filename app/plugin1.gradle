@@ -1,0 +1,134 @@
+import com.android.build.gradle.AppExtension
+import com.android.build.gradle.AppPlugin
+import com.android.build.gradle.api.AndroidBasePlugin
+import com.android.ide.common.xml.AndroidManifestParser
+
+//引入自定义的插件
+apply plugin:CheckExportedPlugin
+
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+
+
+        classpath "com.android.tools.build:gradle:7.1.3"
+
+//        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72"
+    }
+}
+
+dependencies {
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0"
+//    implementation "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72"
+
+    //gradle sdk
+    implementation gradleApi()
+    //groovy sdk
+    implementation localGroovy()
+}
+
+
+
+/**
+ * 这个插件的顺序在上面id 形式之后的， apply plugin: 放在下面,
+ */
+class MyPlugin1 implements Plugin<Project> {
+
+    @Override
+    void apply(Project project) {
+        println '插件自定义111------ 直接在build中使用-- 开始=='
+        println '节点名称------ ' + project.getExtensions()
+//         project.getExtensions().getByType(BasePluginExtension.class)
+//        appExtension.variantFilter { variant ->
+//            println '节点名称------ ' + variant.name
+//        }
+        println '插件自定义1111------ 直接在build中使用的== 结束'
+    }
+}
+
+
+import org.gradle.api.Project
+import org.gradle.api.XmlProvider
+import org.gradle.api.plugins.PluginInstantiationException
+import org.gradle.api.tasks.util.PatternFilterable
+import org.gradle.api.tasks.util.PatternSet
+import org.xml.sax.SAXException
+
+import javax.xml.parsers.ParserConfigurationException
+import javax.xml.parsers.SAXParserFactory
+import javax.xml.transform.sax.SAXTransformerFactory
+import javax.xml.transform.sax.TransformerHandler
+import javax.xml.transform.stream.StreamResult
+
+
+
+class CheckExportedPlugin implements Plugin<Project> {
+
+    @Override
+    void apply(Project project) {
+
+        println("-我的---"+project.getPlugins())
+        println("-我的---"+project.getPlugins().hasPlugin(AppPlugin.class))
+        // Ensure that the Android plugin is applied
+        try {
+//            project.getPlugins()["AppPlugin"]
+        } catch (PluginInstantiationException e) {
+            println("-我的-报错了--")
+            project.getLogger().error("Failed to apply CheckExportedPlugin: ${e.message}")
+            return
+        }
+        println("-开始的---")
+        // Add a task to check all components in the manifest
+        def checkExported = project.task("checkExported")
+        checkExported.description = "Check that all Android components have android:exported=\"false\" attribute"
+        checkExported.group = "Verification"
+        println("-开始的-111--")
+        // Configure the task to only scan AndroidManifest.xml files
+        PatternFilterable filterable = new PatternSet().include("**/AndroidManifest.xml")
+        checkExported.inputs.files(filterable)
+        checkExported.outputs.upToDateWhen { false }
+        println("-开始的2222--")
+        // Add an action to the task to scan the manifest files
+        checkExported.doLast {
+            println("-我的doLast---"+project.getPlugins())
+            project.fileTree(".").matching(filterable).visit { FileVisitDetails details ->
+                def manifestFile = details.file
+                def components = extractComponentsFromManifest(manifestFile)
+                println("-我的-component=====--"+components)
+                // Print a warning message for each component that is not exported
+                components.findAll { !it.exported }.each { component ->
+                    project.getLogger().warn("Component '${component.name}' in '${manifestFile.name}' does not have android:exported=\"false\" attribute")
+                }
+            }
+        }
+    }
+
+    // Parse the manifest file and extract all components
+    def extractComponentsFromManifest(File manifestFile) {
+        def components = []
+
+        try {
+            SAXParserFactory parserFactory = SAXParserFactory.newInstance()
+            parserFactory.setNamespaceAware(true)
+            parserFactory.setFeature("http://xml.org/sax/features/external-general-entities", false)
+            parserFactory.setFeature("http://xml.org/sax/features/external-parameter-entities", false)
+
+            SAXTransformerFactory transformerFactory = (SAXTransformerFactory) SAXTransformerFactory.newInstance()
+            TransformerHandler transformerHandler = transformerFactory.newTransformerHandler()
+
+            def manifestHandler = new AndroidManifestParser.ManifestHandler(components)
+            transformerHandler.setResult(new StreamResult(manifestHandler))
+            parserFactory.newSAXParser().parse(manifestFile, manifestHandler)
+        } catch (ParserConfigurationException | SAXException e) {
+            project.getLogger().error("Failed to parse manifest file: ${e.message}")
+        }
+
+        println("-我的---"+components)
+    }
+
+    // Handler class to parse the manifest file and extract components
+}

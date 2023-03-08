@@ -4,6 +4,8 @@ plugins {
     id 'kotlin-kapt'
     id 'com.lu'
 
+    id 'com.lxn1.manifest.exported'
+
     id 'com.google.gms.google-services'
     // firebase 奔溃服务的
     id 'com.google.firebase.crashlytics'
@@ -11,6 +13,27 @@ plugins {
     id 'com.google.firebase.firebase-perf'
     // 带kotlin的 目前支持有问题 参考 https://github.com/HujiangTechnology/gradle_plugin_android_aspectjx/issues/335
 //    id 'android-aspectjx'
+}
+
+
+
+//引入其他的build 文件,可以用来搞一些自定义插件内容
+//apply from: 'plugin1.gradle'
+
+//引入自定义的插件
+//apply plugin:MyPlugin
+/**
+ * 这个插件的顺序在上面id 形式之后的， apply plugin: 放在下面,
+ */
+class MyPlugin implements Plugin<Project>{
+
+    @Override
+    void apply(Project project) {
+        println '插件自定义------ 直接在build中使用-- 开始=='
+        println(project.getTasks())
+
+       println '插件自定义------ 直接在build中使用的== 结束'
+    }
 }
 
 //aspectjx {
@@ -28,9 +51,18 @@ plugins {
 //    exclude 'kotlinx.coroutines'
 //}
 
+
+exported {
+    // 是否允许修改主main
+    enableMainManifest true
+    // 自定义日志输出位置,建议使用md格式
+    // 默认输出位置,app/build/exported/outManifestLog.md
+    outPutFile new File(("app/outManifestLog.md"))
+    ruleFile new File("app/exported_black_list.json")
+}
+
 android {
     compileSdk 33
-
     defaultConfig {
         applicationId "com.lxn.utilone"
         minSdk 24
@@ -270,4 +302,13 @@ dependencies {
     //#####################################################################
 
 
+}
+
+
+subprojects {
+    afterEvaluate {
+        android {
+            resourcePrefix "${project.name}_"
+        }
+    }
 }

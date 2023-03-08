@@ -1,0 +1,11 @@
+{
+  "actionRules": [
+  ],
+  "whiteNames": [
+    "com.github.lzyzsd.ui.login.LoginActivity"
+  ],
+  "blackPackages": [
+  ],
+  "blackNames": [],
+  "blackIgnores": []
+}
