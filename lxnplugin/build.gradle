@@ -38,8 +38,6 @@ beforeEvaluate {
 
 
 afterEvaluate {
-    println "afterEvaluate回调..."
-
     publishing {
         publications {
             // Creates a Maven publication called "release".
@@ -51,7 +49,7 @@ afterEvaluate {
 
                 // You can then customize attributes of the publication as shown below.
                 group = 'com.lu.plugin'
-                version = '0.0.2'
+                version = '0.0.3'
 //                uri('./my-plugin')
             }
             // Creates a Maven publication called “debug”.
@@ -60,7 +58,7 @@ afterEvaluate {
 //                from components.debug
 
                 group = 'com.lu.plugin'
-                version = '0.0.2'
+                version = '0.0.3'
 //                uri('./my-plugin')
             }
         }

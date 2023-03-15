@@ -54,20 +54,20 @@ class ExportedPlugin : Plugin<Project> {
         }
 
 
-        //检测每个task任务的执行时长的
-        var startTime = System.currentTimeMillis()
-        project.gradle.addListener(object :TaskExecutionListener{
-            override fun beforeExecute(p0: Task) {
-                //task开始执行之前开始记录时间
-                startTime = System.currentTimeMillis()
-            }
-
-            override fun afterExecute(p0: Task, p1: TaskState) {
-               val time = System.currentTimeMillis() - startTime
-                println("任务${p0.name} =执行的时间====${time}")
-            }
-
-        })
+//        //检测每个task任务的执行时长的
+//        var startTime = System.currentTimeMillis()
+//        project.gradle.addListener(object :TaskExecutionListener{
+//            override fun beforeExecute(p0: Task) {
+//                //task开始执行之前开始记录时间
+//                startTime = System.currentTimeMillis()
+//            }
+//
+//            override fun afterExecute(p0: Task, p1: TaskState) {
+//               val time = System.currentTimeMillis() - startTime
+//                println("任务${p0.name} =执行的时间====${time}")
+//            }
+//
+//        })
     }
     /** 添加task到processxxxMainManifest之前 如 processDebugMainManifest */
     private fun addMainManifestTask(ext: ExportedExtension,p: Project){

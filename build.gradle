@@ -4,7 +4,7 @@ buildscript {
 
     //kotlin的版本号 更新版本时需要注意其他三方库未更新及时可能造成的影响
     //举例：https://stackoverflow.com/questions/67410992/upgrading-android-kotlin-version-to-1-5-0-throwing-error-message-on-build
-    ext.kotlin_version = '1.7.20'
+    ext.kotlin_version = '1.8.10'
 
     repositories {
         maven { url 'https://maven.aliyun.com/repository/public' }
@@ -24,7 +24,7 @@ buildscript {
 
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:7.3.1"
+        classpath "com.android.tools.build:gradle:7.4.2"
         // 使用 kotlin的Gradle插件   作用是提供编译 Kotlin 源文件（.kt 编译成 .class）的脚本，由 JetBrains 开发。
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong
@@ -41,14 +41,16 @@ buildscript {
         classpath 'com.google.firebase:perf-plugin:1.4.2'
 
         //引入自定义插件的
-        classpath 'com.lu.plugin:lxnplugin:0.0.2'
+        classpath 'com.lu.plugin:lxnplugin:0.0.3'
 
         //自定义的处理 exported 的插件
         classpath 'com.lxn1:exportedOk:1.1.4'
+        classpath 'com.lxn:resourceOK:1.0.5'
     }
 }
 
 allprojects {
+    //本质上都是方法调用
     repositories {
         maven { url 'https://maven.aliyun.com/repository/public' }
         maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
@@ -62,4 +64,14 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+/**
+ * 写的这个task任务会在  右侧other组中hello
+ * 其中 "hello" 是任务名, doLast 是在任务的最后执行
+ */
+tasks.register("hello"){
+    doLast {
+        println 'Hello world自己写的看看位置在啥地方!'
+    }
 }

@@ -1,0 +1,60 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0"
+    }
+}
+
+
+plugins {
+    id 'java-library'
+    id 'org.jetbrains.kotlin.jvm'
+    id 'java-gradle-plugin'
+    id 'kotlin'
+    // 7.0 之后用新的插件包了
+    id 'maven-publish'
+}
+
+repositories {
+    google()
+    mavenCentral()
+}
+dependencies {
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0'
+    implementation "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72"
+    implementation 'com.android.tools.build:gradle:4.1.3'
+    implementation 'com.google.code.gson:gson:2.9.1'
+}
+
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+afterEvaluate {
+
+
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                artifactId = 'resourceOK'
+                //如果是war包填写components.web，如果是jar包填写components.java
+                from components.java
+                // You can then customize attributes of the publication as shown below.
+                group = 'com.lxn'
+                version = '1.0.5'
+            }
+        }
+        //插件存储库
+        repositories {
+            maven {
+                //重新指定仓库地址
+                url = uri('../repo')
+            }
+        }
+    }
+}

@@ -1,6 +1,9 @@
 apply plugin: 'com.android.library'
 apply plugin: 'org.jetbrains.kotlin.android'
 
+//apply plugin: 'com.lxn1.manifest.exported'
+
+
 version = "1.0.0"
 
 android {
