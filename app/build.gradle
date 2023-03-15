@@ -2,9 +2,11 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'com.lu'
+//    id 'com.lu'
 
     id 'com.lxn1.manifest.exported'
+
+    id 'com.resource'
 
     id 'com.google.gms.google-services'
     // firebase 奔溃服务的
@@ -58,7 +60,7 @@ exported {
     // 自定义日志输出位置,建议使用md格式
     // 默认输出位置,app/build/exported/outManifestLog.md
     outPutFile new File(("app/outManifestLog.md"))
-    ruleFile new File("app/exported_black_list.json")
+//    ruleFile new File("app/exportedBlackList.json")
 }
 
 android {
@@ -104,7 +106,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.2"
+        kotlinCompilerExtensionVersion = "1.4.2"
     }
     //启用ViewBinding
     viewBinding{
@@ -163,7 +165,7 @@ dependencies {
 
     // compose 官方组件的  https://developer.android.com/jetpack/compose/setup?hl=zh-cn
 
-    def composeBom = platform('androidx.compose:compose-bom:2022.12.00')
+    def composeBom = platform('androidx.compose:compose-bom:2023.01.00')
     implementation composeBom
     androidTestImplementation composeBom
 
@@ -177,17 +179,28 @@ dependencies {
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
 
+
+    // Optional - Included automatically by material, only add when you need
+    // the icons but not the material library (e.g. when using Material3 or a
+    // custom design system based on Foundation)
+    implementation 'androidx.compose.material:material-icons-core'
+    // Optional - Add full set of material icons
+    implementation 'androidx.compose.material:material-icons-extended'
+    // Optional - Add window size utils
+    implementation 'androidx.compose.material3:material3-window-size-class'
+
+    
     // Optional - Integration with activities
-    implementation 'androidx.activity:activity-compose:1.5.1'
+    implementation 'androidx.activity:activity-compose:1.6.1'
     // Optional - Integration with ViewModels
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0'
     // Optional - Integration with LiveData
     implementation 'androidx.compose.runtime:runtime-livedata'
     // Optional - Integration with RxJava
     implementation 'androidx.compose.runtime:runtime-rxjava2'
 
-    // Compose Material Design
-    implementation 'androidx.compose.material:material:1.3.1'
+    // Material Design 3
+    implementation 'androidx.compose.material3:material3'
     // Animations
     implementation 'androidx.compose.animation:animation:1.3.3'
 

@@ -68,7 +68,7 @@ class InjectTransform extends Transform {
                         def dest = outputProvider.getContentLocation(directoryInput.name,
                                 directoryInput.contentTypes, directoryInput.scopes, Format.DIRECTORY)
 
-                        println("directory output dest: $dest.absolutePath")
+//                        println("directory output dest: $dest.absolutePath")
                         // 将input的目录复制到output指定目录
                         FileUtils.copyDirectory(directoryInput.file,dest)
                 }
@@ -86,7 +86,7 @@ class InjectTransform extends Transform {
                         }
                         def dest = outputProvider.getContentLocation(jarName + md5Name, jarInput.contentTypes, jarInput.scopes, Format.JAR)
 
-                        println("jar output dest: $dest.absolutePath")
+//                        println("jar output dest: $dest.absolutePath")
                         FileUtils.copyFile(jarInput.file, dest)
                 }
         }
