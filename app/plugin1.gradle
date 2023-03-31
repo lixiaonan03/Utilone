@@ -2,9 +2,16 @@ import com.android.build.gradle.AppExtension
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.api.AndroidBasePlugin
 import com.android.ide.common.xml.AndroidManifestParser
+import org.xml.sax.SAXException
+
+import javax.xml.parsers.ParserConfigurationException
+import javax.xml.parsers.SAXParserFactory
+import javax.xml.transform.sax.SAXTransformerFactory
+import javax.xml.transform.sax.TransformerHandler
+import javax.xml.transform.stream.StreamResult
 
 //引入自定义的插件
-apply plugin:CheckExportedPlugin
+apply plugin: MyPlugin1
 
 
 buildscript {
@@ -13,24 +20,18 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-
-
-        classpath "com.android.tools.build:gradle:7.1.3"
-
-//        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72"
+        classpath "com.android.tools.build:gradle:7.4.2"
     }
 }
 
-dependencies {
-//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0"
-//    implementation "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72"
-
-    //gradle sdk
-    implementation gradleApi()
-    //groovy sdk
-    implementation localGroovy()
-}
-
+//dependencies {
+////    implementation fileTree(dir: 'libs', include: ['*.jar'])
+//    implementation localGroovy()
+////    implementation gradleApi()
+////    implementation 'com.android.tools.build:gradle:3.3.2'
+////    implementation 'com.sun.mail:android-mail:1.6.2'
+////    implementation 'com.sun.mail:android-activation:1.6.2'
+//}
 
 
 /**
@@ -41,73 +42,48 @@ class MyPlugin1 implements Plugin<Project> {
     @Override
     void apply(Project project) {
         println '插件自定义111------ 直接在build中使用-- 开始=='
-        println '节点名称------ ' + project.getExtensions()
-//         project.getExtensions().getByType(BasePluginExtension.class)
-//        appExtension.variantFilter { variant ->
-//            println '节点名称------ ' + variant.name
-//        }
-        println '插件自定义1111------ 直接在build中使用的== 结束'
-    }
-}
-
-
-import org.gradle.api.Project
-import org.gradle.api.XmlProvider
-import org.gradle.api.plugins.PluginInstantiationException
-import org.gradle.api.tasks.util.PatternFilterable
-import org.gradle.api.tasks.util.PatternSet
-import org.xml.sax.SAXException
-
-import javax.xml.parsers.ParserConfigurationException
-import javax.xml.parsers.SAXParserFactory
-import javax.xml.transform.sax.SAXTransformerFactory
-import javax.xml.transform.sax.TransformerHandler
-import javax.xml.transform.stream.StreamResult
-
-
-
-class CheckExportedPlugin implements Plugin<Project> {
-
-    @Override
-    void apply(Project project) {
-
-        println("-我的---"+project.getPlugins())
-        println("-我的---"+project.getPlugins().hasPlugin(AppPlugin.class))
-        // Ensure that the Android plugin is applied
         try {
-//            project.getPlugins()["AppPlugin"]
-        } catch (PluginInstantiationException e) {
+            project.getPlugins().hasPlugin("com.android.application")
+        } catch (Exception e) {
             println("-我的-报错了--")
             project.getLogger().error("Failed to apply CheckExportedPlugin: ${e.message}")
             return
         }
-        println("-开始的---")
-        // Add a task to check all components in the manifest
-        def checkExported = project.task("checkExported")
+        //task 直接通过task 方法挂上不行(不会执行的)，还得挂到某个task任务下
+        def lxnTask  = project.task("lxnTaskExportes")
+//        project.tasks.first().dependsOn(lxnTask)
+        lxnTask.doLast {
+            println("lxnTaskExportes---执行了-doLast--")
+        }
+        println("-我的-报错了=====--")
+
+        //开启任务
+        def mergeDebugResources = project.tasks.findByName("assemble")
+        println("-mergeDebugResources===--"+mergeDebugResources)
+        mergeDebugResources?.dependsOn(lxnTask)
+
+
+
+        def checkExported = project.task("lxnExported")
         checkExported.description = "Check that all Android components have android:exported=\"false\" attribute"
         checkExported.group = "Verification"
-        println("-开始的-111--")
-        // Configure the task to only scan AndroidManifest.xml files
         PatternFilterable filterable = new PatternSet().include("**/AndroidManifest.xml")
         checkExported.inputs.files(filterable)
         checkExported.outputs.upToDateWhen { false }
-        println("-开始的2222--")
-        // Add an action to the task to scan the manifest files
         checkExported.doLast {
-            println("-我的doLast---"+project.getPlugins())
+            println("-doLast--")
             project.fileTree(".").matching(filterable).visit { FileVisitDetails details ->
                 def manifestFile = details.file
                 def components = extractComponentsFromManifest(manifestFile)
-                println("-我的-component=====--"+components)
                 // Print a warning message for each component that is not exported
                 components.findAll { !it.exported }.each { component ->
                     project.getLogger().warn("Component '${component.name}' in '${manifestFile.name}' does not have android:exported=\"false\" attribute")
                 }
             }
         }
+        println '插件自定义1111------ 直接在build中使用的== 结束'
     }
 
-    // Parse the manifest file and extract all components
     def extractComponentsFromManifest(File manifestFile) {
         def components = []
 
@@ -127,8 +103,6 @@ class CheckExportedPlugin implements Plugin<Project> {
             project.getLogger().error("Failed to parse manifest file: ${e.message}")
         }
 
-        println("-我的---"+components)
+        println("-我的---" + components)
     }
-
-    // Handler class to parse the manifest file and extract components
 }

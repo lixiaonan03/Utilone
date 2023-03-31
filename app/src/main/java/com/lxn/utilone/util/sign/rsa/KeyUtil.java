@@ -129,7 +129,8 @@ public class KeyUtil {
     private static String getPrivatekeystrByFile() throws Exception {
         InputStream in;
         //证书文件  pem一般是私钥
-        in = UtilApplication.getInstance().getResources().openRawResource(R.raw.app_ff_pkcs8);
+//        in = UtilApplication.getInstance().getResources().openRawResource(R.raw.app_ff_pkcs8);
+        in = null;
         StringBuilder sb = new StringBuilder();
         BufferedReader br = null;
         try {

@@ -20,7 +20,7 @@ plugins {
 
 
 //引入其他的build 文件,可以用来搞一些自定义插件内容
-//apply from: 'plugin1.gradle'
+apply from: 'plugin1.gradle'
 
 //引入自定义的插件
 //apply plugin:MyPlugin
@@ -189,7 +189,7 @@ dependencies {
     // Optional - Add window size utils
     implementation 'androidx.compose.material3:material3-window-size-class'
 
-    
+
     // Optional - Integration with activities
     implementation 'androidx.activity:activity-compose:1.6.1'
     // Optional - Integration with ViewModels
@@ -325,3 +325,16 @@ subprojects {
         }
     }
 }
+
+
+//task clean11(){
+//    println(1)
+//    delete(rootProject.buildDir)
+//    println(1)
+//    doFirst{
+//        println("first1")
+//    }
+//    doLast({
+//        println("last1")
+//    })
+//}
