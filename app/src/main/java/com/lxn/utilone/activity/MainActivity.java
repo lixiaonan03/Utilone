@@ -99,6 +99,7 @@ public class MainActivity extends BaseActivity{
 
         //firebase 测试的
         findViewById(R.id.tvFirebase).setOnClickListener(v ->  {
+
             List<String> list =new ArrayList<>();
             list.add("1");
             list.get(2);
@@ -106,6 +107,8 @@ public class MainActivity extends BaseActivity{
         } );
         //语言设置的
         findViewById(R.id.tvLanguage).setOnClickListener(v ->  ARouter.getInstance().build(ActivityConstans.LANGUAGE_PATH).withInt("lxn",100).navigation());
+
+        findViewById(R.id.tvMeasure).setOnClickListener(v ->  ARouter.getInstance().build(ActivityConstans.MEASURE_PATH).navigation());
 
 
 

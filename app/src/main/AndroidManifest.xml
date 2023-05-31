@@ -93,6 +93,9 @@
            android:name=".activity.uiconfig.LanguageActivity"
            android:configChanges="locale|layoutDirection"
            />
+       <activity
+           android:name=".activity.uiconfig.MeasuredActivity"
+           />
         <activity android:name=".activity.TwoActivity"/>
         <!-- util 工具类相关的 -->
         <provider

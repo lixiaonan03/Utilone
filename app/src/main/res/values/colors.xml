@@ -68,4 +68,12 @@
     <color name="tab_indicator_text_selected">#ffffff</color>
     <color name="tab_indicator_text_unselected">#aac5d7</color>
     <color name="page_viewer_margin_color">#007800</color>
+
+
+    <color name="color_ff3b28">#FF3B28</color>
+    <color name="common_text_black">#ff505470</color>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="auth_step_no">#E8E7E7</color>
 </resources>

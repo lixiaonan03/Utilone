@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.lxn.utilone.view.MyFrame xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="42dp"
+        android:background="@color/auth_step_no"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/tvText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/common_text_black"
+            android:layout_marginHorizontal="20dp"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:textSize="16sp"
+            android:text="La tarifa cobrada diariamente del principal del préstamo para mantener el costo del préstamo。" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@color/color_ff3b28"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/common_text_black"
+                android:textSize="16sp"
+                android:text="测试" />
+
+            <View
+                android:id="@+id/view_common_dialog_divide"
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="#DEDDDD" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:text="Ok" />
+        </LinearLayout>
+    </LinearLayout>
+</com.lxn.utilone.view.MyFrame>

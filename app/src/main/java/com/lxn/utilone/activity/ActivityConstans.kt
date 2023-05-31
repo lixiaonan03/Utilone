@@ -43,5 +43,9 @@ class ActivityConstans {
          *  语言设置学习的
          */
         const val LANGUAGE_PATH = "/lxn/language"
+        /**
+         *  测试学习的
+         */
+        const val MEASURE_PATH = "/lxn/measure"
     }
 }

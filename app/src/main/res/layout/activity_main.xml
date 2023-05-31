@@ -108,6 +108,16 @@
                 android:text="语言设置的"
                 android:textColor="#ffffff"
                 android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/tvMeasure"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:background="@drawable/login_button"
+                android:gravity="center"
+                android:text="view测试学习的"
+                android:textColor="#ffffff"
+                android:textSize="14sp"/>
             <ImageView
                 android:id="@+id/ivImage"
                 android:layout_width="wrap_content"

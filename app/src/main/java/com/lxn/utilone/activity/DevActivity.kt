@@ -10,6 +10,7 @@ import android.graphics.Paint
 import android.os.Bundle
 import android.os.Process
 import android.view.View
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.lxn.utilone.databinding.ActivityDevBinding
 import com.lxn.utilone.util.ToastUtils
 import kotlin.system.exitProcess
@@ -33,6 +34,7 @@ class DevActivity : BaseActivity() {
         binding = ActivityDevBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        testFireBaseEvent()
         //模拟重启应用的
         binding.tvReStartApp.setOnClickListener {
             ToastUtils.toastshort("应用重启中")
@@ -62,5 +64,13 @@ class DevActivity : BaseActivity() {
             paint.colorFilter = ColorMatrixColorFilter(colorMatrix)
             window.decorView.setLayerType(View.LAYER_TYPE_HARDWARE,paint)
         }
+    }
+    private fun testFireBaseEvent(){
+        var  bundle = Bundle()
+        bundle.putString("my_custom_event", "custom log message")
+
+        FirebaseAnalytics.getInstance(this@DevActivity).logEvent("lxntest2", bundle)
+
+
     }
 }

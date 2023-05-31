@@ -4,9 +4,9 @@ plugins {
     id 'kotlin-kapt'
 //    id 'com.lu'
 
-    id 'com.lxn1.manifest.exported'
+//    id 'com.lxn1.manifest.exported'
 
-    id 'com.resource'
+//    id 'com.resource'
 
     id 'com.google.gms.google-services'
     // firebase 奔溃服务的
@@ -54,14 +54,14 @@ class MyPlugin implements Plugin<Project>{
 //}
 
 
-exported {
-    // 是否允许修改主main
-    enableMainManifest true
-    // 自定义日志输出位置,建议使用md格式
-    // 默认输出位置,app/build/exported/outManifestLog.md
-    outPutFile new File(("app/outManifestLog.md"))
-//    ruleFile new File("app/exportedBlackList.json")
-}
+//exported {
+//    // 是否允许修改主main
+//    enableMainManifest true
+//    // 自定义日志输出位置,建议使用md格式
+//    // 默认输出位置,app/build/exported/outManifestLog.md
+//    outPutFile new File(("app/outManifestLog.md"))
+////    ruleFile new File("app/exportedBlackList.json")
+//}
 
 android {
     compileSdk 33
@@ -83,6 +83,14 @@ android {
         multiDexEnabled true
 
     }
+    signingConfigs {
+        release {
+            keyAlias 'cartera'
+            keyPassword '2022cartera'
+            storeFile file("../jks/cartera.jks")
+            storePassword '2022cartera'
+        }
+    }
 
     buildTypes {
         release {
@@ -90,6 +98,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             //分包配置的
             multiDexKeepProguard file('multidex-config.pro')
+            signingConfig signingConfigs.release
         }
     }
     buildFeatures {
