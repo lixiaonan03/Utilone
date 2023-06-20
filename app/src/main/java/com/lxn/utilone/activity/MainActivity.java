@@ -12,6 +12,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.lxn.utilone.R;
+import com.lxn.utilone.activity.algorithm.AlgorIthmActivity;
 import com.lxn.utilone.activity.rv.RvActivity;
 import com.lxn.utilone.databinding.ActivityMainBinding;
 import com.lxn.utilone.modle.PersonLxn;
@@ -109,6 +110,7 @@ public class MainActivity extends BaseActivity{
         findViewById(R.id.tvLanguage).setOnClickListener(v ->  ARouter.getInstance().build(ActivityConstans.LANGUAGE_PATH).withInt("lxn",100).navigation());
 
         findViewById(R.id.tvMeasure).setOnClickListener(v ->  ARouter.getInstance().build(ActivityConstans.MEASURE_PATH).navigation());
+        findViewById(R.id.tvSuanfa).setOnClickListener(v -> AlgorIthmActivity.Companion.startActivity(MainActivity.this));
 
 
 

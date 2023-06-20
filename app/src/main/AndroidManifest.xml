@@ -89,6 +89,14 @@
             android:name=".activity.GlideActivity"
             android:screenOrientation="unspecified"
             tools:ignore="Instantiatable" />
+        <activity
+            android:name=".activity.algorithm.AlgorIthmActivity"
+            android:screenOrientation="unspecified"
+            tools:ignore="Instantiatable" />
+        <activity
+            android:name=".activity.algorithm.SkuActivity"
+            android:screenOrientation="unspecified"
+            tools:ignore="Instantiatable" />
        <activity
            android:name=".activity.uiconfig.LanguageActivity"
            android:configChanges="locale|layoutDirection"

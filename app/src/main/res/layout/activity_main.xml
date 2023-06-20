@@ -19,6 +19,16 @@
             app:showDividers="middle"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/tvSuanfa"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:background="@drawable/login_button"
+                android:gravity="center"
+                android:text="算法学习的"
+                android:textColor="#ffffff"
+                android:textSize="14sp"/>
+
+            <TextView
                 android:id="@+id/tvOkhttp"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
