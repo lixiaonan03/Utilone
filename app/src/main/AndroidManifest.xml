@@ -94,6 +94,14 @@
             android:screenOrientation="unspecified"
             tools:ignore="Instantiatable" />
         <activity
+            android:name=".activity.architecture.ArchitectureActivity"
+            android:screenOrientation="unspecified"
+            tools:ignore="Instantiatable" />
+        <activity
+            android:name=".activity.architecture.FlowLoginActivity"
+            android:screenOrientation="unspecified"
+            tools:ignore="Instantiatable" />
+        <activity
             android:name=".activity.algorithm.SkuActivity"
             android:screenOrientation="unspecified"
             tools:ignore="Instantiatable" />

@@ -27,6 +27,15 @@
                 android:text="算法学习的"
                 android:textColor="#ffffff"
                 android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/tvArchitecture"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:background="@drawable/login_button"
+                android:gravity="center"
+                android:text="架构学习的"
+                android:textColor="#ffffff"
+                android:textSize="14sp"/>
 
             <TextView
                 android:id="@+id/tvOkhttp"
