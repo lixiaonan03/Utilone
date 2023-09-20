@@ -1,6 +1,7 @@
 package com.lxn.utilone.activity;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.Instrumentation;
 import android.content.Context;
 import android.content.Intent;
@@ -22,8 +23,10 @@ import com.lxn.utilone.hook.InstrumentationProxy;
 import com.lxn.utilone.util.Log;
 
 import java.lang.reflect.Field;
+import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.core.splashscreen.SplashScreen;
 
@@ -35,9 +38,26 @@ import androidx.core.splashscreen.SplashScreen;
 public class WelcomeActivity extends BaseActivity {
 
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        int taskId = getTaskId();
+        ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.AppTask> tasks = am.getAppTasks(); // 获取所有应用任务列表
+        int numActivitiesInTask = 0;
+        for (ActivityManager.AppTask taskInfo : tasks) {
+            Log.i("lxnPush", "taskInfo=="+taskInfo.getTaskInfo().taskId+" === "+taskInfo.getTaskInfo().toString());
+            if (taskInfo.getTaskInfo().taskId == taskId) {
+                numActivitiesInTask = taskInfo.getTaskInfo().numActivities;
+                break;
+            }
+        }
+
+        Log.i("lxnPush", "欢迎页的=taskid="+taskId+"="+numActivitiesInTask+"=="+getIntent().toString());
+
         SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
         splashScreen.setKeepOnScreenCondition(() -> true);
         setContentView(R.layout.activity_welcome);

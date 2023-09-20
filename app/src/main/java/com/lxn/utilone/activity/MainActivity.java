@@ -49,6 +49,8 @@ public class MainActivity extends BaseActivity{
         vb = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(vb.getRoot());
 
+        Log.i("lxnPush", "首页的=taskid="+getTaskId());
+
         testMMKV();
         TextView tvOkHttp= findViewById(R.id.tvOkhttp);
         tvOkHttp.setOnClickListener(new View.OnClickListener() {
@@ -150,7 +152,8 @@ public class MainActivity extends BaseActivity{
 
         Glide.with(this).load("https://upload-images.jianshu.io/upload_images/6038844-a7cc326f385542f5.gif?imageMogr2/auto-orient/strip|imageView2/2/format/webp").into(vb.ivImage);
 
-        String picPath = "https://pic.wanwustore.cn/Fjt_IddpcNV6aNAyxCfRRBFHU_-c?imageView2/2/w/300";
+//        String picPath = "https://pic.wanwustore.cn/Fjt_IddpcNV6aNAyxCfRRBFHU_-c?imageView2/2/w/300";
+        String picPath = "https://rcns_trustworthy.s3.rapidcompute.com/appbucket111/identityCardFront/5a723f010d1e4d4987cc2b7902cf2263.jpg";
 
         Glide.with(this).load(picPath).into(vb.ivImage1);
 
@@ -167,6 +170,10 @@ public class MainActivity extends BaseActivity{
         Log.i("lxnDpi","=density===="+ DeviceUtil.density);
         Log.i("lxnDpi","=SCREEN_HEIGHT===="+ DeviceUtil.SCREEN_HEIGHT);
         Log.i("lxnDpi","=xdpi===="+ DeviceUtil.getDisplayMetrics().xdpi);
+
+
+        vb.tvTest3.setText("设置进去的---");
+        Log.i("lxnTextView","=vb.tvTest3===="+ vb.tvTest3.getText().toString());
     }
 
 
