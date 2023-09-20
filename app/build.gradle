@@ -224,7 +224,7 @@ dependencies {
     implementation 'androidx.core:core-splashscreen:1.0.0'
 
 
-
+    implementation 'androidx.work:work-runtime:2.7.0'
 
     //#####################################################################
     // 一些通用组件的
@@ -290,6 +290,9 @@ dependencies {
     kapt 'com.alibaba:arouter-compiler:1.5.2'
 
     implementation 'com.tencent:mmkv:1.2.13'
+    //权限管理的
+    implementation 'com.github.getActivity:XXPermissions:18.3'
+
 
     //美团的logan日志框架
     implementation 'com.dianping.android.sdk:logan:1.2.4'
@@ -306,6 +309,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     //性能监控的
     implementation 'com.google.firebase:firebase-perf'
+    //消息push
+    implementation 'com.google.firebase:firebase-messaging-ktx'
 
 
     //#####################################################################
