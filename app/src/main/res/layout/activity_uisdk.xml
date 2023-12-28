@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/common_white"
+    android:fitsSystemWindows="false"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/linTop"
+        layout="@layout/top_back" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="16dp"
+        android:scrollbars="none">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:divider="@drawable/lin_divider"
+            app:showDividers="middle">
+
+
+            <TextView
+                android:id="@+id/tvGet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:text="PinEditTextField(文字间隔的自定义view)"
+                android:textSize="14sp" />
+
+            <com.poovam.pinedittextfield.CirclePinField
+                android:id="@+id/circleField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textSelectHandle="@drawable/text_handle"
+                android:textSize="16sp"
+                app:circleRadius="15dp"
+                app:fieldBgColor="#ddd"
+                app:fillerColor="@color/colorPrimary"
+                app:fillerRadius="2dp"
+                app:noOfFields="6" />
+
+            <com.poovam.pinedittextfield.LinePinField
+                android:id="@+id/linPinField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textSelectHandle="@drawable/text_handle"
+                android:textSize="16sp"
+                app:bottomTextPaddingDp="15dp"
+                app:distanceInBetween="10dp"
+                app:fieldColor="@color/colorPrimary"
+                app:highlightColor="@color/colorAccent"
+                app:highlightType="allFields"
+                app:isCursorEnabled="true"
+                app:isCustomBackground="true"
+                app:lineThickness="5dp"
+                app:noOfFields="4" />
+
+            <com.poovam.pinedittextfield.SquarePinField
+                android:id="@+id/squareField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:inputType="text"
+                android:textSelectHandle="@drawable/text_handle"
+                android:textSize="16sp"
+                app:cornerRadius="10dp"
+                app:fieldBgColor="#ddd"
+                app:noOfFields="4" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:text="CodeEditText(墨西哥现在应该用的)"
+                android:textSize="14sp" />
+
+            <com.lwjfork.code.CodeEditText
+                android:id="@+id/etPassWord"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="33dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:inputType="number"
+                android:maxLength="6"
+                app:blockErrorColor="@color/color_ff3b28"
+                app:blockFocusColor="@color/black"
+                app:blockLineWidth="1dp"
+                app:blockNormalColor="#E8E7EC"
+                app:blockShape="underline"
+                app:blockSpace="11dp"
+                app:codeInputType="text"
+                app:codeTextColor="@android:color/black"
+                app:codeTextSize="16sp"
+                app:cursorColor="@color/logo_color"
+                app:cursorHeight="18dp"
+                app:cursorWidth="1.5dp"
+                app:maxCodeLength="6"
+                app:showCursor="true"
+                tools:text="111" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</LinearLayout>
