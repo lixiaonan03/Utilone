@@ -244,7 +244,8 @@ dependencies {
     // 网络层相关框架的
     //#####################################################################
     implementation 'com.squareup.okhttp3:okhttp:4.9.3'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
+//    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.11'
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11'
 
     //retrofit 网络框架的
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -275,9 +276,10 @@ dependencies {
     //#####################################################################
     // 一些UI 组件的
     //#####################################################################
-    //设置状态栏透明
-    implementation 'com.jaeger.statusbarutil:library:1.4.0'
-
+    //设置状态栏透明 这个过时时间久了 可以考虑  https://github.com/gyf-dev/ImmersionBar
+    implementation 'com.jaeger.statusbarutil:library:1.5.1'
+    // pinview 就是密码输入框 一个字符一个框的那种
+    implementation 'com.github.poovamraj:PinEditTextField:1.2.6'
 
     implementation 'com.kaopiz:kprogresshud:1.2.0'
 

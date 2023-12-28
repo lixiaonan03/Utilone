@@ -136,6 +136,7 @@ public class OkhttpActivity extends BaseActivity {
             });
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
             builder.addInterceptor(logging);
+            //可以在这个地方配置证书校验
             builder.certificatePinner(new CertificatePinner.Builder()
                     //注意这个地方只能 加入 sha256 或者 sha1 算法的摘要代码里面有判断    并且如果 network_security_config 这个里面配置对了,这个地方配置错误也会访问错误
                     .add("pic.wanwustore.cn", "sha256/K19eS30xtD6XoGqBrCbYYlgnC4vA8iLN6Ozwi0cuycI=").build());

@@ -10,6 +10,7 @@ buildscript {
         maven { url 'https://maven.aliyun.com/repository/public' }
         maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
         mavenCentral()
+        maven { url 'https://jitpack.io' }
         google()
 
         //自己参考别人写的插件的地址
@@ -57,6 +58,7 @@ allprojects {
         maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
 
         maven { url "https://frontjs-static.pgyer.com/dist/sdk/pgyersdk" }  //主力仓库
         maven { url "https://raw.githubusercontent.com/Pgyer/analytics/master" }  //备用仓库（主力仓库下载不下来使用）

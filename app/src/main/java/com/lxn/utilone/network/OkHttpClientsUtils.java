@@ -2,6 +2,7 @@ package com.lxn.utilone.network;
 
 import com.lxn.utilone.util.Log;
 
+import java.net.Proxy;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -29,6 +30,8 @@ public class OkHttpClientsUtils {
 
     private static OkHttpClient newOkHttpClient() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        //通过这个设置okhttp 不能用代理链接来访问 防止抓包
+//        builder.proxy(Proxy.NO_PROXY);
         // 连接超时时间阈值
         builder.connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS);
         // 数据获取时间阈值
